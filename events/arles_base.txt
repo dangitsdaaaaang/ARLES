@@ -1,0 +1,785 @@
+#Seeding Provinces with Base Resources
+#Enacted through Isis' character history to make sure modifiers are set before D-Day
+
+namespace = arles_base
+
+#arles_base.0
+#
+#Initial randomisation event
+character_event = {
+	id = arles_base.0
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			NOT = { has_global_flag = genesis } #Start case
+			any_independent_ruler = { # Recursive case
+				has_character_flag = base_seed
+			}
+		}
+	}
+	
+	immediate = {
+		random_list = { #Advance random seed
+			50 = { if = { limit = { always = yes } } } #Fool the engine
+			50 = { }
+		}
+	}
+	
+	option = {
+		name = OK
+		if = {
+			limit = { NOT = { has_global_flag = genesis } }
+			set_global_flag = genesis
+			save_event_target_as = verbum
+			set_variable = { which = amber_gaia value = 0 }
+			set_variable = { which = ivory_gaia value = 0 }
+			set_variable = { which = gold_gaia value = 0 }
+			any_independent_ruler = { # Setup recursion state
+				set_character_flag = base_seed
+			}
+		}
+		
+		# Following the example set in emf.rr, we'll have to use recursive events rather than just
+		# any_province.  For this event, we will recurse once for each independent ruler in the game
+		# and seed their demesne provinces, then use similar strategies to handle their vassals' demesnes.
+		
+		if = {
+			limit  = { has_global_flag = genesis }
+			# Select a random independent realm to begin seeding
+			random_independent_ruler = {
+				limit = { has_character_flag = base_seed }
+				character_event = { id = arles_base.1 } # Randomize realm
+			}
+		}
+		
+		character_event = { id = arles_base.0 } #Recurse
+	}
+}
+
+# arles_base.1
+#
+# Randomize independent realm
+#
+# ROOT = independent ruler
+# FROM = Isis
+character_event = {
+	id = arles_base.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		OR = {
+			has_character_flag = base_seed #Start
+			any_realm_lord = { #Recurse
+				has_character_flag = seed_demesne
+			}
+		}
+	}
+	
+	immediate = {
+		random_list = { #Advance random seed
+			50 = { if = { limit = { always = yes } } } #Fool the engine
+			50 = { }
+		}
+	}
+	
+	option = {
+		name = OK
+		
+		if = {
+			limit = { has_character_flag = base_seed } #Start case
+			clr_character_flag = base_seed
+			
+			# First, randomize the top liege's demesne
+			set_character_flag = seed_demesne
+			character_event = { id = arles_base.2 }
+			
+			# Set realm lords' demesnes which we will randomize. Limit at count-level to catch all
+			# provinces, ideally.
+			
+			any_realm_lord = {
+				limit = { higher_tier_than = baron }
+				set_character_flag = seed_demesne
+			}
+		}
+		
+		if = {
+			limit = { NOT = { has_character_flag = base_seed } } #Recursive case
+			# Select a ruler and randomize his court
+			random_realm_lord = {
+				limit = { has_character_flag = seed_demesne }
+				character_event = { id = arles_base.2 }
+			}
+		}
+		
+		# Recurse
+		character_event = { id = arles_base.1 }
+	}
+}
+
+# arles_base.2
+#
+# Recursion coherency unit
+# ROOT = ruler
+# FROM = top_liege
+character_event = {
+	id = arles_base.2
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		random_list = { #Advance random seed
+			50 = { if = { limit = { always = yes } } } #Fool the engine
+			50 = { }
+		}
+	}
+	
+	option = {
+		name = OK
+		
+		if = {
+			limit = { has_character_flag = seed_demesne } #Start case
+			clr_character_flag = seed_demesne
+			
+			character_event = { id = arles_base.3 } # Randomize province
+		}
+	}
+}
+
+# arles_base.3
+#
+#Character to province conversion
+character_event = {
+	id = arles_base.3
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		any_demesne_province = {
+			NOT = { has_province_flag = dixitquedeus }
+		}
+	}
+	
+	immediate = {
+		random_list = { #Advance random seed
+			50 = { if = { limit = { always = yes } } } #Fool the engine
+			50 = { }
+		}
+	}
+	
+	option = {
+		name = OK
+		
+		random_demesne_province = {
+			limit = { NOT = { has_province_flag = dixitquedeus } }
+			set_province_flag = dixitquedeus
+			log = "DEBUG: arles_base.3 Beginning processing of [This.GetName], Province [This.GetID]"
+			
+			#BEGIN PROVINCE POPULATION MODIFIERS
+			add_province_modifier = { name = arles_pop1 duration = -1 } #Population level 1
+			set_variable = { which = province_pop value = 0 } #Province population level counter
+			set_variable = { which = province_pop_diff value = 0 } #Aggregate Population level diff 
+			set_variable = { which = province_pop_diff_terr value = 0 } #Population level diff (terrain component)
+			set_variable = { which = province_pop_diff_trade value = 0 } #Population level diff (trade goods component)
+			
+			#BEGIN HOLDING POPULATION MODIFIERS
+			any_province_holding = {
+				limit = { NOT = { has_title_flag = holding_has_pop } }
+				add_holding_modifier = { modifier = arles_holding_pop1 duration = -1 }
+				set_variable = { which = holding_pop value = 0 }
+				set_variable = { which = holding_pop_diff value = 0 }
+				set_variable = { which = holding_pop_diff_terr value = 0 }
+				set_variable = { which = holding_pop_diff_trade value = 0 }
+				set_title_flag = holding_has_pop
+				log = "DEBUG: arles.base.3 Beginning processing of [This.GetName], Barony [This.GetID]"
+				
+				#BEGIN ADDING PRIMARY POPS IF NEEDED
+				if = {
+					limit = { 
+						NOT = {
+							has_building = ca_town_1
+							has_building = ct_marketplace_1
+							has_building = tp_town_2
+							has_building = tb_market_town_2
+						}
+					}
+					if = {
+						limit = { holding_type = castle }
+						add_building = ca_town_1
+						log = "DEBUG arles_base.3 Successfully built new housing in castle"
+					}
+					if = {
+						limit = { holding_type = city }
+						add_building = ct_marketplace_1
+						log = "DEBUG arles_base.3 Successfully built new housing in city"
+					}
+					if = {
+						limit = { holding_type = temple }
+						add_building = tp_town_1
+						log = "DEBUG arles_base.3 Successfully built new housing in temple"
+					}
+					if = {
+						limit = { holding_type = tribal }
+						add_building = tb_market_town_1
+						log = "DEBUG arles_base.3 Successfully built new housing in tribal village"
+					}
+				}
+				
+				#BEGIN HOLDING-POP CONVERSION (sliding scale with +50 differential per step up)
+				if = {
+					limit = { 
+						OR = {
+							has_building = ca_town_1
+							has_building = ct_marketplace_1
+							has_building = tp_town_1
+							has_building = tb_market_town_1
+						}
+					}
+					change_variable = { which = holding_pop_diff value = 50 }
+					change_variable = { which = holding_pop which = holding_pop_diff }
+					set_variable = { which = holding_pop_diff value = 0 }
+					location = {
+						change_variable = { which = province_pop_diff value = 1.25 }
+						change_variable = { which = province_pop which = province_pop_diff }
+						set_variable = { which = province_pop_diff value = 0 }
+					}
+				}
+				if = {
+					limit = { 
+						OR = {
+							has_building = ca_town_2
+							has_building = ct_marketplace_2
+							has_building = tp_town_2
+							has_building = tb_market_town_2
+						}
+					}
+					change_variable = { which = holding_pop_diff value = 100 }
+					change_variable = { which = holding_pop which = holding_pop_diff }
+					set_variable = { which = holding_pop_diff value = 0 }
+					location = {
+						change_variable = { which = province_pop_diff value = 1.75 }
+						change_variable = { which = province_pop which = province_pop_diff }
+						set_variable = { which = province_pop_diff value = 0 }
+					}
+				}
+				if = {
+					limit = { 
+						OR = {
+							has_building = ca_town_3
+							has_building = ct_marketplace_3
+							has_building = tp_town_3
+							has_building = tb_market_town_3
+						}
+					}
+					change_variable = { which = holding_pop_diff value = 150 }
+					change_variable = { which = holding_pop which = holding_pop_diff }
+					set_variable = { which = holding_pop_diff value = 0 }
+					location = {
+						change_variable = { which = province_pop_diff value = 2.25 }
+						change_variable = { which = province_pop which = province_pop_diff }
+						set_variable = { which = province_pop_diff value = 0 }
+					}
+				}
+				if = {
+					limit = { 
+						OR = {
+							has_building = ca_town_4
+							has_building = ct_marketplace_4
+							has_building = tp_town_4
+							has_building = tb_market_town_4
+						}
+					}
+					change_variable = { which = holding_pop_diff value = 200 }
+					change_variable = { which = holding_pop which = holding_pop_diff }
+					set_variable = { which = holding_pop_diff value = 0 }
+					location = {
+						change_variable = { which = province_pop_diff value = 2.75 }
+						change_variable = { which = province_pop which = province_pop_diff }
+						set_variable = { which = province_pop_diff value = 0 }
+					}
+				}
+				if = {
+					limit = { 
+						OR = {
+							has_building = ca_town_5
+							has_building = ct_marketplace_5
+							has_building = tp_town_5
+						}
+					}
+					change_variable = { which = holding_pop_diff value = 250 }
+					change_variable = { which = holding_pop which = holding_pop_diff }
+					set_variable = { which = holding_pop_diff value = 0 }
+					location = {
+						change_variable = { which = province_pop_diff value = 3.25 }
+						change_variable = { which = province_pop which = province_pop_diff }
+						set_variable = { which = province_pop_diff value = 0 }
+					}
+				}			
+				if = {
+					limit = { 
+						OR = {
+							has_building = ct_marketplace_6
+							has_building = tp_town_6
+						}
+					}
+					change_variable = { which = holding_pop_diff value = 300 }
+					change_variable = { which = holding_pop which = holding_pop_diff }
+					set_variable = { which = holding_pop_diff value = 0 }
+					location = {
+						change_variable = { which = province_pop_diff value = 3.75 }
+						change_variable = { which = province_pop which = province_pop_diff }
+						set_variable = { which = province_pop_diff value = 0 }
+					}
+				}
+				log = "DEBUG arles_base.3 Successfully summed holding population to [This.holding_pop.GetValue] from all town buildings"
+				if = {
+					limit = {
+						holder_scope = { is_nomadic = yes }
+					}
+					set_variable = { which = holding_pop value = 0 }
+				}
+				log = "DEBUG arles_base.3 Successfully zeroed holding population to [This.holding_pop.GetValue] for nomad camps"	
+				
+				#BEGIN TERRAIN POP GROWTH CONSTANTS
+				location = {
+					if = {
+						limit = { terrain = mountain } #50% slower base pop growth in mountains
+						PREV = {
+							set_variable = { which = holding_pop_diff_terr value = 0.5 }
+							log = "DEBUG arles_base.3 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
+						}
+					}
+					if = {
+						limit = { terrain = hills } #25% slower base pop growth in hills
+						PREV = {
+							set_variable = { which = holding_pop_diff_terr value = 0.75 }
+							log = "DEBUG arles_base.3 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
+						}
+					}
+					if = {
+						limit = { terrain = forest } #30% slower base pop growth in forests
+						PREV = {
+							set_variable = { which = holding_pop_diff_terr value = 0.7 }
+							log = "DEBUG arles_base.3 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
+						}
+					}
+					if = {
+						limit = { terrain = plains } #Standard of growth
+						PREV = {
+							set_variable = { which = holding_pop_diff_terr value = 1 }
+							log = "DEBUG arles_base.3 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
+						}
+					}
+					if = {
+						limit = { terrain = farmlands } #25% faster base pop growth in farmland
+						PREV = {
+							set_variable = { which = holding_pop_diff_terr value = 1.25 }
+							log = "DEBUG arles_base.3 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
+						}
+					}
+					if = {
+						limit = { terrain = steppe } #40% slower base pop growth in steppes, not as much arable land
+						PREV = {
+							set_variable = { which = holding_pop_diff_terr value = 0.6 }
+							log = "DEBUG arles_base.3 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
+						}
+					}
+					if = {
+						limit = { terrain = desert } #60% slower base pop growth in desert
+						PREV = {
+							set_variable = { which = holding_pop_diff_terr value = 0.4 }
+							log = "DEBUG arles_base.3 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
+						}
+					}
+					if = { 
+						limit = { terrain = coastal_desert } #60% slower base pop growth in desert
+						PREV = {
+							set_variable = { which = holding_pop_diff_terr value = 0.4 }
+							log = "DEBUG arles_base.3 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
+						}
+					}
+					if = {
+						limit = { terrain = arctic } #75% slower base pop growth in arctic
+						PREV = {
+							set_variable = { which = holding_pop_diff_terr value = 0.25 }
+							log = "DEBUG arles_base.3 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
+						}
+					}
+					if = {
+						limit = { terrain = jungle } #75% slower base pop growth in jungle
+						PREV = {
+							set_variable = { which = holding_pop_diff_terr value = 0.25 }
+							log = "DEBUG arles_base.3 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
+						}
+					}
+					if = {
+						limit = { terrain = marsh } #75% slower base pop growth in marshland
+						PREV = {
+							set_variable = { which = holding_pop_diff_terr value = 0.25 }
+							log = "DEBUG arles_base.3 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
+						}
+					}
+				}
+				#POPULATION - TERRAIN MODIFIERS
+				multiply_variable = { which = holding_pop which = holding_pop_diff_terr }
+				log = "DEBUG arles_base.3 Successfully summed holding population to [This.holding_pop.GetValue] after applying terrain modifiers"
+				
+				#BEGIN POPULATION LEVEL ASSIGNMENT
+				if = { #Advance to pop level 2
+					limit = { check_variable = { which = holding_pop value = 149.5 } }
+					remove_holding_modifier = arles_holding_pop1
+					add_holding_modifier = { modifier = arles_holding_pop2 duration = -1 }
+					log = "DEBUG arles_base.3 Changed province modifier to Level 2 based on holding population of [This.holding_pop.GetValue]"
+				}
+				if = { #Advance to pop level 3
+					limit = { check_variable = { which = holding_pop value = 299.5 } }
+					remove_holding_modifier = arles_holding_pop2
+					add_holding_modifier = { modifier = arles_holding_pop3 duration = -1 }
+					log = "DEBUG arles_base.3 Changed province modifier to Level 3 based on holding population of [This.holding_pop.GetValue]"
+				}
+				if = { #Advance to pop level 4
+					limit = { check_variable = { which = holding_pop value = 499.5 } }
+					remove_holding_modifier = arles_holding_pop3
+					add_holding_modifier = { modifier = arles_holding_pop4 duration = -1 }
+					log = "DEBUG arles_base.3 Changed province modifier to Level 4 based on holding population of [This.holding_pop.GetValue]"
+				}
+				if = { #Advance to pop level 5
+					limit = { check_variable = { which = holding_pop value = 999.5 } }
+					remove_holding_modifier = arles_holding_pop4
+					add_holding_modifier = { modifier = arles_holding_pop5 duration = -1 }
+					log = "DEBUG arles_base.3 Changed province modifier to Level 5 based on holding population of [This.holding_pop.GetValue]"
+				}
+				log = "DEBUG arles_base.3 Reached end of holding population calculations"
+				
+			}
+			
+			#BEGIN TERRAIN POP GROWTH CONSTANTS
+			if = {
+				limit = { terrain = mountain } #50% slower base pop growth in mountains
+				set_variable = { which = province_pop_diff_terr value = 0.5 }
+			}
+			if = {
+				limit = { terrain = hills } #25% slower base pop growth in hills
+				set_variable = { which = province_pop_diff_terr value = 0.75 }
+			}
+			if = {
+				limit = { terrain = forest } #30% slower base pop growth in forests
+				set_variable = { which = province_pop_diff_terr value = 0.7 }
+			}
+			if = {
+				limit = { terrain = plains } #Standard of growth
+				set_variable = { which = province_pop_diff_terr value = 1 }
+			}
+			if = {
+				limit = { terrain = farmlands } #25% faster base pop growth in farmland
+				set_variable = { which = province_pop_diff_terr value = 1.25 }
+			}
+			if = {
+				limit = { terrain = steppe } #40% slower base pop growth in steppes, not as much arable land
+				set_variable = { which = province_pop_diff_terr value = 0.6 }
+			}
+			if = {
+				limit = { terrain = desert } #60% slower base pop growth in desert
+				set_variable = { which = province_pop_diff_terr value = 0.4 }
+			}
+			if = { 
+				limit = { terrain = coastal_desert } #60% slower base pop growth in desert
+				set_variable = { which = province_pop_diff_terr value = 0.4 }
+			}
+			if = {
+				limit = { terrain = arctic } #75% slower base pop growth in arctic
+				set_variable = { which = province_pop_diff_terr value = 0.25 }
+			}
+			if = {
+				limit = { terrain = jungle } #75% slower base pop growth in jungle
+				set_variable = { which = province_pop_diff_terr value = 0.25 }
+			}
+			if = {
+				limit = { terrain = marsh } #75% slower base pop growth in marshland
+				set_variable = { which = province_pop_diff_terr value = 0.25 }
+			}
+			log = "DEBUG arles_base.3 Report province population as [This.province_pop.GetValue] before applying terrain modifier"
+			
+			#POPULATION - TERRAIN MODIFIERS (SUMMED SUCH THAT A FULLY UPGRADED 7-HOLDING PLAINS PROVINCE HAS EXACTLY 100 POP POINTS)
+			multiply_variable = { which = province_pop which = province_pop_diff_terr }
+			log = "DEBUG arles_base.3 Readjusted province using terrain modifier of [This.province_pop_diff_terr.GetValue] to [This.province_pop.GetValue]"
+			
+				
+			#POPULATION - GOVERNMENT MODIFIERS
+			if = { #Reduce province pop by 25% if subordinate to tribal
+				limit = {
+					holder_scope = { government = tribal_government }
+				}
+				multiply_variable = { which = province_pop value = 0.75 }
+				log = "DEBUG arles_base.3 Readjusted province population to [This.province_pop.GetValue] due to tribal overlord"
+			}
+			if = { #Reduce province pop by 50% if subordinate to nomads
+				limit = {
+					holder_scope = { government = nomadic_government }
+				}
+				multiply_variable = { which = province_pop value = 0.5 }
+				log = "DEBUG arles_base.3 Readjusted province population to [This.province_pop.GetValue] due to nomad overlord"
+			}
+			if = { #Reduce province pop by 100% if only nomads
+				limit = {
+					holder_scope = { government = nomadic_government }
+					num_of_settlements = 1
+					capital_holding = {
+						has_holder = yes
+					}
+				}
+				set_variable = { which = province_pop value = 0 }
+				log = "DEBUG arles_base.3 Zeroed out province population to [This.province_pop.GetValue] due to nomad overlord of empty province"
+			}
+			
+			#BEGIN POPULATION LEVEL ASSIGNMENT
+			if = { #Advance to pop level 2
+				limit = { check_variable = { which = province_pop value = 4.5 } }
+				remove_province_modifier = arles_pop1
+				add_province_modifier = { name = arles_pop2 duration = -1 }
+				log = "DEBUG arles_base.3 Changed province modifier to Level 2 based on holding population of [This.province_pop.GetValue]"
+			}
+			if = { #Advance to pop level 3
+				limit = { check_variable = { which = province_pop value = 19.5 } }
+				remove_province_modifier = arles_pop2
+				add_province_modifier = { name = arles_pop3 duration = -1 }
+				log = "DEBUG arles_base.3 Changed province modifier to Level 3 based on holding population of [This.province_pop.GetValue]"
+			}
+			if = { #Advance to pop level 4
+				limit = { check_variable = { which = province_pop value = 34.5 } }
+				remove_province_modifier = arles_pop3
+				add_province_modifier = { name = arles_pop4 duration = -1 }
+				log = "DEBUG arles_base.3 Changed province modifier to Level 4 based on holding population of [This.province_pop.GetValue]"
+			}
+			if = { #Advance to pop level 5
+				limit = { check_variable = { which = province_pop value = 49.5 } }
+				remove_province_modifier = arles_pop4
+				add_province_modifier = { name = arles_pop5 duration = -1 }
+				log = "DEBUG arles_base.3 Changed province modifier to Level 5 based on holding population of [This.province_pop.GetValue]"
+			}
+				
+			#BEGIN SEED RESOURCES
+			if = {
+				limit = { 
+					OR = {
+						port = yes
+						borders_lake = yes
+					}
+				}
+				random = {
+					chance = 33
+					add_province_modifier = { name = arles_fishing duration = -1 }
+					log = "DEBUG arles_base.3 Added Fish to province"
+				}
+			}
+			if = {
+				limit = { terrain = arctic } #Furs and Game
+				random = {
+					chance = 33
+					add_province_modifier = { name = arles_furs duration = -1 }
+					log = "DEBUG arles_base.3 Added Furs to province"
+				}
+				random = {
+					chance = 25
+					add_province_modifier = { name = arles_game duration = -1 }
+					log = "DEBUG arles_base.3 Added Game to province"
+				}
+			}
+			if = {
+				limit = { terrain = mountain } #Silver, Stone, and Minerals
+				random = {
+					chance = 15
+					add_province_modifier = { name = arles_silver duration = -1 }
+					log = "DEBUG arles_base.3 Added Silver to province"
+				}
+				random = {
+					chance = 33
+					add_province_modifier = { name = arles_stone duration = -1 }
+					log = "DEBUG arles_base.3 Added Stone to province"
+				}
+				random = {
+					chance = 33
+					add_province_modifier = { name = arles_minerals duration = -1 }
+					log = "DEBUG arles_base.3 Added Minerals to province"
+				}
+			}
+			if = {
+				limit = { terrain = hills } #Silver, Stone, and Minerals
+				random = {
+					chance = 10
+					add_province_modifier = { name = arles_silver duration = -1 }
+					log = "DEBUG arles_base.3 Added Silver to province"
+				}
+				random = {
+					chance = 33 
+					add_province_modifier = { name = arles_stone duration = -1 }
+					log = "DEBUG arles_base.3 Added Stone to province"
+				}
+				random = {
+					chance = 33
+					add_province_modifier = { name = arles_minerals duration = -1 }
+					log = "DEBUG arles_base.3 Added Minerals to province"
+				}
+				random = {
+					chance = 5
+					set_province_flag = undiscovered_gems
+					log = "DEBUG arles_base.3 Added Undiscovered Gems to province"
+				}
+			}
+			if = {
+				limit = { terrain = forest } #Game and Minerals
+				random = {
+					chance = 33
+					add_province_modifier = { name = arles_game duration = -1 }
+					log = "DEBUG arles_base.3 Added Game to province"
+				}
+				random = {
+					chance = 15
+					add_province_modifier = { name = arles_minerals duration = -1 }
+					log = "DEBUG arles_base.3 Added Minerals to province"
+				}
+			}
+			if = {
+				limit = { terrain = farmlands } #Fertile Soil and Pastureland
+				random = {
+					chance = 75
+					add_province_modifier = { name = arles_fertile duration = -1 }
+					log = "DEBUG arles_base.3 Added Farmland to province"
+				}
+				random = {
+					chance = 75	
+					add_province_modifier = { name = arles_pasture duration = -1 }
+					log = "DEBUG arles_base.3 Added Pasture to province"
+				}
+			}
+			if = {
+				limit = { terrain = plains } #Fertile Soil and Pastureland
+				random = {
+					chance = 33
+					add_province_modifier = { name = arles_pasture duration = -1 }
+					log = "DEBUG arles_base.3 Added Pasture to province"
+				}
+				random = {
+					chance = 25
+					add_province_modifier = { name = arles_fertile duration = -1 }
+					log = "DEBUG arles_base.3 Added Farmland to province"
+				}
+				if = { #Silver or Minerals from the rivers
+					limit = { borders_major_river = yes }
+					random = {
+						chance = 5
+						add_province_modifier = { name = arles_silver duration = -1 }
+						log = "DEBUG arles_base.3 Added Silver to province"
+					}
+					random = {
+						chance = 15
+						add_province_modifier = { name = arles_minerals duration = -1 }
+						log = "DEBUG arles_base.3 Added Minerals to province"
+					}
+				}
+			}
+			if = {
+				limit = { terrain = steppe } #Pastureland
+				random = {
+					chance = 40
+					add_province_modifier = { name = arles_pasture duration = -1 }
+					log = "DEBUG arles_base.3 Added Pasture to province"
+				}
+			}
+			if = {
+				limit = { province_id = 371 } #Sambia
+				event_target:verbum = {
+					change_variable = { which = amber_gaia value = 1 }
+				}
+				add_province_modifier = { name = arles_amber duration = -1 }
+				log = "DEBUG arles_base.3 Added Amber to province"
+			}
+			if = {
+				limit = { 
+					event_target:verbum = {
+						NOT = { check_variable = { which = "amber_gaia" value = 1.5 } }
+					}
+					region = custom_eastern_baltic 
+				}
+				event_target:verbum = {
+					change_variable = { which = amber_gaia value = 1 }
+				}
+				add_province_modifier = { name = arles_amber duration = -1 }
+				log = "DEBUG arles_base.3 Added Amber to province"
+			}
+			if = {
+				limit = { 
+					province_id = 925 #Mali
+				}
+				add_province_modifier = { name = arles_gold duration = -1 }
+				log = "DEBUG arles_base.3 Added Gold to province"
+			}
+			if = {
+				limit = { 
+					province_id = 911 #Timbuktu
+				}
+				add_province_modifier = { name = arles_gold duration = -1 }
+				log = "DEBUG arles_base.3 Added Gold to province"
+			}
+			if = {
+				limit = {
+					event_target:verbum = {
+						NOT = { check_variable = { which = "gold_gaia" value = 0.5 } }
+					}
+					de_jure_liege_or_above = k_nubia #Gold for the Baqt
+				}
+				event_target:verbum = {
+					change_variable = { which = gold_gaia value = 1 }
+				}
+				add_province_modifier = { name = arles_gold duration = -1 }
+				log = "DEBUG arles_base.3 Added Gold to province"
+			}
+			if = {
+				limit = { #3 random sources of Ivory
+					event_target:verbum = {
+						NOT = { check_variable = { which = "ivory_gaia" value = 2.5 } }
+					}
+					OR = {
+						region = world_africa_east
+						region = world_africa_west
+					}
+					OR = {
+						terrain = desert 
+						terrain = plains
+					}
+				}
+				event_target:verbum = {
+					change_variable = { which = ivory_gaia value = 1 }
+				}
+				add_province_modifier = { name = arles_ivory duration = -1 }
+				log = "DEBUG arles_base.3 Added Ivory to province"
+			}
+			if = {
+				limit = {
+					province_id = 448 #Salzburg
+				}
+				add_province_modifier = { name = arles_salt duration = -1 }
+				log = "DEBUG arles_base.3 Added Salt to province"
+			}
+			if = {
+				limit = {
+					province_id = 515 #Tirgoviste
+				}
+				add_province_modifier = { name = arles_salt duration = -1 }
+				log = "DEBUG arles_base.3 Added Salt to province"
+			}
+			if = {
+				limit = {
+					province_id = 916 #Taghaza
+				}
+				add_province_modifier = { name = arles_salt duration = -1 }
+				log = "DEBUG arles_base.3 Added Salt to province"
+			}
+		}
+		
+		# Recurse
+		character_event = { id = arles_base.3 }	
+	}
+}

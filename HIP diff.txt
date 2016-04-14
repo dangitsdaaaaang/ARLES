@@ -1,0 +1,26 @@
+ROOT = {
+	common = {
+		building = {
+			00_buildings.txt
+			00_Castle.txt
+			00_CastleCulture.txt
+			00_tradepost.txt
+			00_tribal.txt
+		}
+	}
+	gfx = {
+		interface = {
+			modifier_icons.dds
+		}
+	}
+	history = {
+		characters = {
+			00_HIP_characters
+		}
+	}
+	interface = {
+		province.gfx
+	}
+}
+	
+	

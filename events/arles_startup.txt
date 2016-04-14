@@ -1,0 +1,26 @@
+namespace = arles_startup
+
+# arles_startup.0
+# Initial welcome event
+narrative_event = {
+	id    = arles_startup.0
+	desc  = arles_startup.0.desc
+	title = arles_startup.0.title
+
+	picture = GFX_evt_village_at_night_finno_ugric
+	border  = GFX_event_narrative_frame_diplomacy
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = arles_startup.0.opt.a
+		hidden_tooltip = {
+			e_hip = { 
+				holder_scope = {
+					character_event = { id = arles_base.0 days = 1 }
+				}
+			}
+		}
+	}
+}

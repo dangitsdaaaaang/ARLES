@@ -1,0 +1,111 @@
+#Begin ARLES base resources
+##################################################################################################
+# scriptable and usable for event-system below.
+##################################################################################################
+#
+# ICONS:
+#
+# Good 			<=> 		Bad
+#
+#  1 - Martial 				- 19
+#  2 - Learning 			- 20
+#  3 - Diplomacy 			- 21
+#  4 - Stewardship 			- 22
+#  5 - Intrigue 			- 23
+#  6 - Money 				- 24
+#  7 - Prestige 			- 25
+#  8 - Piety 				- 26
+#  9 - Titles 				- 27
+# 10 - Council 				- 28 
+# 11 - Laws 				- 29
+# 12 - Tech 				- 30 
+# 13 - Military 			- 31
+# 14 - Plots 				- 32
+# 15 - Messages 			- 33
+# 16 - Diplomatic actions 	- 34
+# 17 - Church 				- 35
+# 18 - Characters 			- 36
+# 37 - Prison 				- 38
+# 39 - Love 				- 40
+
+# 79 - Furs
+# 80 - Game Land
+# 81 - Silver Deposits
+# 82 - Stone Deposits
+# 83 - Mineral Deposits
+# 84 - Fertile Soil
+# 85 - Pastureland
+# 86 - Fishing Grounds
+# 87 - Amber
+# 88 - Ivory
+# 89 - Ebony
+# 90 - Silks
+# 91 - Spices
+# 92 - Salt
+# 93 - Gold
+
+#Local Resources (able to be used by all provinces in a duchy, by all in a kingdom if there are 3 or more sources, by all in the realm if there are 5 per 120 holdings)
+arles_game = {
+	icon = 80
+}
+
+arles_silver = {
+	icon = 81
+}
+
+arles_stone = {
+	icon = 82
+}
+
+arles_minerals = {
+	icon = 83
+}
+
+arles_fertile = {
+	icon = 84
+}
+
+arles_pasture = {
+	icon = 85
+}
+
+arles_fishing = {
+	icon = 86
+}
+
+#Trade Goods (
+arles_furs = {
+	icon = 79
+}
+
+arles_amber = {
+	icon = 87
+}
+
+arles_ivory = {
+	icon = 90
+}
+
+arles_salt = {
+	icon = 92
+}
+
+arles_gold = {
+	icon = 93
+}
+
+#Silk Road Goods (able to be used by all in a Kingdom with only one source)
+arles_ebony = {
+	icon = 89
+}
+
+arles_silks = {
+	icon = 88
+}
+
+arles_spices = {
+	icon = 91
+}
+
+
+	

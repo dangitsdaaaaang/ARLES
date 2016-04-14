@@ -1,0 +1,13 @@
+on_five_year_pulse = {
+	events = {
+		arles_pop.0 #base pop growth
+	}
+}	
+
+on_settlement_construction_completed = {
+	events = {
+		arles_pop.1 #set up new holding
+	}
+}
+
+
