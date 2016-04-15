@@ -473,6 +473,7 @@ city = {
 	
 	ct_marketplace_1 = {
 		desc = ct_marketplace_1_desc
+		prerequisites = { ct_wall_2 }
 		trigger = { TECH_CITY_CONSTRUCTION = 0 }
 		gold_cost = 100
 		build_time = 365
