@@ -2370,6 +2370,7 @@ character_event = {
 							set_variable = { which = province_pop_diff value = 0 }
 							change_variable = { which = province_pop_diff value = 1.75 }
 							change_variable = { which = province_pop which = province_pop_diff }
+							add_province_modifier = { name = arles_popgrowth days = 365 }
 							log = "DEBUG arles_base.6 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
 						}
 					}
@@ -2407,6 +2408,7 @@ character_event = {
 							set_variable = { which = province_pop_diff value = 0 }
 							change_variable = { which = province_pop_diff value = 2.25 }
 							change_variable = { which = province_pop which = province_pop_diff }
+							add_province_modifier = { name = arles_popgrowth days = 365 }
 							log = "DEBUG arles_base.6 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
 						}
 					}
@@ -2417,25 +2419,28 @@ character_event = {
 							NOT = { has_title_flag = major_pop }
 						}
 						remove_holding_modifier = arles_holding_pop3
-						add_holding_modifier = { modifier = arles_holding_pop4 duration = -1 }
 						if = {
 							limit = { holding_type = castle }
 							add_building = ca_town_4
+							add_holding_modifier = { modifier = arles_holding_pop4 duration = -1 }
 							log = "DEBUG arles_base.6 Successfully built new housing in castle"
 						}
 						if = {
 							limit = { holding_type = city }
 							add_building = ct_marketplace_4
+							add_holding_modifier = { modifier = arles_holding_pop4 duration = -1 }
 							log = "DEBUG arles_base.6 Successfully built new housing in city"
 						}
 						if = {
 							limit = { holding_type = temple }
 							add_building = tp_town_4
+							add_holding_modifier = { modifier = arles_holding_pop4 duration = -1 }
 							log = "DEBUG arles_base.6 Successfully built new housing in temple"
 						}
 						if = {
 							limit = { holding_type = tribal }
 							add_building = tb_market_town_4
+							add_holding_modifier = { modifier = arles_holding_pop4_tribal duration = -1 }
 							log = "DEBUG arles_base.6 Successfully built new housing in tribal village"
 						}
 						set_title_flag = major_pop
@@ -2444,6 +2449,7 @@ character_event = {
 							set_variable = { which = province_pop_diff value = 0 }
 							change_variable = { which = province_pop_diff value = 2.75 }
 							change_variable = { which = province_pop which = province_pop_diff }
+							add_province_modifier = { name = arles_popgrowth days = 365 }
 							log = "DEBUG arles_base.6 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
 						}
 					}
@@ -2475,12 +2481,12 @@ character_event = {
 							set_variable = { which = province_pop_diff value = 0 }
 							change_variable = { which = province_pop_diff value = 2.75 }
 							change_variable = { which = province_pop which = province_pop_diff }
+							add_province_modifier = { name = arles_popgrowth days = 365 }
 							log = "DEBUG arles_base.6 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
 						}
 					}
 					log = "DEBUG arles_base.6 Reached end of holding population calculations"
 				}
-				add_province_modifier = { name = arles_popgrowth days = 274 }
 			}
 		}
 		character_event = { id = arles_base.6 days = 365 }

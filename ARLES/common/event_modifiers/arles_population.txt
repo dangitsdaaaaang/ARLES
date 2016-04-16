@@ -72,6 +72,9 @@ arles_holding_pop3 = {
 arles_holding_pop4 = {
 	icon = 102
 }
+arles_holding_pop4_tribal = {
+	icon = 102
+}
 arles_holding_pop5 = {
 	icon = 103
 }
