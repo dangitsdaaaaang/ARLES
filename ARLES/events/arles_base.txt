@@ -1764,21 +1764,24 @@ character_event = {
 					if = {
 						limit = { terrain = mountain } #50% slower base pop growth in mountains
 						PREV = {
-							set_variable = { which = holding_pop_diff_terr value = 0.5 }
+							set_variable = { which = holding_pop_diff_terr value = 1 }
+							divide_variable = { which = holding_pop_diff_terr value = 1.5 }
 							log = "DEBUG arles_base.4 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
 						}
 					}
 					if = {
 						limit = { terrain = hills } #25% slower base pop growth in hills
 						PREV = {
-							set_variable = { which = holding_pop_diff_terr value = 0.75 }
+							set_variable = { which = holding_pop_diff_terr value = 1 }
+							divide_variable = { which = holding_pop_diff_terr value = 1.25 }
 							log = "DEBUG arles_base.4 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
 						}
 					}
 					if = {
-						limit = { terrain = forest } #30% slower base pop growth in forests
+						limit = { terrain = forest } #20% slower base pop growth in forests
 						PREV = {
-							set_variable = { which = holding_pop_diff_terr value = 0.7 }
+							set_variable = { which = holding_pop_diff_terr value = 1 }
+							divide_variable = { which = holding_pop_diff_terr value = 1.20 }
 							log = "DEBUG arles_base.4 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
 						}
 					}
@@ -1790,51 +1793,58 @@ character_event = {
 						}
 					}
 					if = {
-						limit = { terrain = farmlands } #25% faster base pop growth in farmland
+						limit = { terrain = farmlands } #5% faster base pop growth in farmland
 						PREV = {
-							set_variable = { which = holding_pop_diff_terr value = 1.25 }
+							set_variable = { which = holding_pop_diff_terr value = 1 }
+							multiply_variable = { which = holding_pop_diff_terr value = 1.05 }
 							log = "DEBUG arles_base.4 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
 						}
 					}
 					if = {
-						limit = { terrain = steppe } #40% slower base pop growth in steppes, not as much arable land
+						limit = { terrain = steppe } #20% slower base pop growth in steppes, not as much arable land
 						PREV = {
-							set_variable = { which = holding_pop_diff_terr value = 0.6 }
+							set_variable = { which = holding_pop_diff_terr value = 1 }
+							divide_variable = { which = holding_pop_diff_terr value = 1.20 }
 							log = "DEBUG arles_base.4 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
 						}
 					}
 					if = {
-						limit = { terrain = desert } #60% slower base pop growth in desert
+						limit = { terrain = desert } #35% slower base pop growth in desert
 						PREV = {
-							set_variable = { which = holding_pop_diff_terr value = 0.4 }
+							set_variable = { which = holding_pop_diff_terr value = 1 }
+							divide_variable = { which = holding_pop_diff_terr value = 1.35 }
 							log = "DEBUG arles_base.4 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
 						}
 					}
 					if = { 
-						limit = { terrain = coastal_desert } #60% slower base pop growth in desert
+						limit = { terrain = coastal_desert } #25% slower base pop growth in desert
 						PREV = {
-							set_variable = { which = holding_pop_diff_terr value = 0.4 }
+							set_variable = { which = holding_pop_diff_terr value = 1 }
+							divide_variable = { which = holding_pop_diff_terr value = 1.25 }
 							log = "DEBUG arles_base.4 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
 						}
 					}
 					if = {
-						limit = { terrain = arctic } #75% slower base pop growth in arctic
+						limit = { terrain = arctic } #50% slower base pop growth in arctic
 						PREV = {
-							set_variable = { which = holding_pop_diff_terr value = 0.25 }
+							set_variable = { which = holding_pop_diff_terr value = 1 }
+							divide_variable = { which = holding_pop_diff_terr value = 1.50 }
 							log = "DEBUG arles_base.4 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
 						}
 					}
 					if = {
-						limit = { terrain = jungle } #75% slower base pop growth in jungle
+						limit = { terrain = jungle } #35% slower base pop growth in jungle
 						PREV = {
-							set_variable = { which = holding_pop_diff_terr value = 0.25 }
+							set_variable = { which = holding_pop_diff_terr value = 1 }
+							divide_variable = { which = holding_pop_diff_terr value = 1.35 }
 							log = "DEBUG arles_base.4 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue] ([Prev.terrain.GetName])"
 						}
 					}
 					if = {
-						limit = { terrain = marsh } #75% slower base pop growth in marshland
+						limit = { terrain = marsh } #25% slower base pop growth in marshland
 						PREV = {
-							set_variable = { which = holding_pop_diff_terr value = 0.25 }
+							set_variable = { which = holding_pop_diff_terr value = 1 }
+							divide_variable = { which = holding_pop_diff_terr value = 1.25 }
 							log = "DEBUG arles_base.4 Defined terrain modifier as [This.holding_pop_diff_terr.GetValue]"
 						}
 					}
@@ -1973,47 +1983,57 @@ character_event = {
 				#BEGIN TERRAIN POP GROWTH CONSTANTS
 				if = {
 					limit = { terrain = mountain } #50% slower base pop growth in mountains
-					set_variable = { which = province_pop_diff_terr value = 0.5 }
+					set_variable = { which = province_pop_diff_terr value = 1 }
+					divide_variable = { which = province_pop_diff_terr value = 1.5 }
 				}
 				if = {
 					limit = { terrain = hills } #25% slower base pop growth in hills
-					set_variable = { which = province_pop_diff_terr value = 0.75 }
+					set_variable = { which = province_pop_diff_terr value = 1 }
+					divide_variable = { which = province_pop_diff_terr value = 1.25 }
 				}
 				if = {
-					limit = { terrain = forest } #30% slower base pop growth in forests
-					set_variable = { which = province_pop_diff_terr value = 0.7 }
+					limit = { terrain = forest } #20% slower base pop growth in forests
+					set_variable = { which = province_pop_diff_terr value = 1 }
+					divide_variable = { which = province_pop_diff_terr value = 1.20 }
 				}
 				if = {
 					limit = { terrain = plains } #Standard of growth
 					set_variable = { which = province_pop_diff_terr value = 1 }
 				}
 				if = {
-					limit = { terrain = farmlands } #25% faster base pop growth in farmland
-					set_variable = { which = province_pop_diff_terr value = 1.25 }
+					limit = { terrain = farmlands } #5% faster base pop growth in farmland
+					set_variable = { which = province_pop_diff_terr value = 1 }
+					multiply_variable = { which = province_pop_diff_terr value = 1.05 }
 				}
 				if = {
-					limit = { terrain = steppe } #40% slower base pop growth in steppes, not as much arable land
-					set_variable = { which = province_pop_diff_terr value = 0.6 }
+					limit = { terrain = steppe } #20% slower base pop growth in steppes, not as much arable land
+					set_variable = { which = province_pop_diff_terr value = 1 }
+					divide_variable = { which = province_pop_diff_terr value = 1.20 }
 				}
 				if = {
-					limit = { terrain = desert } #60% slower base pop growth in desert
-					set_variable = { which = province_pop_diff_terr value = 0.4 }
+					limit = { terrain = desert } #35% slower base pop growth in desert
+					set_variable = { which = province_pop_diff_terr value = 1 }
+					divide_variable = { which = province_pop_diff_terr value = 1.35 }
 				}
 				if = { 
-					limit = { terrain = coastal_desert } #60% slower base pop growth in desert
-					set_variable = { which = province_pop_diff_terr value = 0.4 }
+					limit = { terrain = coastal_desert } #25% slower base pop growth in desert
+					set_variable = { which = province_pop_diff_terr value = 1 }
+					divide_variable = { which = province_pop_diff_terr value = 1.25 }
 				}
 				if = {
-					limit = { terrain = arctic } #75% slower base pop growth in arctic
-					set_variable = { which = province_pop_diff_terr value = 0.25 }
+					limit = { terrain = arctic } #50% slower base pop growth in arctic
+					set_variable = { which = province_pop_diff_terr value = 1 }
+					divide_variable = { which = province_pop_diff_terr value = 1.5 }
 				}
 				if = {
-					limit = { terrain = jungle } #75% slower base pop growth in jungle
-					set_variable = { which = province_pop_diff_terr value = 0.25 }
+					limit = { terrain = jungle } #35% slower base pop growth in jungle
+					set_variable = { which = province_pop_diff_terr value = 1 }
+					divide_variable = { which = province_pop_diff_terr value = 1.35 }
 				}
 				if = {
-					limit = { terrain = marsh } #75% slower base pop growth in marshland
-					set_variable = { which = province_pop_diff_terr value = 0.25 }
+					limit = { terrain = marsh } #25% slower base pop growth in marshland
+					set_variable = { which = province_pop_diff_terr value = 1 }
+					divide_variable = { which = province_pop_diff_terr value = 1.25 }
 				}
 				log = "DEBUG arles_base.5 Report province population as [This.province_pop.GetValue] before applying terrain modifier"
 				
@@ -2491,25 +2511,25 @@ character_event = {
 					limit = { check_variable = { which = province_pop value = 4.5 } }
 					remove_province_modifier = arles_pop1
 					add_province_modifier = { name = arles_pop2 duration = -1 }
-					log = "DEBUG arles_base.5 Changed province modifier to Level 2 based on holding population of [This.province_pop.GetValue]"
+					log = "DEBUG arles_base.6 Changed province modifier to Level 2 based on holding population of [This.province_pop.GetValue]"
 				}
 				if = { #Advance to pop level 3
 					limit = { check_variable = { which = province_pop value = 19.5 } }
 					remove_province_modifier = arles_pop2
 					add_province_modifier = { name = arles_pop3 duration = -1 }
-					log = "DEBUG arles_base.5 Changed province modifier to Level 3 based on holding population of [This.province_pop.GetValue]"
+					log = "DEBUG arles_base.6 Changed province modifier to Level 3 based on holding population of [This.province_pop.GetValue]"
 				}
 				if = { #Advance to pop level 4
 					limit = { check_variable = { which = province_pop value = 34.5 } }
 					remove_province_modifier = arles_pop3
 					add_province_modifier = { name = arles_pop4 duration = -1 }
-					log = "DEBUG arles_base.5 Changed province modifier to Level 4 based on holding population of [This.province_pop.GetValue]"
+					log = "DEBUG arles_base.6 Changed province modifier to Level 4 based on holding population of [This.province_pop.GetValue]"
 				}
 				if = { #Advance to pop level 5
 					limit = { check_variable = { which = province_pop value = 49.5 } }
 					remove_province_modifier = arles_pop4
 					add_province_modifier = { name = arles_pop5 duration = -1 }
-					log = "DEBUG arles_base.5 Changed province modifier to Level 5 based on holding population of [This.province_pop.GetValue]"
+					log = "DEBUG arles_base.6 Changed province modifier to Level 5 based on holding population of [This.province_pop.GetValue]"
 				}
 			}
 		}
