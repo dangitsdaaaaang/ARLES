@@ -473,8 +473,14 @@ city = {
 	
 	ct_marketplace_1 = {
 		desc = ct_marketplace_1_desc
-		prerequisites = { ct_wall_2 }
-		trigger = { TECH_CITY_CONSTRUCTION = 0 }
+		trigger = { 
+			custom_tooltip = {
+				text = ct_marketplace_1_tooltip
+				hidden_tooltip = {
+					always = no
+				}
+			}
+		}
 		gold_cost = 100
 		build_time = 365
 		tax_income = 3
@@ -489,7 +495,14 @@ city = {
 	ct_marketplace_2 = {
 		desc = ct_marketplace_2_desc
 		prerequisites = { ct_wall_1 }
-		trigger = { TECH_CITY_CONSTRUCTION = 1 }
+		trigger = { 
+			custom_tooltip = {
+				text = ct_marketplace_2_tooltip
+				hidden_tooltip = {
+					always = no
+				}
+			}
+		}
 		upgrades_from = ct_marketplace_1
 		gold_cost = 120
 		build_time = 547
@@ -504,8 +517,14 @@ city = {
 	}
 	ct_marketplace_3 = {
 		desc = ct_marketplace_3_desc
-		trigger = { TECH_CITY_CONSTRUCTION = 2 }
-		prerequisites = { ct_wall_2 }
+		trigger = { 
+			custom_tooltip = {
+				text = ct_marketplace_3_tooltip
+				hidden_tooltip = {
+					always = no
+				}
+			}
+		}
 		upgrades_from = ct_marketplace_2
 		gold_cost = 200
 		build_time = 730
@@ -520,7 +539,14 @@ city = {
 	}
 	ct_marketplace_4 = {
 		desc = ct_marketplace_4_desc
-		trigger = { TECH_CITY_CONSTRUCTION = 3 }
+		trigger = { 
+			custom_tooltip = {
+				text = ct_marketplace_4_tooltip
+				hidden_tooltip = {
+					always = no
+				}
+			}
+		}
 		upgrades_from = ct_marketplace_3
 		gold_cost = 300
 		build_time = 1095
@@ -535,7 +561,14 @@ city = {
 	}
 	ct_marketplace_5 = {
 		desc = ct_marketplace_5_desc
-		trigger = { TECH_CITY_CONSTRUCTION = 5 }
+		trigger = { 
+			custom_tooltip = {
+				text = ct_marketplace_5_tooltip
+				hidden_tooltip = {
+					always = no
+				}
+			}
+		}
 		upgrades_from = ct_marketplace_4
 		gold_cost = 400
 		build_time = 2190
@@ -1130,7 +1163,14 @@ temple = {
 	
 	tp_town_1 = {
 		desc = tp_town_1_desc
-		trigger = { TECH_TEMPLE_CONSTRUCTION = 0 }
+		trigger = { 
+			custom_tooltip = {
+				text = tp_town_1_tooltip
+				hidden_tooltip = {
+					always = no
+				}
+			}
+		}
 		gold_cost = 100
 		build_time = 365
 		tax_income = 2.5
@@ -1143,8 +1183,14 @@ temple = {
 	}
 	tp_town_2 = {
 		desc = tp_town_2_desc
-		trigger = { TECH_TEMPLE_CONSTRUCTION = 0 }
-		prerequisites = { tp_wall_1 }
+		trigger = { 
+			custom_tooltip = {
+				text = tp_town_2_tooltip
+				hidden_tooltip = {
+					always = no
+				}
+			}
+		}
 		upgrades_from = tp_town_1
 		gold_cost = 120
 		build_time = 547
@@ -1158,8 +1204,14 @@ temple = {
 	}
 	tp_town_3 = {
 		desc = tp_town_3_desc
-		trigger = { TECH_TEMPLE_CONSTRUCTION = 1 }
-		prerequisites = { tp_wall_2 }
+		trigger = { 
+			custom_tooltip = {
+				text = tp_town_3_tooltip
+				hidden_tooltip = {
+					always = no
+				}
+			}
+		}
 		upgrades_from = tp_town_2
 		gold_cost = 200
 		build_time = 730
@@ -1173,7 +1225,14 @@ temple = {
 	}
 	tp_town_4 = {
 		desc = tp_town_4_desc
-		trigger = { TECH_TEMPLE_CONSTRUCTION = 3 }
+		trigger = { 
+			custom_tooltip = {
+				text = tp_town_4_tooltip
+				hidden_tooltip = {
+					always = no
+				}
+			}
+		}
 		upgrades_from = tp_town_3
 		gold_cost = 300
 		build_time = 1095
@@ -1187,7 +1246,14 @@ temple = {
 	}
 	tp_town_5 = {
 		desc = tp_town_4_desc
-		trigger = { TECH_TEMPLE_CONSTRUCTION = 5 }
+		trigger = { 
+			custom_tooltip = {
+				text = tp_town_5_tooltip
+				hidden_tooltip = {
+					always = no
+				}
+			}
+		}
 		upgrades_from = tp_town_4
 		gold_cost = 400
 		build_time = 2190

@@ -10,7 +10,7 @@ arles_pop3_desc;This province is home to tens of thousands of people, a large po
 arles_pop4;Major Population Center;;;;;;;;;;;;;x
 arles_pop4_desc;This province is home to almost a hundred thousand people and serves well as a regional administrative and commercial center.\nCurrent Population Level: [province_pop.GetValue]/50;;;;;;;;;;;;;x
 arles_pop5;Metropolitan Center;;;;;;;;;;;;;x
-arles_pop5_desc;A shining city dominates the landscape here and serves as home to almost a million people, rivalling even the glory and stature of ancient Rome.;;;;;;;;;;;;;x
+arles_pop5_desc;A shining city dominates the landscape here and watches like a golden sentinel over many hundreds of thousands of people, rivalling even the glory and stature of ancient Rome.;;;;;;;;;;;;;x
 arles_popgrowth;Population Growth;;;;;;;;;;;;;x
 arles_popgrowth_desc;Population has grown in this province.;;;;;;;;;;;;;x
 
@@ -24,26 +24,26 @@ arles_holding_pop3_desc;This town is home to a few thousand people who keep the 
 arles_holding_pop4;Major City;;;;;;;;;;;;;x
 arles_holding_pop4_desc;This city is home to tens of thousands of people, and the markets here are brimming with both local and exotic goods.;;;;;;;;;;;;;x
 arles_holding_pop5;Metropolitan Center;;;;;;;;;;;;;x
-arles_holding_pop5_desc;This city of cities is home to hundreds of thousands of people, serving as a shining capital and an unrivalled center of commerce, industry, and culture.;;;;;;;;;;;;;x
+arles_holding_pop5_desc;This city of cities is home to almost a hundred thousand of people, serving as a shining capital and an unrivalled center of commerce, industry, and culture.;;;;;;;;;;;;;x
 
 #TOWN BUILDING TOOLTIPS
 ca_town_1_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.\n[FROMFROM.holding_pop.GetValue]/150 towards the next population level;;;;;;;;;;;;;x
 ca_town_2_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.\n[FROMFROM.holding_pop.GetValue]/300 towards the next population level;;;;;;;;;;;;;x
 ca_town_3_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.\n[FROMFROM.holding_pop.GetValue]/500 towards the next population level;;;;;;;;;;;;;x
 ca_town_4_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.\n[FROMFROM.holding_pop.GetValue]/1000 towards the next population level;;;;;;;;;;;;;x
-ca_town_5_tooltip;A shining city dominates the landscape here and serves as home to almost a million people, rivalling even the glory and stature of ancient Rome.;;;;;;;;;;;;;x
+ca_town_5_tooltip;This city of cities is home to almost a hundred thousand of people, serving as a shining capital and an unrivalled center of commerce, industry, and culture.;;;;;;;;;;;;;x
 
 tp_town_1_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.\n[FROMFROM.holding_pop.GetValue]/150 towards the next population level;;;;;;;;;;;;;x
 tp_town_2_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.\n[FROMFROM.holding_pop.GetValue]/300 towards the next population level;;;;;;;;;;;;;x
 tp_town_3_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.\n[FROMFROM.holding_pop.GetValue]/500 towards the next population level;;;;;;;;;;;;;x
 tp_town_4_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.\n[FROMFROM.holding_pop.GetValue]/1000 towards the next population level;;;;;;;;;;;;;x
-tp_town_5_tooltip;A shining city dominates the landscape here and serves as home to almost a million people, rivalling even the glory and stature of ancient Rome.;;;;;;;;;;;;;x
+tp_town_5_tooltip;This city of cities is home to almost a hundred thousand of people, serving as a shining capital and an unrivalled center of commerce, industry, and culture.;;;;;;;;;;;;;x
 
 ct_marketplace_1_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.\n[FROMFROM.holding_pop.GetValue]/150 towards the next population level;;;;;;;;;;;;;x
 ct_marketplace_2_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.\n[FROMFROM.holding_pop.GetValue]/300 towards the next population level;;;;;;;;;;;;;x
 ct_marketplace_3_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.\n[FROMFROM.holding_pop.GetValue]/500 towards the next population level;;;;;;;;;;;;;x
 ct_marketplace_4_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.\n[FROMFROM.holding_pop.GetValue]/1000 towards the next population level;;;;;;;;;;;;;x
-ct_marketplace_5_tooltip;A shining city dominates the landscape here and serves as home to almost a million people, rivalling even the glory and stature of ancient Rome.;;;;;;;;;;;;;x
+ct_marketplace_5_tooltip;This city of cities is home to almost a hundred thousand of people, serving as a shining capital and an unrivalled center of commerce, industry, and culture.;;;;;;;;;;;;;x
 
 tb_market_town_1_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.\n[FROMFROM.holding_pop.GetValue]/150 towards the next population level;;;;;;;;;;;;;x
 tb_market_town_2_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.\n[FROMFROM.holding_pop.GetValue]/300 towards the next population level;;;;;;;;;;;;;x
