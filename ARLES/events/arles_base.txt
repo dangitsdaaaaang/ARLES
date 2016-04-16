@@ -243,8 +243,8 @@ character_event = {
 						NOT = {
 							has_building = ca_town_1
 							has_building = ct_marketplace_1
-							has_building = tp_town_2
-							has_building = tb_market_town_2
+							has_building = tp_town_1
+							has_building = tb_market_town_1
 						}
 					}
 					if = {
@@ -276,7 +276,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CASTLE_CONSTRUCTION = 2.0 }
 						random = {
-							chance = 25
+							chance = 30
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -292,7 +292,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CASTLE_CONSTRUCTION = 2.2 }
 						random = {
-							chance = 25
+							chance = 30
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -308,7 +308,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CASTLE_CONSTRUCTION = 2.4 }
 						random = {
-							chance = 25
+							chance = 30
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -324,7 +324,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CASTLE_CONSTRUCTION = 2.6 }
 						random = {
-							chance = 25
+							chance = 30
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -340,7 +340,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CASTLE_CONSTRUCTION = 2.8 }
 						random = {
-							chance = 25
+							chance = 30
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -356,7 +356,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CASTLE_CONSTRUCTION = 3.0 }
 						random = {
-							chance = 25
+							chance = 30
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -376,7 +376,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CASTLE_CONSTRUCTION = 2.2 }
 						random = {
-							chance = 20
+							chance = 15
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -392,7 +392,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CASTLE_CONSTRUCTION = 2.4 }
 						random = {
-							chance = 20
+							chance = 15
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -408,7 +408,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CASTLE_CONSTRUCTION = 2.6 }
 						random = {
-							chance = 20
+							chance = 15
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -424,7 +424,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CASTLE_CONSTRUCTION = 2.8 }
 						random = {
-							chance = 20
+							chance = 15
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -440,7 +440,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CASTLE_CONSTRUCTION = 3.0 }
 						random = {
-							chance = 20
+							chance = 15
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -456,7 +456,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CASTLE_CONSTRUCTION = 3.2 }
 						random = {
-							chance = 20
+							chance = 15
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -630,7 +630,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CITY_CONSTRUCTION = 1.4 }
 						random = {
-							chance = 20
+							chance = 30
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -646,7 +646,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CITY_CONSTRUCTION = 1.6 }
 						random = {
-							chance = 20
+							chance = 30
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -662,7 +662,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CITY_CONSTRUCTION = 1.8 }
 						random = {
-							chance = 20
+							chance = 30
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -678,7 +678,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CITY_CONSTRUCTION = 2.0 }
 						random = {
-							chance = 20
+							chance = 30
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -694,7 +694,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CITY_CONSTRUCTION = 2.2 }
 						random = {
-							chance = 20
+							chance = 30
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -710,7 +710,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CITY_CONSTRUCTION = 2.4 }
 						random = {
-							chance = 20
+							chance = 30
 							modifier = {
 								factor = 2
 								any_neighbor_province = {
@@ -930,7 +930,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CITY_CONSTRUCTION = 5.2 }
 						random = {
-							chance = 2.5
+							chance = 5
 							add_building = ct_marketplace_5
 							log = "DEBUG arles_base.4 Successfully built level 5 housing in city"
 						}
@@ -938,7 +938,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CITY_CONSTRUCTION = 5.4 }
 						random = {
-							chance = 2.5
+							chance = 5
 							add_building = ct_marketplace_5
 							log = "DEBUG arles_base.4 Successfully built level 5 housing in city"
 						}
@@ -946,7 +946,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CITY_CONSTRUCTION = 5.6 }
 						random = {
-							chance = 2.5
+							chance = 5
 							add_building = ct_marketplace_5
 							log = "DEBUG arles_base.4 Successfully built level 5 housing in city"
 						}
@@ -954,7 +954,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CITY_CONSTRUCTION = 5.8 }
 						random = {
-							chance = 2.5
+							chance = 5
 							add_building = ct_marketplace_5
 							log = "DEBUG arles_base.4 Successfully built level 5 housing in city"
 						}
@@ -962,7 +962,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CITY_CONSTRUCTION = 6.0 }
 						random = {
-							chance = 2.5
+							chance = 5
 							add_building = ct_marketplace_5
 							log = "DEBUG arles_base.4 Successfully built level 5 housing in city"
 						}
@@ -970,7 +970,7 @@ character_event = {
 					if = { 
 						limit = { TECH_CITY_CONSTRUCTION = 6.2 }
 						random = {
-							chance = 2.5
+							chance = 5
 							add_building = ct_marketplace_5
 							log = "DEBUG arles_base.4 Successfully built level 5 housing in city"
 						}
@@ -1753,6 +1753,7 @@ character_event = {
 				if = {
 					limit = {
 						holder_scope = { is_nomadic = yes }
+						NOT = { any_province_holding = { NOT = { holding_type = nomad } } }
 					}
 					set_variable = { which = holding_pop value = 0 }
 					log = "DEBUG arles_base.4 Successfully zeroed holding population to [This.holding_pop.GetValue] for nomad camps"
@@ -2039,10 +2040,7 @@ character_event = {
 				if = { #Reduce province pop by 100% if only nomads
 					limit = {
 						holder_scope = { government = nomadic_government }
-						num_of_settlements = 1
-						capital_holding = {
-							has_holder = yes
-						}
+						NOT = { any_province_holding = { NOT = { holding_type = nomad } } }
 					}
 					set_variable = { which = province_pop value = 0 }
 					log = "DEBUG arles_base.5 Zeroed out province population to [This.province_pop.GetValue] due to nomad overlord of empty province"
@@ -2326,8 +2324,9 @@ character_event = {
 					log = "DEBUG arles_base.6 Successfully applied terrain modifiers to holding population diff at [This.holding_pop_diff.GetValue]"
 					
 					#BEGIN TRADE MODIFIERS
-						#SUM TRADE MODIFIERS HERE
-						#log = "DEBUG arles_base.4 Successfully summed trade modifiers at [This.holding_pop_trade.GetValue]"
+					
+					#SUM TRADE MODIFIERS HERE
+					#log = "DEBUG arles_base.4 Successfully summed trade modifiers at [This.holding_pop_trade.GetValue]"
 					change_variable = { which = holding_pop_diff which = holding_pop_diff_trade }
 					log = "DEBUG arles_base.6 Successfully applied trade modifiers to holding population diff at [This.holding_pop_diff.GetValue]"
 					
@@ -2487,8 +2486,157 @@ character_event = {
 					}
 					log = "DEBUG arles_base.6 Reached end of holding population calculations"
 				}
+				#BEGIN POPULATION LEVEL ASSIGNMENT
+				if = { #Advance to pop level 2
+					limit = { check_variable = { which = province_pop value = 4.5 } }
+					remove_province_modifier = arles_pop1
+					add_province_modifier = { name = arles_pop2 duration = -1 }
+					log = "DEBUG arles_base.5 Changed province modifier to Level 2 based on holding population of [This.province_pop.GetValue]"
+				}
+				if = { #Advance to pop level 3
+					limit = { check_variable = { which = province_pop value = 19.5 } }
+					remove_province_modifier = arles_pop2
+					add_province_modifier = { name = arles_pop3 duration = -1 }
+					log = "DEBUG arles_base.5 Changed province modifier to Level 3 based on holding population of [This.province_pop.GetValue]"
+				}
+				if = { #Advance to pop level 4
+					limit = { check_variable = { which = province_pop value = 34.5 } }
+					remove_province_modifier = arles_pop3
+					add_province_modifier = { name = arles_pop4 duration = -1 }
+					log = "DEBUG arles_base.5 Changed province modifier to Level 4 based on holding population of [This.province_pop.GetValue]"
+				}
+				if = { #Advance to pop level 5
+					limit = { check_variable = { which = province_pop value = 49.5 } }
+					remove_province_modifier = arles_pop4
+					add_province_modifier = { name = arles_pop5 duration = -1 }
+					log = "DEBUG arles_base.5 Changed province modifier to Level 5 based on holding population of [This.province_pop.GetValue]"
+				}
 			}
 		}
 		character_event = { id = arles_base.6 days = 365 }
 	}
 }
+
+#Fired from on_settlement_construction_completed to seed new settlements
+#arles_base.7
+character_event = {
+	id = arles_base.7
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		FROM = {
+			NOT = { has_title_flag = holding_has_pop }
+			NOT = { holding_type = nomad }
+		}
+	}
+	
+	option = {
+		name = "OK"
+		FROM = {
+			add_holding_modifier = { modifier = arles_holding_pop1 duration = -1 }
+			set_variable = { which = holding_pop value = 0 }
+			set_variable = { which = holding_pop_diff value = 0 }
+			set_variable = { which = holding_pop_diff_terr value = 0 }
+			set_variable = { which = holding_pop_diff_trade value = 0 }
+			set_title_flag = holding_has_pop
+			log = "DEBUG: arles.base.7 Set up holding defines for new settlement at [This.GetName] ([This.GetID])"
+				
+			#BEGIN ADDING PRIMARY POPS
+			if = {
+				limit = { 
+					NOT = {
+						has_building = ca_town_1
+						has_building = ct_marketplace_1
+						has_building = tp_town_1
+						has_building = tb_market_town_1
+					}
+				}
+				if = {
+					limit = { holding_type = castle }
+					add_building = ca_town_1
+					change_variable = { which = holding_pop value = 50 }
+					log = "DEBUG arles_base.7 Added initial holding pop of [This.holding_pop.GetValue] to [This.GetName] ([This.GetID])"
+					location = {
+						change_variable = { which = province_pop_diff value = 1.25 }
+						multiply_variable = { which = province_pop_diff which = province_pop_diff_terr }
+						change_variable = { which = province_pop which = province_pop_diff }
+						log = "DEBUG arles_base.7 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+						set_variable = { which = province_pop_diff value = 0 }
+					}
+					log = "DEBUG arles_base.7 Successfully built new housing in castle"
+				}
+				if = {
+					limit = { holding_type = city }
+					add_building = ct_marketplace_1
+					change_variable = { which = holding_pop value = 50 }
+					log = "DEBUG arles_base.7 Added initial holding pop of [This.holding_pop.GetValue] to [This.GetName] ([This.GetID])"
+					location = {
+						change_variable = { which = province_pop_diff value = 1.25 }
+						multiply_variable = { which = province_pop_diff which = province_pop_diff_terr }
+						change_variable = { which = province_pop which = province_pop_diff }
+						log = "DEBUG arles_base.7 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+						set_variable = { which = province_pop_diff value = 0 }
+					}
+					log = "DEBUG arles_base.7 Successfully built new housing in city"
+				}
+				if = {
+					limit = { holding_type = temple }
+					add_building = tp_town_1
+					change_variable = { which = holding_pop value = 50 }
+					log = "DEBUG arles_base.7 Added initial holding pop of [This.holding_pop.GetValue] to [This.GetName] ([This.GetID])"
+					location = {
+						change_variable = { which = province_pop_diff value = 1.25 }
+						multiply_variable = { which = province_pop_diff which = province_pop_diff_terr }
+						change_variable = { which = province_pop which = province_pop_diff }
+						log = "DEBUG arles_base.7 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+						set_variable = { which = province_pop_diff value = 0 }
+					}
+					log = "DEBUG arles_base.7 Successfully built new housing in temple"
+				}
+				if = {
+					limit = { holding_type = tribal }
+					add_building = tb_market_town_1
+					change_variable = { which = holding_pop value = 25 }
+					log = "DEBUG arles_base.7 Added initial holding pop of [This.holding_pop.GetValue] to [This.GetName] ([This.GetID])"
+					location = {
+						change_variable = { which = province_pop_diff value = 0.75 }
+						multiply_variable = { which = province_pop_diff which = province_pop_diff_terr }
+						change_variable = { which = province_pop which = province_pop_diff }
+						log = "DEBUG arles_base.7 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+						set_variable = { which = province_pop_diff value = 0 }
+					}
+					log = "DEBUG arles_base.7 Successfully built new housing in tribal village"
+				}
+			}
+			location = {
+				#BEGIN POPULATION LEVEL ASSIGNMENT
+				if = { #Advance to pop level 2
+					limit = { check_variable = { which = province_pop value = 4.5 } }
+					remove_province_modifier = arles_pop1
+					add_province_modifier = { name = arles_pop2 duration = -1 }
+					log = "DEBUG arles_base.5 Changed province modifier to Level 2 based on holding population of [This.province_pop.GetValue]"
+				}
+				if = { #Advance to pop level 3
+					limit = { check_variable = { which = province_pop value = 19.5 } }
+					remove_province_modifier = arles_pop2
+					add_province_modifier = { name = arles_pop3 duration = -1 }
+					log = "DEBUG arles_base.5 Changed province modifier to Level 3 based on holding population of [This.province_pop.GetValue]"
+				}
+				if = { #Advance to pop level 4
+					limit = { check_variable = { which = province_pop value = 34.5 } }
+					remove_province_modifier = arles_pop3
+					add_province_modifier = { name = arles_pop4 duration = -1 }
+					log = "DEBUG arles_base.5 Changed province modifier to Level 4 based on holding population of [This.province_pop.GetValue]"
+				}
+				if = { #Advance to pop level 5
+					limit = { check_variable = { which = province_pop value = 49.5 } }
+					remove_province_modifier = arles_pop4
+					add_province_modifier = { name = arles_pop5 duration = -1 }
+					log = "DEBUG arles_base.5 Changed province modifier to Level 5 based on holding population of [This.province_pop.GetValue]"
+				}
+			}
+		}
+	}
+}
+			

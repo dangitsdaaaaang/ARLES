@@ -1,0 +1,7 @@
+on_settlement_construction_completed = {
+	events = {
+		arles_base.7 #set up new holding
+	}
+}
+
+
