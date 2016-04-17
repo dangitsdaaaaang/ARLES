@@ -51,3 +51,20 @@ tb_market_town_1_tooltip;Population can no longer be bought. Improve the economy
 tb_market_town_2_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.;;;;;;;;;;;;;x
 tb_market_town_3_tooltip;Population can no longer be bought. Improve the economy and infrastructure, and population will grow on its own.;;;;;;;;;;;;;x
 tb_market_town_4_tooltip;This impressive settlement is a local center of commerce and authority, but the limits of tribal government restrict it from being able to grow further.;;;;;;;;;;;;;x
+
+#SIEGE/LOOT/DISEASE MARKERS
+arles_base.8_desc;Our armies have breached the walls and captured the heart of the city. We will deal with the prisoners later, but what should we do with the people? While it may not be noble or chivalrous, there is considerable profit in "recovering" some of their more prized possessions by deadly force.;;;;;;;;;;;;;x
+arles_base.8.opt.a;To the victor go the spoils! Take what you can wherever you can.;;;;;;;;;;;;;x
+arles_base.8.opt.b;Kill all who resist. The dead have no need for riches.;;;;;;;;;;;;;x
+arles_base.8.opt.c;There has been enough suffering this day.;;;;;;;;;;;;;x
+arles_victa;Ransacked;;;;;;;;;;;;;x
+arles_victa_desc;This settlement has recently been sacked. It will take some time for the population here to recover.;;;;;;;;;;;;;x
+arles_victor;Ransacked City;;;;;;;;;;;;;x
+arles_victor_desc;This character has recently sacked a settlement. Though a somewhat unavoidable consequence of war, there is considerable blood on [Root.GetHerHis] hands.;;;;;;;;;;;;;x
+arles_rapta;Pillaged;;;;;;;;;;;;;x
+arles_rapta_desc;This settlement has been pillaged and the people massacred. It will take quite some time for the population here to recover.;;;;;;;;;;;;;x
+arles_raptor;Pillaged City;;;;;;;;;;;;;x
+arles_raptor_desc;This character has recently pillaged a settlement and burned it to the ground. This act of cruelty is not generally appreciated by many and casts [Root.GetHerHim] as an unrestrained murderer.;;;;;;;;;;;;;x
+arles_base.9_desc;[From.GetTitledName]'s armies have pillaged [FromFrom.GetName], laying waste to a large portion of the town and slaughtering vast numbers of the people. Whether or not this tragedy could have been prevented matters not, the dead must be avenged and the homes of the living rebuilt.;;;;;;;;;;;;;x
+arles_base.9.opt.a;A debt such as this may only be paid in blood!;;;;;;;;;;;;;x
+arles_base.9.opt.b;Discretion is the better part of valor, methinks.;;;;;;;;;;;;;x

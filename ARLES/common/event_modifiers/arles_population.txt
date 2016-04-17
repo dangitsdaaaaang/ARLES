@@ -90,6 +90,22 @@ arles_victa = {
 arles_rapta = {
 	icon = 19
 }
+arles_victor = {
+	general_opinion = -5
+	icon = 19
+}
+#arles_victor_pagan = {
+#	infidel_opinion = -5 #paradox fix pls
+#	icon = 1
+#}
+arles_raptor = {
+	general_opinion = -15
+	icon = 19
+}
+#arles_raptor_pagan = {
+#	infidel_opinion = -15 #paradox fix pls
+#	icon = 1
+#}
 
 
 

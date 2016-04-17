@@ -4,4 +4,10 @@ on_settlement_construction_completed = {
 	}
 }
 
+on_siege_over_winner = {
+	events = {
+		arles_base.8 #damage after occupation
+	}
+}
+
 
