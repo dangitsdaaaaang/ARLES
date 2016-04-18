@@ -2898,7 +2898,7 @@ character_event = {
 				}
 				PREV = { wealth = 30 }
 			}			
-			hidden_tooltip { add_holding_modifier = { modifier = arles_victa years = 1 } }
+			hidden_tooltip = { add_holding_modifier = { modifier = arles_victa years = 1 } }
 			
 			#BEGIN HOLDING LEVEL ASSIGNMENT
 			hidden_tooltip = {
