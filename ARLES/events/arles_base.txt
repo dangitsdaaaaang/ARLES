@@ -2376,6 +2376,7 @@ character_event = {
 						limit = {
 							check_variable = { which = holding_pop value = 74.5 } 
 							NOT = { has_title_flag = clan_pop }
+							holding_type = tribal
 						}
 						add_building = tb_market_town_2
 						log = "DEBUG arles_base.6 Successfully built new housing in tribal village"
@@ -2673,6 +2674,7 @@ character_event = {
 						change_variable = { which = province_pop which = province_pop_diff }
 						log = "DEBUG arles_base.7 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
 						set_variable = { which = province_pop_diff value = 0 }
+						set_province_flag = clan_pop
 					}
 					log = "DEBUG arles_base.7 Successfully built new housing in tribal village"
 				}
@@ -2683,24 +2685,28 @@ character_event = {
 					limit = { check_variable = { which = province_pop value = 4.5 } }
 					remove_province_modifier = arles_pop1
 					add_province_modifier = { name = arles_pop2 duration = -1 }
+					set_province_flag = minor_pop
 					log = "DEBUG arles_base.5 Changed province modifier to Level 2 based on holding population of [This.province_pop.GetValue]"
 				}
 				if = { #Advance to pop level 3
 					limit = { check_variable = { which = province_pop value = 19.5 } }
 					remove_province_modifier = arles_pop2
 					add_province_modifier = { name = arles_pop3 duration = -1 }
+					set_province_flag = burg_pop
 					log = "DEBUG arles_base.5 Changed province modifier to Level 3 based on holding population of [This.province_pop.GetValue]"
 				}
 				if = { #Advance to pop level 4
 					limit = { check_variable = { which = province_pop value = 34.5 } }
 					remove_province_modifier = arles_pop3
 					add_province_modifier = { name = arles_pop4 duration = -1 }
+					set_province_flag = major_pop
 					log = "DEBUG arles_base.5 Changed province modifier to Level 4 based on holding population of [This.province_pop.GetValue]"
 				}
 				if = { #Advance to pop level 5
 					limit = { check_variable = { which = province_pop value = 49.5 } }
 					remove_province_modifier = arles_pop4
 					add_province_modifier = { name = arles_pop5 duration = -1 }
+					set_province_flag = metropolitan
 					log = "DEBUG arles_base.5 Changed province modifier to Level 5 based on holding population of [This.province_pop.GetValue]"
 				}
 			}
@@ -2725,13 +2731,19 @@ character_event = {
 	option = {
 		name = "arles_base.8.opt.a" 
 		FROM = {
+			log = "DEBUG arles_base.8 Original holding population set at [This.holding_pop.GetValue]"
 			if = {
 				limit = { 
 					has_building = tb_market_town_1 
 					NOT = { has_building = tb_market_town_2 }
-				} 
-				set_variable = { which = holding_pop_dmg value = 0.85 } #15% population loss
-				multiply_variable = { which = holding_pop which = holding_pop_dmg }
+				}
+				custom_tooltip = {
+					text = arles_base_8.opt.a.tooltip
+					hidden_tooltip = {
+						set_variable = { which = holding_pop_dmg value = 0.85 } #15% population loss
+						multiply_variable = { which = holding_pop which = holding_pop_dmg }
+					}
+				}
 				PREV = { wealth = 2.5 }
 			}
 			if = {
@@ -2755,8 +2767,13 @@ character_event = {
 						}
 					}
 				}
-				set_variable = { which = holding_pop_dmg value = 0.90 } #10% population loss
-				multiply_variable = { which = holding_pop which = holding_pop_dmg }
+				custom_tooltip = {
+					text = arles_base_8.opt.a.tooltip
+					hidden_tooltip = {
+						set_variable = { which = holding_pop_dmg value = 0.85 } #15% population loss
+						multiply_variable = { which = holding_pop which = holding_pop_dmg }
+					}
+				}
 				PREV = { wealth = 5 }
 			}
 			if = {
@@ -2780,8 +2797,13 @@ character_event = {
 						}
 					}
 				}
-				set_variable = { which = holding_pop_dmg value = 0.90 } #10% population loss
-				multiply_variable = { which = holding_pop which = holding_pop_dmg }
+				custom_tooltip = {
+					text = arles_base_8.opt.a.tooltip
+					hidden_tooltip = {
+						set_variable = { which = holding_pop_dmg value = 0.90 } #10% population loss
+						multiply_variable = { which = holding_pop which = holding_pop_dmg }
+					}
+				}
 				PREV = { wealth = 10 }
 			}
 			if = {
@@ -2802,20 +2824,39 @@ character_event = {
 						has_building = tb_market_town_4	
 					}
 				}
-				set_variable = { which = holding_pop_dmg value = 0.925 } #7.5% population loss
-				multiply_variable = { which = holding_pop which = holding_pop_dmg }
+				custom_tooltip = {
+					text = arles_base_8.opt.a.tooltip
+					hidden_tooltip = {
+						set_variable = { which = holding_pop_dmg value = 0.90 } #10% population loss
+						multiply_variable = { which = holding_pop which = holding_pop_dmg }
+					}
+				}
 				PREV = { wealth = 15 }
 			}
 			if = {
 				limit = {
 					OR = {
-						has_building = ca_town_4
-						has_building = ct_marketplace_4
-						has_building = tp_town_4
+						AND = {	
+							has_building = ca_town_4
+							NOT = { has_building = ca_town_5 }
+						}
+						AND = {
+							has_building = ct_marketplace_4
+							NOT = { has_building = ct_marketplace_5 }
+						}
+						AND = {
+							has_building = tp_town_4
+							NOT = { has_building = tp_town_5 }
+						}
 					}
 				}
-				set_variable = { which = holding_pop_dmg value = 0.925 } #7.5% population loss
-				multiply_variable = { which = holding_pop which = holding_pop_dmg }
+				custom_tooltip = {
+					text = arles_base_8.opt.a.tooltip
+					hidden_tooltip = {
+						set_variable = { which = holding_pop_dmg value = 0.925 } #7.5% population loss
+						multiply_variable = { which = holding_pop which = holding_pop_dmg }
+					}
+				}
 				PREV = { wealth = 20 }
 			}
 			if = {
@@ -2832,8 +2873,13 @@ character_event = {
 						}	
 					}
 				}
-				set_variable = { which = holding_pop_dmg value = 0.925 } #7.5% population loss
-				multiply_variable = { which = holding_pop which = holding_pop_dmg }
+				custom_tooltip = {
+					text = arles_base_8.opt.a.tooltip
+					hidden_tooltip = {
+						set_variable = { which = holding_pop_dmg value = 0.925 } #7.5% population loss
+						multiply_variable = { which = holding_pop which = holding_pop_dmg }
+					}
+				}
 				PREV = { wealth = 25 }
 			}
 			if = {
@@ -2843,221 +2889,228 @@ character_event = {
 						has_building = tp_town_6
 					}
 				}
-				set_variable = { which = holding_pop_dmg value = 0.95 } #5% population loss
-				multiply_variable = { which = holding_pop which = holding_pop_dmg }
+				custom_tooltip = {
+					text = arles_base_8.opt.a.tooltip
+					hidden_tooltip = {
+						set_variable = { which = holding_pop_dmg value = 0.95 } #5% population loss
+						multiply_variable = { which = holding_pop which = holding_pop_dmg }
+					}
+				}
 				PREV = { wealth = 30 }
 			}			
 			add_holding_modifier = { modifier = arles_victa years = 1 }
 			
 			#BEGIN HOLDING LEVEL ASSIGNMENT
-			if = { #Devolve to tribal pop level 1
-				limit = {
-					NOT = { check_variable = { which = holding_pop value = 74.5 } }
-					has_title_flag = clan_pop
-					holding_type = tribal
+			hidden_tooltip = {
+				if = { #Devolve to tribal pop level 1
+					limit = {
+						NOT = { check_variable = { which = holding_pop value = 74.5 } }
+						has_title_flag = clan_pop
+						holding_type = tribal
+					}
+					remove_building = tb_market_town_2
+					log = "DEBUG arles_base.8 Tribal level 2 housing destroyed in [This.GetName] ([This.GetID])"
+					clr_title_flag = clan_pop
+					location = {
+						set_variable = { which = province_pop_diff value = 0 }
+						subtract_variable = { which = province_pop_diff value = 0.75 }
+						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+						change_variable = { which = province_pop which = province_pop_diff }
+						log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+					}
 				}
-				remove_building = tb_market_town_2
-				log = "DEBUG arles_base.8 Tribal level 2 housing destroyed in [This.GetName] ([This.GetID])"
-				clr_title_flag = clan_pop
-				location = {
-					set_variable = { which = province_pop_diff value = 0 }
-					subtract_variable = { which = province_pop_diff value = 0.75 }
-					multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-					change_variable = { which = province_pop which = province_pop_diff }
-					log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-				}
-			}
-			if = { #Devolve to pop level 1
-				limit = { 
-					NOT = { check_variable = { which = holding_pop value = 149.5 } }
-					has_title_flag = minor_pop
-				}
-				remove_holding_modifier = arles_holding_pop2
-				add_holding_modifier = { modifier = arles_holding_pop1 duration = -1 }
-				if = {
-					limit = { holding_type = castle }
-					remove_building = ca_town_2
-					log = "DEBUG arles_base.8 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = city }
-					remove_building = ct_marketplace_2
-					log = "DEBUG arles_base.8 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = temple }
-					remove_building = tp_town_2
-					log = "DEBUG arles_base.8 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = tribal }
-					remove_building = tb_market_town_3
-					log = "DEBUG arles_base.6 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				clr_title_flag = minor_pop
-				log = "DEBUG arles_base.8 Devolved holding modifier to Level 1 based on holding population of [This.holding_pop.GetValue]"
-				location = {
-					set_variable = { which = province_pop_diff value = 0 }
-					subtract_variable = { which = province_pop_diff value = 1.25 }
-					multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-					change_variable = { which = province_pop which = province_pop_diff }
-					log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-				}
-			}
-			if = { #Devolve to pop level 2
-				limit = { 
-					check_variable = { which = holding_pop value = 149.5 } 
-					NOT = { check_variable = { which = holding_pop value = 299.5 } }
-					has_title_flag = burg_pop
-				}
-				remove_holding_modifier = arles_holding_pop3
-				add_holding_modifier = { modifier = arles_holding_pop2 duration = -1 }
-				if = {
-					limit = { holding_type = castle }
-					remove_building = ca_town_3
-					log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = city }
-					remove_building = ct_marketplace_3
-					log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = temple }
-					remove_building = tp_town_3
-					log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = tribal }
-					remove_building = tb_market_town_4
-					log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				clr_title_flag = burg_pop
-				log = "DEBUG arles_base.8 Devolved holding modifier to Level 2 based on holding population of [This.holding_pop.GetValue]"
-				location = {
-					set_variable = { which = province_pop_diff value = 0 }
-					subtract_variable = { which = province_pop_diff value = 1.75 }
-					multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-					change_variable = { which = province_pop which = province_pop_diff }
-					log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-				}
-			}
-			if = { #Devolve to pop level 3
-				limit = { 
-					check_variable = { which = holding_pop value = 299.5 } 
-					NOT = { check_variable = { which = holding_pop value = 499.5 } }
-					has_title_flag = major_pop
-				}
-				add_holding_modifier = { modifier = arles_holding_pop3 duration = -1 }
-				if = {
-					limit = { holding_type = castle }
-					remove_building = ca_town_4
-					remove_holding_modifier = arles_holding_pop4
-					log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = city }
-					remove_building = ct_marketplace_4
-					remove_holding_modifier = arles_holding_pop4
-					log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = temple }
-					remove_building = tp_town_4
-					remove_holding_modifier = arles_holding_pop4
-					log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = tribal }
-					remove_building = tb_market_town_4
-					remove_holding_modifier = arles_holding_pop4_tribal
-					log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				clr_title_flag = major_pop
-				log = "DEBUG arles_base.8 Changed holding modifier to Level 4 based on holding population of [This.holding_pop.GetValue]"
-				location = {
-					set_variable = { which = province_pop_diff value = 0 }
-					subtract_variable = { which = province_pop_diff value = 2.25 }
-					multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-					change_variable = { which = province_pop which = province_pop_diff }
-					log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-				}
-			}
-			if = { #Devolve to pop level 4
-				limit = { 
-					check_variable = { which = holding_pop value = 499.5 } 
-					NOT = { check_variable = { which = holding_pop value = 999.5 } }
-					has_title_flag = metropolitan
-				}
-				remove_holding_modifier = arles_holding_pop5
-				add_holding_modifier = { modifier = arles_holding_pop4 duration = -1 }
-				if = {
-					limit = { holding_type = castle }
-					remove_building = ca_town_5
-					log = "DEBUG arles_base.8 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = city }
-					remove_building = ct_marketplace_5
-					log = "DEBUG arles_base.8 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = temple }
-					remove_building = tp_town_5
-					log = "DEBUG arles_base.8 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				clr_title_flag = metropolitan
-				log = "DEBUG arles_base.8 Devolved holding modifier to Level 5 based on holding population of [This.holding_pop.GetValue]"
-				location = {
-					set_variable = { which = province_pop_diff value = 0 }
-					subtract_variable = { which = province_pop_diff value = 2.75 }
-					multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-					change_variable = { which = province_pop which = province_pop_diff }
-					log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-				}
-			}
-			log = "DEBUG arles_base.8 Reached end of holding population calculations"
-			location = {	
-				#BEGIN POPULATION LEVEL ASSIGNMENT
 				if = { #Devolve to pop level 1
 					limit = { 
-						NOT = { check_variable = { which = province_pop value = 4.5 } }
-						has_province_flag = minor_pop
+						NOT = { check_variable = { which = holding_pop value = 149.5 } }
+						has_title_flag = minor_pop
 					}
-					remove_province_modifier = arles_pop2
-					add_province_modifier = { name = arles_pop1 duration = -1 }
-					clr_province_flag = minor_pop
-					log = "DEBUG arles_base.8 Devolved province modifier to Level 1 based on holding population of [This.province_pop.GetValue]"
+					remove_holding_modifier = arles_holding_pop2
+					add_holding_modifier = { modifier = arles_holding_pop1 duration = -1 }
+					if = {
+						limit = { holding_type = castle }
+						remove_building = ca_town_2
+						log = "DEBUG arles_base.8 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = city }
+						remove_building = ct_marketplace_2
+						log = "DEBUG arles_base.8 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = temple }
+						remove_building = tp_town_2
+						log = "DEBUG arles_base.8 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = tribal }
+						remove_building = tb_market_town_3
+						log = "DEBUG arles_base.6 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					clr_title_flag = minor_pop
+					log = "DEBUG arles_base.8 Devolved holding modifier to Level 1 based on holding population of [This.holding_pop.GetValue]"
+					location = {
+						set_variable = { which = province_pop_diff value = 0 }
+						subtract_variable = { which = province_pop_diff value = 1.25 }
+						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+						change_variable = { which = province_pop which = province_pop_diff }
+						log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+					}
 				}
 				if = { #Devolve to pop level 2
 					limit = { 
-						check_variable = { which = province_pop value = 4.5 }
-						NOT = { check_variable = { which = province_pop value = 19.5 } }
-						has_province_flag = burg_pop
+						check_variable = { which = holding_pop value = 149.5 } 
+						NOT = { check_variable = { which = holding_pop value = 299.5 } }
+						has_title_flag = burg_pop
 					}
-					remove_province_modifier = arles_pop3
-					add_province_modifier = { name = arles_pop2 duration = -1 }
-					log = "DEBUG arles_base.8 Devolved province modifier to Level 2 based on holding population of [This.province_pop.GetValue]"
+					remove_holding_modifier = arles_holding_pop3
+					add_holding_modifier = { modifier = arles_holding_pop2 duration = -1 }
+					if = {
+						limit = { holding_type = castle }
+						remove_building = ca_town_3
+						log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = city }
+						remove_building = ct_marketplace_3
+						log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = temple }
+						remove_building = tp_town_3
+						log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = tribal }
+						remove_building = tb_market_town_4
+						log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					clr_title_flag = burg_pop
+					log = "DEBUG arles_base.8 Devolved holding modifier to Level 2 based on holding population of [This.holding_pop.GetValue]"
+					location = {
+						set_variable = { which = province_pop_diff value = 0 }
+						subtract_variable = { which = province_pop_diff value = 1.75 }
+						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+						change_variable = { which = province_pop which = province_pop_diff }
+						log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+					}
 				}
 				if = { #Devolve to pop level 3
 					limit = { 
-						check_variable = { which = province_pop value = 19.5 }
-						NOT = { check_variable = { which = province_pop value = 34.5 } }
-						has_province_flag = major_pop
+						check_variable = { which = holding_pop value = 299.5 } 
+						NOT = { check_variable = { which = holding_pop value = 499.5 } }
+						has_title_flag = major_pop
 					}
-					remove_province_modifier = arles_pop4
-					add_province_modifier = { name = arles_pop3 duration = -1 }
-					log = "DEBUG arles_base.8 Devolved province modifier to Level 3 based on holding population of [This.province_pop.GetValue]"
+					add_holding_modifier = { modifier = arles_holding_pop3 duration = -1 }
+					if = {
+						limit = { holding_type = castle }
+						remove_building = ca_town_4
+						remove_holding_modifier = arles_holding_pop4
+						log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = city }
+						remove_building = ct_marketplace_4
+						remove_holding_modifier = arles_holding_pop4
+						log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = temple }
+						remove_building = tp_town_4
+						remove_holding_modifier = arles_holding_pop4
+						log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = tribal }
+						remove_building = tb_market_town_4
+						remove_holding_modifier = arles_holding_pop4_tribal
+						log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					clr_title_flag = major_pop
+					log = "DEBUG arles_base.8 Changed holding modifier to Level 4 based on holding population of [This.holding_pop.GetValue]"
+					location = {
+						set_variable = { which = province_pop_diff value = 0 }
+						subtract_variable = { which = province_pop_diff value = 2.25 }
+						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+						change_variable = { which = province_pop which = province_pop_diff }
+						log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+					}
 				}
 				if = { #Devolve to pop level 4
 					limit = { 
-						check_variable = { which = province_pop value = 34.5 }
-						NOT = { check_variable = { which = province_pop value = 49.5 } }
-						has_province_flag = metropolitan
+						check_variable = { which = holding_pop value = 499.5 } 
+						NOT = { check_variable = { which = holding_pop value = 999.5 } }
+						has_title_flag = metropolitan
 					}
-					remove_province_modifier = arles_pop5
-					add_province_modifier = { name = arles_pop4 duration = -1 }
-					log = "DEBUG arles_base.8 Devolved province modifier to Level 4 based on holding population of [This.province_pop.GetValue]"
+					remove_holding_modifier = arles_holding_pop5
+					add_holding_modifier = { modifier = arles_holding_pop4 duration = -1 }
+					if = {
+						limit = { holding_type = castle }
+						remove_building = ca_town_5
+						log = "DEBUG arles_base.8 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = city }
+						remove_building = ct_marketplace_5
+						log = "DEBUG arles_base.8 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = temple }
+						remove_building = tp_town_5
+						log = "DEBUG arles_base.8 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					clr_title_flag = metropolitan
+					log = "DEBUG arles_base.8 Devolved holding modifier to Level 5 based on holding population of [This.holding_pop.GetValue]"
+					location = {
+						set_variable = { which = province_pop_diff value = 0 }
+						subtract_variable = { which = province_pop_diff value = 2.75 }
+						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+						change_variable = { which = province_pop which = province_pop_diff }
+						log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+					}
+				}
+				log = "DEBUG arles_base.8 Reached end of holding population calculations"
+				location = {	
+					#BEGIN POPULATION LEVEL ASSIGNMENT
+					if = { #Devolve to pop level 1
+						limit = { 
+							NOT = { check_variable = { which = province_pop value = 4.5 } }
+							has_province_flag = minor_pop
+						}
+						remove_province_modifier = arles_pop2
+						add_province_modifier = { name = arles_pop1 duration = -1 }
+						clr_province_flag = minor_pop
+						log = "DEBUG arles_base.8 Devolved province modifier to Level 1 based on holding population of [This.province_pop.GetValue]"
+					}
+					if = { #Devolve to pop level 2
+						limit = { 
+							check_variable = { which = province_pop value = 4.5 }
+							NOT = { check_variable = { which = province_pop value = 19.5 } }
+							has_province_flag = burg_pop
+						}
+						remove_province_modifier = arles_pop3
+						add_province_modifier = { name = arles_pop2 duration = -1 }
+						log = "DEBUG arles_base.8 Devolved province modifier to Level 2 based on holding population of [This.province_pop.GetValue]"
+					}
+					if = { #Devolve to pop level 3
+						limit = { 
+							check_variable = { which = province_pop value = 19.5 }
+							NOT = { check_variable = { which = province_pop value = 34.5 } }
+							has_province_flag = major_pop
+						}
+						remove_province_modifier = arles_pop4
+						add_province_modifier = { name = arles_pop3 duration = -1 }
+						log = "DEBUG arles_base.8 Devolved province modifier to Level 3 based on holding population of [This.province_pop.GetValue]"
+					}
+					if = { #Devolve to pop level 4
+						limit = { 
+							check_variable = { which = province_pop value = 34.5 }
+							NOT = { check_variable = { which = province_pop value = 49.5 } }
+							has_province_flag = metropolitan
+						}
+						remove_province_modifier = arles_pop5
+						add_province_modifier = { name = arles_pop4 duration = -1 }
+						log = "DEBUG arles_base.8 Devolved province modifier to Level 4 based on holding population of [This.province_pop.GetValue]"
+					}
 				}
 			}
 		}
@@ -3133,75 +3186,155 @@ character_event = {
 			NOT = { has_character_modifier = arles_raptor }
 		}
 		FROM = {
+			log = "DEBUG arles_base.8 Original holding population set at [This.holding_pop.GetValue]"
 			if = {
 				limit = {
 					has_building = tb_market_town_1
+					NOT = { has_building = tb_market_town_2 }
 				}
-				set_variable = { which = holding_pop_dmg value = 0.75 } #25% population loss
-				multiply_variable = { which = holding_pop which = holding_pop_dmg }
+				custom_tooltip = {
+					text = arles_base_8.opt.b.tooltip
+					hidden_tooltip = {
+						set_variable = { which = holding_pop_dmg value = 0.67 } #33% population loss
+						multiply_variable = { which = holding_pop which = holding_pop_dmg }
+					}
+				}
 				PREV = { wealth = 5 }
 			}
 			if = {
 				limit = {
 					OR = {
-						has_building = ca_town_1
-						has_building = ct_marketplace_1
-						has_building = tp_town_1
-						has_building = tb_market_town_2
+						AND = { 
+							has_building = ca_town_1
+							NOT = { has_building = ca_town_2 }
+						}
+						AND = {
+							has_building = ct_marketplace_1
+							NOT = { has_building = ct_marketplace_2 }
+						}
+						AND = {
+							has_building = tp_town_1
+							NOT = { has_building = tp_town_2 }
+						}
+						AND = {
+							has_building = tb_market_town_2
+							NOT = { has_building = tb_market_town_3 }
+						}
 					}
 				}
-				set_variable = { which = holding_pop_dmg value = 0.80 } #20% population loss
-				multiply_variable = { which = holding_pop which = holding_pop_dmg }
+				custom_tooltip = {
+					text = arles_base_8.opt.b.tooltip
+					hidden_tooltip = {
+						set_variable = { which = holding_pop_dmg value = 0.67 } #33% population loss
+						multiply_variable = { which = holding_pop which = holding_pop_dmg }
+					}
+				}
 				PREV = { wealth = 10 }
 			}
 			if = {
 				limit = {
 					OR = {
-						has_building = ca_town_2
-						has_building = ct_marketplace_2
-						has_building = tp_town_2
-						has_building = tb_market_town_3
+						AND = {
+							has_building = ca_town_2
+							NOT = { has_building = ca_town_3 }
+						}
+						AND = {
+							has_building = ct_marketplace_2
+							NOT = { has_building = ct_marketplace_3 }
+						}
+						AND = {
+							has_building = tp_town_2
+							NOT = { has_building = tp_town_3 }
+						}
+						AND = {
+							has_building = tb_market_town_3
+							NOT = { has_building = tb_market_town_4 }
+						}
 					}
 				}
-				set_variable = { which = holding_pop_dmg value = 0.85 } #15% population loss
-				multiply_variable = { which = holding_pop which = holding_pop_dmg }
+				custom_tooltip = {
+					text = arles_base_8.opt.b.tooltip
+					hidden_tooltip = {
+						set_variable = { which = holding_pop_dmg value = 0.80 } #20% population loss
+						multiply_variable = { which = holding_pop which = holding_pop_dmg }
+					}
+				}
 				PREV = { wealth = 20 }
 			}
 			if = {
 				limit = {
 					OR = {
-						has_building = ca_town_3
-						has_building = ct_marketplace_3
-						has_building = tp_town_3
+						AND = {
+							has_building = ca_town_3
+							NOT = { has_building = ca_town_4 }
+						}
+						AND = {
+							has_building = ct_marketplace_3
+							NOT = { has_building = ct_marketplace_4 }
+						}
+						AND = {
+							has_building = tp_town_3
+							NOT = { has_building = tp_town_4 }
+						}
 						has_building = tb_market_town_4
 					}
 				}
-				set_variable = { which = holding_pop_dmg value = 0.85 } #15% population loss
-				multiply_variable = { which = holding_pop which = holding_pop_dmg }
+				custom_tooltip = {
+					text = arles_base_8.opt.b.tooltip
+					hidden_tooltip = {
+						set_variable = { which = holding_pop_dmg value = 0.80 } #20% population loss
+						multiply_variable = { which = holding_pop which = holding_pop_dmg }
+					}
+				}
 				PREV = { wealth = 30 }
 			}
 			if = {
 				limit = {
 					OR = {
-						has_building = ca_town_4
-						has_building = ct_marketplace_4
-						has_building = tp_town_4
+						AND = {
+							has_building = ca_town_4
+							NOT = { has_building = ca_town_5 }
+						}
+						AND = {
+							has_building = ct_marketplace_4
+							NOT = { has_building = ct_marketplace_5 }
+						}
+						AND = {
+							has_building = tp_town_4
+							NOT = { has_building = tp_town_5 }
+						}
 					}
 				}
-				set_variable = { which = holding_pop_dmg value = 0.85 } #15% population loss
-				multiply_variable = { which = holding_pop which = holding_pop_dmg }
+				custom_tooltip = {
+					text = arles_base_8.opt.b.tooltip
+					hidden_tooltip = {
+						set_variable = { which = holding_pop_dmg value = 0.85 } #15% population loss
+						multiply_variable = { which = holding_pop which = holding_pop_dmg }
+					}
+				}
 				PREV = { wealth = 40 }
 			}
 			if = {
 				limit = {
 					OR = {
 						has_building = ca_town_5
-						has_building = ct_marketplace_5
-						has_building = tp_town_5
+						AND = {
+							has_building = ct_marketplace_5
+							NOT = { has_building = ct_marketplace_6 }
+						}
+						AND = {
+							has_building = tp_town_5
+							NOT = { has_building = tp_town_6 }
+						}
 					}
 				}
-				set_variable = { which = holding_pop_dmg value = 0.90 } #10% population loss
-				multiply_variable = { which = holding_pop which = holding_pop_dmg }
+				custom_tooltip = {
+					text = arles_base_8.opt.b.tooltip
+					hidden_tooltip = {
+						set_variable = { which = holding_pop_dmg value = 0.85 } #15% population loss
+						multiply_variable = { which = holding_pop which = holding_pop_dmg }
+					}
+				}
 				PREV = { wealth = 50 }
 			}
 			if = {
@@ -3211,8 +3344,13 @@ character_event = {
 						has_building = tp_town_6
 					}
 				}
-				set_variable = { which = holding_pop_dmg value = 0.90 } #10% population loss
-				multiply_variable = { which = holding_pop which = holding_pop_dmg }
+				custom_tooltip = {
+					text = arles_base_8.opt.b.tooltip
+					hidden_tooltip = {
+						set_variable = { which = holding_pop_dmg value = 0.90 } #10% population loss
+						multiply_variable = { which = holding_pop which = holding_pop_dmg }
+					}
+				}
 				PREV = { wealth = 60 }
 			}			
 			hidden_tooltip = { #alert owner of action
@@ -3224,215 +3362,218 @@ character_event = {
 				}
 			}
 			add_holding_modifier = { modifier = arles_rapta years = 2 }
+			
 			#BEGIN HOLDING LEVEL ASSIGNMENT
-			if = {
-				limit = {
-					NOT = { check_variable = { which = holding_pop value = 74.5 } }
-					has_title_flag = clan_pop
-					holding_type = tribal
-				}
-				remove_building = tb_market_town_2
-				log = "DEBUG arles_base.8 Tribal level 2 housing destroyed in [This.GetName] ([This.GetID])"
-				clr_title_flag = clan_pop
-				location = {
-					set_variable = { which = province_pop_diff value = 0 }
-					subtract_variable = { which = province_pop_diff value = 0.75 }
-					multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-					change_variable = { which = province_pop which = province_pop_diff }
-					log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-				}
-			}
-			if = { #Devolve to pop level 1
-				limit = { 
-					NOT = { check_variable = { which = holding_pop value = 149.5 } }
-					has_title_flag = minor_pop
-				}
-				remove_holding_modifier = arles_holding_pop2
-				add_holding_modifier = { modifier = arles_holding_pop1 duration = -1 }
+			hidden_tooltip = {
 				if = {
-					limit = { holding_type = castle }
-					remove_building = ca_town_2
-					log = "DEBUG arles_base.8 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
+					limit = {
+						NOT = { check_variable = { which = holding_pop value = 74.5 } }
+						has_title_flag = clan_pop
+						holding_type = tribal
+					}
+					remove_building = tb_market_town_2
+					log = "DEBUG arles_base.8 Tribal level 2 housing destroyed in [This.GetName] ([This.GetID])"
+					clr_title_flag = clan_pop
+					location = {
+						set_variable = { which = province_pop_diff value = 0 }
+						subtract_variable = { which = province_pop_diff value = 0.75 }
+						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+						change_variable = { which = province_pop which = province_pop_diff }
+						log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+					}
 				}
-				if = {
-					limit = { holding_type = city }
-					remove_building = ct_marketplace_2
-					log = "DEBUG arles_base.8 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = temple }
-					remove_building = tp_town_2
-					log = "DEBUG arles_base.8 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = tribal }
-					remove_building = tb_market_town_3
-					log = "DEBUG arles_base.6 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				clr_title_flag = minor_pop
-				log = "DEBUG arles_base.8 Devolved holding modifier to Level 1 based on holding population of [This.holding_pop.GetValue]"
-				location = {
-					set_variable = { which = province_pop_diff value = 0 }
-					subtract_variable = { which = province_pop_diff value = 1.25 }
-					multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-					change_variable = { which = province_pop which = province_pop_diff }
-					log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-				}
-			}
-			if = { #Devolve to pop level 2
-				limit = { 
-					check_variable = { which = holding_pop value = 149.5 } 
-					NOT = { check_variable = { which = holding_pop value = 299.5 } }
-					has_title_flag = burg_pop
-				}
-				remove_holding_modifier = arles_holding_pop3
-				add_holding_modifier = { modifier = arles_holding_pop2 duration = -1 }
-				if = {
-					limit = { holding_type = castle }
-					remove_building = ca_town_3
-					log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = city }
-					remove_building = ct_marketplace_3
-					log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = temple }
-					remove_building = tp_town_3
-					log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = tribal }
-					remove_building = tb_market_town_4
-					log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				clr_title_flag = burg_pop
-				log = "DEBUG arles_base.8 Devolved holding modifier to Level 2 based on holding population of [This.holding_pop.GetValue]"
-				location = {
-					set_variable = { which = province_pop_diff value = 0 }
-					subtract_variable = { which = province_pop_diff value = 1.75 }
-					multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-					change_variable = { which = province_pop which = province_pop_diff }
-					log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-				}
-			}
-			if = { #Devolve to pop level 3
-				limit = { 
-					check_variable = { which = holding_pop value = 299.5 } 
-					NOT = { check_variable = { which = holding_pop value = 499.5 } }
-					has_title_flag = major_pop
-				}
-				add_holding_modifier = { modifier = arles_holding_pop3 duration = -1 }
-				if = {
-					limit = { holding_type = castle }
-					remove_building = ca_town_4
-					remove_holding_modifier = arles_holding_pop4
-					log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = city }
-					remove_building = ct_marketplace_4
-					remove_holding_modifier = arles_holding_pop4
-					log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = temple }
-					remove_building = tp_town_4
-					remove_holding_modifier = arles_holding_pop4
-					log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = tribal }
-					remove_building = tb_market_town_4
-					remove_holding_modifier = arles_holding_pop4_tribal
-					log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				clr_title_flag = major_pop
-				log = "DEBUG arles_base.8 Changed holding modifier to Level 3 based on holding population of [This.holding_pop.GetValue]"
-				location = {
-					set_variable = { which = province_pop_diff value = 0 }
-					subtract_variable = { which = province_pop_diff value = 2.25 }
-					multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-					change_variable = { which = province_pop which = province_pop_diff }
-					log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-				}
-			}
-			if = { #Devolve to pop level 4
-				limit = { 
-					check_variable = { which = holding_pop value = 499.5 } 
-					NOT = { check_variable = { which = holding_pop value = 999.5 } }
-					has_title_flag = metropolitan
-				}
-				remove_holding_modifier = arles_holding_pop5
-				add_holding_modifier = { modifier = arles_holding_pop4 duration = -1 }
-				if = {
-					limit = { holding_type = castle }
-					remove_building = ca_town_5
-					log = "DEBUG arles_base.8 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = city }
-					remove_building = ct_marketplace_5
-					log = "DEBUG arles_base.8 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				if = {
-					limit = { holding_type = temple }
-					remove_building = tp_town_5
-					log = "DEBUG arles_base.8 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
-				}
-				clr_title_flag = metropolitan
-				log = "DEBUG arles_base.8 Devolved holding modifier to Level 4 based on holding population of [This.holding_pop.GetValue]"
-				location = {
-					set_variable = { which = province_pop_diff value = 0 }
-					subtract_variable = { which = province_pop_diff value = 2.75 }
-					multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-					change_variable = { which = province_pop which = province_pop_diff }
-					log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-				}
-			}
-			log = "DEBUG arles_base.8 Reached end of holding population calculations"
-			location = {	
-				#BEGIN POPULATION LEVEL ASSIGNMENT
 				if = { #Devolve to pop level 1
 					limit = { 
-						NOT = { check_variable = { which = province_pop value = 4.5 } }
-						has_province_flag = minor_pop
+						NOT = { check_variable = { which = holding_pop value = 149.5 } }
+						has_title_flag = minor_pop
 					}
-					remove_province_modifier = arles_pop2
-					add_province_modifier = { name = arles_pop1 duration = -1 }
-					clr_province_flag = minor_pop
-					log = "DEBUG arles_base.8 Devolved province modifier to Level 1 based on holding population of [This.province_pop.GetValue]"
+					remove_holding_modifier = arles_holding_pop2
+					add_holding_modifier = { modifier = arles_holding_pop1 duration = -1 }
+					if = {
+						limit = { holding_type = castle }
+						remove_building = ca_town_2
+						log = "DEBUG arles_base.8 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = city }
+						remove_building = ct_marketplace_2
+						log = "DEBUG arles_base.8 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = temple }
+						remove_building = tp_town_2
+						log = "DEBUG arles_base.8 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = tribal }
+						remove_building = tb_market_town_3
+						log = "DEBUG arles_base.6 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					clr_title_flag = minor_pop
+					log = "DEBUG arles_base.8 Devolved holding modifier to Level 1 based on holding population of [This.holding_pop.GetValue]"
+					location = {
+						set_variable = { which = province_pop_diff value = 0 }
+						subtract_variable = { which = province_pop_diff value = 1.25 }
+						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+						change_variable = { which = province_pop which = province_pop_diff }
+						log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+					}
 				}
 				if = { #Devolve to pop level 2
 					limit = { 
-						check_variable = { which = province_pop value = 4.5 }
-						NOT = { check_variable = { which = province_pop value = 19.5 } }
-						has_province_flag = burg_pop
+						check_variable = { which = holding_pop value = 149.5 } 
+						NOT = { check_variable = { which = holding_pop value = 299.5 } }
+						has_title_flag = burg_pop
 					}
-					remove_province_modifier = arles_pop3
-					add_province_modifier = { name = arles_pop2 duration = -1 }
-					log = "DEBUG arles_base.8 Devolved province modifier to Level 2 based on holding population of [This.province_pop.GetValue]"
+					remove_holding_modifier = arles_holding_pop3
+					add_holding_modifier = { modifier = arles_holding_pop2 duration = -1 }
+					if = {
+						limit = { holding_type = castle }
+						remove_building = ca_town_3
+						log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = city }
+						remove_building = ct_marketplace_3
+						log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = temple }
+						remove_building = tp_town_3
+						log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = tribal }
+						remove_building = tb_market_town_4
+						log = "DEBUG arles_base.8 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					clr_title_flag = burg_pop
+					log = "DEBUG arles_base.8 Devolved holding modifier to Level 2 based on holding population of [This.holding_pop.GetValue]"
+					location = {
+						set_variable = { which = province_pop_diff value = 0 }
+						subtract_variable = { which = province_pop_diff value = 1.75 }
+						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+						change_variable = { which = province_pop which = province_pop_diff }
+						log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+					}
 				}
 				if = { #Devolve to pop level 3
 					limit = { 
-						check_variable = { which = province_pop value = 19.5 }
-						NOT = { check_variable = { which = province_pop value = 34.5 } }
-						has_province_flag = major_pop
+						check_variable = { which = holding_pop value = 299.5 } 
+						NOT = { check_variable = { which = holding_pop value = 499.5 } }
+						has_title_flag = major_pop
 					}
-					remove_province_modifier = arles_pop4
-					add_province_modifier = { name = arles_pop3 duration = -1 }
-					log = "DEBUG arles_base.8 Devolved province modifier to Level 3 based on holding population of [This.province_pop.GetValue]"
+					add_holding_modifier = { modifier = arles_holding_pop3 duration = -1 }
+					if = {
+						limit = { holding_type = castle }
+						remove_building = ca_town_4
+						remove_holding_modifier = arles_holding_pop4
+						log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = city }
+						remove_building = ct_marketplace_4
+						remove_holding_modifier = arles_holding_pop4
+						log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = temple }
+						remove_building = tp_town_4
+						remove_holding_modifier = arles_holding_pop4
+						log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = tribal }
+						remove_building = tb_market_town_4
+						remove_holding_modifier = arles_holding_pop4_tribal
+						log = "DEBUG arles_base.8 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					clr_title_flag = major_pop
+					log = "DEBUG arles_base.8 Changed holding modifier to Level 3 based on holding population of [This.holding_pop.GetValue]"
+					location = {
+						set_variable = { which = province_pop_diff value = 0 }
+						subtract_variable = { which = province_pop_diff value = 2.25 }
+						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+						change_variable = { which = province_pop which = province_pop_diff }
+						log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+					}
 				}
 				if = { #Devolve to pop level 4
 					limit = { 
-						check_variable = { which = province_pop value = 34.5 }
-						NOT = { check_variable = { which = province_pop value = 49.5 } }
-						has_province_flag = metropolitan
+						check_variable = { which = holding_pop value = 499.5 } 
+						NOT = { check_variable = { which = holding_pop value = 999.5 } }
+						has_title_flag = metropolitan
 					}
-					remove_province_modifier = arles_pop5
-					add_province_modifier = { name = arles_pop4 duration = -1 }
-					log = "DEBUG arles_base.8 Devolved province modifier to Level 4 based on holding population of [This.province_pop.GetValue]"
+					remove_holding_modifier = arles_holding_pop5
+					add_holding_modifier = { modifier = arles_holding_pop4 duration = -1 }
+					if = {
+						limit = { holding_type = castle }
+						remove_building = ca_town_5
+						log = "DEBUG arles_base.8 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = city }
+						remove_building = ct_marketplace_5
+						log = "DEBUG arles_base.8 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					if = {
+						limit = { holding_type = temple }
+						remove_building = tp_town_5
+						log = "DEBUG arles_base.8 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
+					}
+					clr_title_flag = metropolitan
+					log = "DEBUG arles_base.8 Devolved holding modifier to Level 4 based on holding population of [This.holding_pop.GetValue]"
+					location = {
+						set_variable = { which = province_pop_diff value = 0 }
+						subtract_variable = { which = province_pop_diff value = 2.75 }
+						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+						change_variable = { which = province_pop which = province_pop_diff }
+						log = "DEBUG arles_base.8 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+					}
+				}
+				log = "DEBUG arles_base.8 Reached end of holding population calculations"
+				location = {	
+					#BEGIN POPULATION LEVEL ASSIGNMENT
+					if = { #Devolve to pop level 1
+						limit = { 
+							NOT = { check_variable = { which = province_pop value = 4.5 } }
+							has_province_flag = minor_pop
+						}
+						remove_province_modifier = arles_pop2
+						add_province_modifier = { name = arles_pop1 duration = -1 }
+						clr_province_flag = minor_pop
+						log = "DEBUG arles_base.8 Devolved province modifier to Level 1 based on holding population of [This.province_pop.GetValue]"
+					}
+					if = { #Devolve to pop level 2
+						limit = { 
+							check_variable = { which = province_pop value = 4.5 }
+							NOT = { check_variable = { which = province_pop value = 19.5 } }
+							has_province_flag = burg_pop
+						}
+						remove_province_modifier = arles_pop3
+						add_province_modifier = { name = arles_pop2 duration = -1 }
+						log = "DEBUG arles_base.8 Devolved province modifier to Level 2 based on holding population of [This.province_pop.GetValue]"
+					}
+					if = { #Devolve to pop level 3
+						limit = { 
+							check_variable = { which = province_pop value = 19.5 }
+							NOT = { check_variable = { which = province_pop value = 34.5 } }
+							has_province_flag = major_pop
+						}
+						remove_province_modifier = arles_pop4
+						add_province_modifier = { name = arles_pop3 duration = -1 }
+						log = "DEBUG arles_base.8 Devolved province modifier to Level 3 based on holding population of [This.province_pop.GetValue]"
+					}
+					if = { #Devolve to pop level 4
+						limit = { 
+							check_variable = { which = province_pop value = 34.5 }
+							NOT = { check_variable = { which = province_pop value = 49.5 } }
+							has_province_flag = metropolitan
+						}
+						remove_province_modifier = arles_pop5
+						add_province_modifier = { name = arles_pop4 duration = -1 }
+						log = "DEBUG arles_base.8 Devolved province modifier to Level 4 based on holding population of [This.province_pop.GetValue]"
+					}
 				}
 			}
 		}		
@@ -3501,6 +3642,19 @@ character_event = {
 	}
 	option = {
 		name = arles_base.8.opt.c
+		custom_tooltip = { 
+			text = arles_base.8.opt.c.tooltip 
+			hidden_tooltip = {
+				add_character_modifier = { name = arles_misericordia_victis duration = 180 }
+				any_realm_character = {
+					limit = {
+						has_minor_title = title_commander
+						trait = cruel
+					}
+					opinion = { modifier = opinion_very_disappointed who = ROOT years = 1 }
+				}
+			}
+		}
 		log = "DEBUG arles_base.8 [This.GetTitledName] decided to leave [From.GetName] alone, keeping [From.GetName]'s population at [From.holding_pop.GetValue]"
 		ai_chance = {
 			factor = 1
@@ -3561,8 +3715,7 @@ character_event = {
 				}
 				tier = baron
 			}
-		}
-					
+		}			
 		name = arles_base.9.opt.a
 		add_rival = FROM
 		prestige = -25
