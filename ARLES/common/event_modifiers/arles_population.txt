@@ -85,9 +85,11 @@ arles_holdinggrowth = {
 	icon = 6
 }
 arles_victa = {
+	local_tax_modifier = -0.10
 	icon = 19
 }
 arles_rapta = {
+	local_tax_modifier = -0.20
 	icon = 19
 }
 arles_victor = {
