@@ -654,4 +654,65 @@ castle = {
 	# ca_shipyard_3 removed
 
 	# ca_shipyard_4 removed
+	
+	ca_land_clearance = {
+		desc = land_clearance_desc
+		potential = {
+			FROMFROM = { is_capital = yes }
+		}
+		trigger = {
+			hidden_tooltip = {
+				TECH_CASTLE_CONSTRUCTION = 0 
+			}
+			OR = {
+				custom_tooltip = {
+					text = land_clearance_1_tooltip
+					hidden_tooltip = {
+						NOT = { has_province_flag = minor_pop }
+						is_variable_equal = { which = province_econ_count value = 0 } #capacity for 1
+					}
+				}
+				custom_tooltip = {
+					text = land_clearance_2_tooltip
+					hidden_tooltip = {
+						has_province_flag = minor_pop
+						NOT = { has_province_flag = burg_pop }
+						check_variable = { which = province_econ_count value = 0 }
+						NOT = { check_variable = { which = province_econ_count value = 1.01 } } #capacity for 1, up to 2
+					}
+				}
+				custom_tooltip = {
+					text = land_clearance_3_tooltip
+					hidden_tooltip = {
+						has_province_flag = burg_pop
+						NOT = { has_province_flag = major_pop }
+						check_variable = { which = province_econ_count value = 0 }
+						NOT = { check_variable = { which = province_econ_count value = 2.01 } } #capacity for 1, up to 3	
+					}
+				}
+				custom_tooltip = {
+					text = land_clearance_4_tooltip
+					hidden_tooltip = {
+						has_province_flag = major_pop
+						NOT = { has_province_flag = metropolitan }
+						check_variable = { which = province_econ_count value = 0 }
+						NOT = { check_variable = { which = province_econ_count value = 5.01 } } #capacity for 2, up to 5
+					}
+				}
+				custom_tooltip = {
+					text = land_clearance_5_tooltip 
+					hidden_tooltip = {
+						has_province_flag = metropolitan
+						check_variable = { which = province_econ_count value = 0 }
+						NOT = { check_variable = { which = province_econ_count value = 7.01 } } #capacity for 3, up to 8
+					}
+				}
+			}
+		}
+		gold_cost = 50
+		build_time = 365
+		ai_creation_factor = 100
+		
+		extra_tech_building_start = 8.0 #Never auto build
+	}	
 }

@@ -6,6 +6,7 @@ ROOT = {
 			00_CastleCulture.txt
 			00_tradepost.txt
 			00_tribal.txt
+			ct_trade_post
 		}
 	}
 	gfx = {

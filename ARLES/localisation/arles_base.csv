@@ -1,4 +1,6 @@
 #CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+
+#BASE RESOURCES AND NATURAL LUXURY GOODS
 arles_furs;Northern Wildlife;;;;;;;;;;;;;x
 arles_furs_desc;The frozen northlands are not home to many, but the wildlife here is known for the warm and stylish §Yfurs§! they can furnish.;;;;;;;;;;;;;x
 arles_game;Hunting Grounds;;;;;;;;;;;;;x
@@ -23,3 +25,7 @@ arles_salt;Salt Deposits;;;;;;;;;;;;;x
 arles_salt_desc;Whether extracted from brine or from flats spanning the desert, these humble §Ysalt§! crystals are worth their weight in gold.;;;;;;;;;;;;;x
 arles_gold;Gold Deposits;;;;;;;;;;;;;x
 arles_gold_desc;Precious §Ygold§! is mined here, bringing unimaginable wealth to the ruler fortunate enough to control it.;;;;;;;;;;;;;x
+
+#TRADE NODES/ROUTES
+arles_trade_node;Regional Trading Center;;;;;;;;;;;;;x
+arles_trade_node_desc;This province's markets have long been a gathering place for merchants far and wide, come to exchange their exotic wares for the many local goods produced in this region.;;;;;;;;;;;;;x

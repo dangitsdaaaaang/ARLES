@@ -2,15 +2,15 @@
 
 #BASE PROVINCIAL POP MODIFIERS
 arles_pop1;Minor Province;;;;;;;;;;;;;x
-arles_pop1_desc;This province is home to only a few hundred people who live close to a central settlement which acts as a small hub of commercial activity.\nCurrent Population Level: [province_pop.GetValue]/5;;;;;;;;;;;;;x
+arles_pop1_desc;This province is home to only a few hundred people who live close to a central settlement which acts as a small hub of commercial activity.\nCurrent Population Level: [province_pop.GetValue]/5 \nMaximum economic improvements: 1;;;;;;;;;;;;;x
 arles_pop2;Minor Population Center;;;;;;;;;;;;;x
-arles_pop2_desc;This province is home to thousands of people scattered across numerous villages centered around a small but growing town.\nCurrent Population Level: [province_pop.GetValue]/20;;;;;;;;;;;;;x
+arles_pop2_desc;This province is home to thousands of people scattered across numerous villages centered around a small but growing town.\nCurrent Population Level: [province_pop.GetValue]/20 \nMaximum economic improvements: 2;;;;;;;;;;;;;x
 arles_pop3;Burgeoning Population Center;;;;;;;;;;;;;x
-arles_pop3_desc;This province is home to tens of thousands of people, a large portion of which live in and fuel the development of the numerous towns in this region.\nCurrent Population Level: [province_pop.GetValue]/35;;;;;;;;;;;;;x
+arles_pop3_desc;This province is home to tens of thousands of people, a large portion of which live in and fuel the development of the numerous towns in this region.\nCurrent Population Level: [province_pop.GetValue]/35 \nMaximum economic improvements: 3;;;;;;;;;;;;;x
 arles_pop4;Major Population Center;;;;;;;;;;;;;x
-arles_pop4_desc;This province is home to almost a hundred thousand people and serves well as a regional administrative and commercial center.\nCurrent Population Level: [province_pop.GetValue]/50;;;;;;;;;;;;;x
+arles_pop4_desc;This province is home to almost a hundred thousand people and serves well as a regional administrative and commercial center.\nCurrent Population Level: [province_pop.GetValue]/50 \nMaximum economic improvements: 5;;;;;;;;;;;;;x
 arles_pop5;Metropolitan Center;;;;;;;;;;;;;x
-arles_pop5_desc;A shining city dominates the landscape here and watches like a golden sentinel over many hundreds of thousands of people, rivalling even the glory and stature of ancient Rome.;;;;;;;;;;;;;x
+arles_pop5_desc;A shining city dominates the landscape here and watches like a golden sentinel over many hundreds of thousands of people, rivalling even the glory and stature of ancient Rome. \nMaximum economic improvements: 8;;;;;;;;;;;;;x
 arles_popgrowth;Population Growth;;;;;;;;;;;;;x
 arles_popgrowth_desc;Population has grown in this province.;;;;;;;;;;;;;x
 
@@ -63,13 +63,13 @@ arles_base.8.opt.c.tooltip;Your soldiers reluctantly follow your orders to leave
 arles_victa;Ransacked;;;;;;;;;;;;;x
 arles_victa_desc;This settlement has recently been sacked. It will take some time for the population here to recover. ;;;;;;;;;;;;;x
 arles_victor;Ransacked City;;;;;;;;;;;;;x
-arles_victor_desc;This character has recently sacked a settlement. Though a somewhat unavoidable consequence of war, there is considerable blood on [Root.GetHerHis] hands. ;;;;;;;;;;;;;x
+arles_victor_desc;This character has recently sacked a settlement. Though a somewhat unavoidable consequence of war, there is considerable blood on [GetHerHis] hands. ;;;;;;;;;;;;;x
 arles_rapta;Pillaged;;;;;;;;;;;;;x
 arles_rapta_desc;This settlement has been pillaged and the people massacred. It will take quite some time for the population here to recover. ;;;;;;;;;;;;;x
 arles_raptor;Pillaged City;;;;;;;;;;;;;x
-arles_raptor_desc;This character has recently pillaged a settlement and burned it to the ground. This act of cruelty is not generally appreciated by many and casts [Root.GetHerHim] as an unrestrained murderer.;;;;;;;;;;;;;x
+arles_raptor_desc;This character has recently pillaged a settlement and burned it to the ground. This act of cruelty is not generally appreciated by many and casts [GetHerHim] as an unrestrained murderer.;;;;;;;;;;;;;x
 arles_misericordia_victis;Merciful;;;;;;;;;;;;;x
-arles_misericordia_victis_desc;This character has demonstrated clemency to the defeated, elevating [Root.GetHerHis] standing in the eyes of others, but also to the discontent of some of [Root.GetHerHis] men.;;;;;;;;;;;;;x
+arles_misericordia_victis_desc;This character has demonstrated clemency to the defeated, elevating [GetHerHis] standing in the eyes of others, but also to the discontent of some of [GetHerHis] men.;;;;;;;;;;;;;x
 arles_base.9_desc;[From.GetTitledName]'s armies have pillaged [FromFrom.GetName], laying waste to a large portion of the town and slaughtering vast numbers of the people. Whether or not this tragedy could have been prevented matters not, the dead must be avenged and the homes of the living rebuilt.;;;;;;;;;;;;;x
 arles_base.9.opt.a;A debt such as this may only be paid in blood!;;;;;;;;;;;;;x
 arles_base.9.opt.b;Discretion is the better part of valor, methinks.;;;;;;;;;;;;;x
