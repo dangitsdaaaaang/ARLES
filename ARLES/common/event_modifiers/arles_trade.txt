@@ -48,8 +48,9 @@
 arles_trade_node = {
 	tax_income = 2
 	fort_level = 0.5
-	icon = 90
+	icon = 88
 }
+
 
 
 
