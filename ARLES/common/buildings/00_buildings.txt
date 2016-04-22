@@ -1199,12 +1199,10 @@ temple = {
 				custom_tooltip = {
 					text = land_clearance_4_tooltip
 					hidden_tooltip = {
-						AND = {
-							has_province_flag = major_pop
-							NOT = { has_province_flag = metropolitan }
-							check_variable = { which = province_econ_count value = 0 }
-							NOT = { check_variable = { which = province_econ_count value = 5.01 } } #capacity for 2, up to 5
-						}
+						has_province_flag = major_pop
+						NOT = { has_province_flag = metropolitan }
+						check_variable = { which = province_econ_count value = 0 }
+						NOT = { check_variable = { which = province_econ_count value = 5.01 } } #capacity for 2, up to 5
 					}
 				}
 				custom_tooltip = {

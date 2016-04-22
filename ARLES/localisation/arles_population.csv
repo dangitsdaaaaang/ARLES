@@ -55,11 +55,11 @@ tb_market_town_4_tooltip;This impressive settlement is a local center of commerc
 #SIEGE/LOOT/DISEASE MARKERS
 arles_base.8_desc;Our armies have breached the walls and captured the heart of the city. We will deal with the prisoners later, but what should we do with the people? While it may not be noble or chivalrous, there is considerable profit in "recovering" some of their more prized possessions by deadly force. ;;;;;;;;;;;;;x
 arles_base.8.opt.a;To the victor go the spoils! Take what you can wherever you can. ;;;;;;;;;;;;;x
-arles_base.8.opt.a.tooltip;Your soldiers proceed to terrorize the citizens, resulting in significant property damage and some loss of life. ;;;;;;;;;;;;;x
+arles_base.8.opt.a.tooltip;Your soldiers proceed to terrorize the citizens, resulting in significant property damage and some loss of life.\n;;;;;;;;;;;;;x
 arles_base.8.opt.b;Kill all who resist. The dead have no need for riches. ;;;;;;;;;;;;;x
-arles_base.8.opt.b.tooltip;Your soldiers proceed to slaughter the citizens and set the city afire. ;;;;;;;;;;;;;x
+arles_base.8.opt.b.tooltip;Your soldiers proceed to slaughter the citizens and set the city afire.\n;;;;;;;;;;;;;x
 arles_base.8.opt.c;There has been enough suffering this day.;;;;;;;;;;;;;x
-arles_base.8.opt.c.tooltip;Your soldiers reluctantly follow your orders to leave the people alone. ;;;;;;;;;;;;;x
+arles_base.8.opt.c.tooltip;Your soldiers reluctantly follow your orders to leave the people alone.\n;;;;;;;;;;;;;x
 arles_victa;Ransacked;;;;;;;;;;;;;x
 arles_victa_desc;This settlement has recently been sacked. It will take some time for the population here to recover. ;;;;;;;;;;;;;x
 arles_victor;Ransacked City;;;;;;;;;;;;;x

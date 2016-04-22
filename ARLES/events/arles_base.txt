@@ -185,7 +185,6 @@ character_event = {
 				set_variable = { which = province_pop value = 0 } #Province population level counter
 				set_variable = { which = province_pop_diff value = 0 } #Aggregate Population level diff 
 				set_variable = { which = province_pop_diff_terr value = 0 } #Population level diff (terrain component)
-				set_variable = { which = province_pop_diff_trade value = 0 } #Population level diff (trade goods component)
 				set_variable = { which = province_econ_count value = 0 } #Count of economic improvements
 				log = "MAINT: arles_pop.3 Successfully set up province defines in [This.GetName] ([This.GetID])"
 				set_province_flag = init_province_pop
@@ -236,7 +235,7 @@ character_event = {
 				set_variable = { which = holding_pop value = 0 }
 				set_variable = { which = holding_pop_diff value = 0 }
 				set_variable = { which = holding_pop_diff_terr value = 0 }
-				set_variable = { which = holding_pop_diff_trade value = 0 }
+				set_variable = { which = holding_pop_diff_trade value = 1 }
 				set_variable = { which = holding_pop_dmg value = 0 }
 				set_variable = { which = holding_pop_diff_disease value = 1 }
 				set_title_flag = holding_has_pop
@@ -2050,21 +2049,21 @@ character_event = {
 				#POPULATION - GOVERNMENT MODIFIERS
 				if = { #Reduce province pop by 25% if subordinate to tribal
 					limit = {
-						holder_scope = { government = tribal_government }
+						capital_holding = { holding_type = tribal }
 					}
 					multiply_variable = { which = province_pop value = 0.75 }
 					log = "MAINT: arles_base.5 Readjusted province population to [This.province_pop.GetValue] due to tribal overlord"
 				}
 				if = { #Reduce province pop by 50% if subordinate to nomads
 					limit = {
-						holder_scope = { government = nomadic_government }
+						capital_holding = { holding_type = nomad }
 					}
 					multiply_variable = { which = province_pop value = 0.5 }
 					log = "MAINT: arles_base.5 Readjusted province population to [This.province_pop.GetValue] due to nomad overlord"
 				}
 				if = { #Reduce province pop by 100% if only nomads
 					limit = {
-						holder_scope = { government = nomadic_government }
+						capital_holding = { holding_type = nomad }
 						NOT = { any_province_holding = { NOT = { holding_type = nomad } } }
 					}
 					set_variable = { which = province_pop value = 0 }
@@ -2356,15 +2355,16 @@ character_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		event_target:home_holding = {
-			location = { NOT = { has_province_modifier = arles_popgrowth } }
+		event_target:home_province = {
+			NOT = { has_province_modifier = arles_popgrowth }
 		}
 	}
 	
 	option = {
-		event_target:home_holding = {
+		event_target:home_province = {
 			location = {
 				any_province_holding = {
+					limit = { has_title_flag = holding_has_pop }
 					set_variable = { which = holding_pop_diff value = 1 } #reset from previous to default
 				
 					#BEGIN TERRAIN MODIFIERS
@@ -2372,15 +2372,18 @@ character_event = {
 					log = "MAINT: arles_base.6 Successfully applied terrain modifiers to holding population diff at [This.holding_pop_diff.GetValue]"
 					
 					#BEGIN TRADE MODIFIERS
+					if = {
+						limit = { location = { has_province_modifier = arles_trade_node } }
+						change_variable = { which = holding_pop_diff_trade value = 0.05 }
+					}
 					
-					#SUM TRADE MODIFIERS HERE
-					#log = "MAINT: arles_base.4 Successfully summed trade modifiers at [This.holding_pop_trade.GetValue]"
-					change_variable = { which = holding_pop_diff which = holding_pop_diff_trade }
+					log = "MAINT: arles_base.6 Successfully summed trade modifiers at [This.holding_pop_diff_trade.GetValue]"
+					multiply_variable = { which = holding_pop_diff which = holding_pop_diff_trade }
 					log = "MAINT: arles_base.6 Successfully applied trade modifiers to holding population diff at [This.holding_pop_diff.GetValue]"
 					
 					#SUM DIFF WITH HOLDING POPULATION
 					change_variable = { which = holding_pop which = holding_pop_diff }
-					log = "MAINT: arles_base.6 Successfully summed holding pop diff to holding population of [This.GetName] ([This.GetID]) at [This.holding_pop_diff.GetValue]"
+					log = "MAINT: arles_base.6 Successfully summed holding pop diff of [This.holding_pop_diff.GetValue] to holding population of [This.GetName] ([This.GetID]) at [This.holding_pop.GetValue]"
 					
 					#BEGIN POPULATION LEVEL ASSIGNMENT
 					if = {
@@ -2474,7 +2477,7 @@ character_event = {
 							change_variable = { which = province_pop_diff value = 1.75 }
 							multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
 							change_variable = { which = province_pop which = province_pop_diff }
-							add_province_modifier = { name = arles_popgrowth days = 365 }
+							add_province_modifier = { name = arles_popgrowth days = 360 }
 							log = "MAINT: arles_base.6 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
 						}
 					}
@@ -2619,7 +2622,7 @@ character_event = {
 			set_variable = { which = holding_pop_diff_terr value = 0 }
 			set_variable = { which = holding_pop_diff_trade value = 0 }
 			set_variable = { which = holding_pop_dmg value = 0 }
-			set_title_flag = holding_has_pop
+			set_title_flag = new_holding_has_pop
 			log = "MAINT:: arles.base.7 Set up holding defines for new settlement at [This.GetName] ([This.GetID])"
 				
 			#BEGIN ADDING PRIMARY POPS
@@ -2692,6 +2695,7 @@ character_event = {
 			}
 			location = {
 				#BEGIN POPULATION LEVEL ASSIGNMENT
+				save_event_target_as = home_province_new
 				if = { #Advance to pop level 2
 					limit = { check_variable = { which = province_pop value = 4.5 } }
 					remove_province_modifier = arles_pop1
@@ -2722,7 +2726,7 @@ character_event = {
 				}
 			}
 		}
-		character_event = { id = arles_base.6 days = 365 }
+		character_event = { id = arles_base.6a days = 365 }
 	}
 }
 
