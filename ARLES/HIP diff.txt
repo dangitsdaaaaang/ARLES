@@ -9,6 +9,9 @@ ROOT = {
 			ct_trade_post
 		}
 	}
+	decisions = {
+		settlement_decisions.txt
+	}
 	gfx = {
 		interface = {
 			modifier_icons.dds

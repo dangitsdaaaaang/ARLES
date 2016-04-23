@@ -111,7 +111,8 @@ tribal = {
 		ai_feudal_modifier = -10
 		ai_republic_modifier = 10
 		
-		convert_to_castle = ca_town_1
+		convert_to_castle = ca_town_2 #ARLES
+		convert_to_city = ct_marketplace_2 # EMF
 		
 		extra_tech_building_start = 1.5
 	}
@@ -135,7 +136,8 @@ tribal = {
 		ai_feudal_modifier = -10
 		ai_republic_modifier = 10
 		
-		convert_to_city = ct_marketplace_1 # EMF
+		convert_to_castle = ca_town_2 #ARLES
+		convert_to_city = ct_marketplace_2 # ARLES
 		
 		extra_tech_building_start = 2
 	}
@@ -159,7 +161,8 @@ tribal = {
 		ai_feudal_modifier = -10
 		ai_republic_modifier = 10
 		
-		convert_to_castle = ca_town_2
+		convert_to_castle = ca_town_3 #ARLES
+		convert_to_city = ct_marketplace_3 # ARLES
 		
 		extra_tech_building_start = 2.5
 	}

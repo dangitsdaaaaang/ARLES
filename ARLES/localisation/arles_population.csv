@@ -73,3 +73,9 @@ arles_misericordia_victis_desc;This character has demonstrated clemency to the d
 arles_base.9_desc;[From.GetTitledName]'s armies have pillaged [FromFrom.GetName], laying waste to a large portion of the town and slaughtering vast numbers of the people. Whether or not this tragedy could have been prevented matters not, the dead must be avenged and the homes of the living rebuilt.;;;;;;;;;;;;;x
 arles_base.9.opt.a;A debt such as this may only be paid in blood!;;;;;;;;;;;;;x
 arles_base.9.opt.b;Discretion is the better part of valor, methinks.;;;;;;;;;;;;;x
+
+#NOMAD PILLAGE DECISION
+arles_pillage_dec_tooltip.1;All buildings in castle destroyed except for §YCastle Town I§!\n;;;;;;;;;;;;;x
+arles_pillage_dec_tooltip.2;All buildings in city destroyed except for §YTown Market§!\n;;;;;;;;;;;;;x
+arles_pillage_dec_tooltip.3;All buildings in temple destroyed except for §YChurch Town I§!\n;;;;;;;;;;;;;x
+arles_pillage_dec_tooltip.4;All buildings in tribal village destroyed except for §YMarket Village§!\n;;;;;;;;;;;;;x

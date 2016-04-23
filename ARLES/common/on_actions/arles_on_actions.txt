@@ -1,3 +1,9 @@
+on_yearly_pulse = {
+	events = {
+		arles_base.6 #pop growth pulse
+	}
+}
+
 on_settlement_construction_completed = {
 	events = {
 		arles_base.7 #set up new holding
