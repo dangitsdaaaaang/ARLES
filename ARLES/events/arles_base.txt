@@ -189,6 +189,7 @@ character_event = {
 				set_variable = { which = province_pop_diff value = 0 } #Aggregate Population level diff 
 				set_variable = { which = province_pop_diff_terr value = 0 } #Population level diff (terrain component)
 				set_variable = { which = province_econ_count value = 0 } #Count of economic improvements
+				set_variable = { which = province_econ_count_max value = 1 }  #Count of max possible economic improvements
 				log = "MAINT: arles_base.3 Successfully set up province defines in [This.GetName] ([This.GetID])"
 				set_province_flag = init_province_pop
 			}
@@ -196,8 +197,6 @@ character_event = {
 		character_event = { id = arles_base.4 } #Set up holdings
 		
 		character_event = { id = arles_base.5 } #Finish processing provincial level
-		character_event = { id = arles_base.6 days = 365 } #Initiate pop growth pulse
-		character_event = { id = arles_base.11 days = 121 } #Initiate disease check pulse
 		character_event = { id = arles_base.12 days = 1 } #Initiate trade node seeding
 		
 		repeat_event = { id = arles_base.3 } #Recurse
@@ -233,7 +232,6 @@ character_event = {
 			#BEGIN HOLDING POPULATION MODIFIERS
 			random_province_holding = {
 				limit = { NOT = { has_title_flag = holding_has_pop } }
-				save_event_target_as = home_holding
 				#Remove previous holding modifiers just in case
 				remove_holding_modifier = arles_holding_pop1
 				remove_holding_modifier = arles_holding_pop2
@@ -1766,10 +1764,7 @@ character_event = {
 				}
 				log = "MAINT: arles_base.4 Successfully summed holding population to [This.holding_pop.GetValue] from all town buildings"
 				if = {
-					limit = {
-						holder_scope = { is_nomadic = yes }
-						NOT = { any_province_holding = { NOT = { holding_type = nomad } } }
-					}
+					limit = { holding_type = nomad }
 					set_variable = { which = holding_pop value = 0 }
 					log = "MAINT: arles_base.4 Successfully zeroed holding population to [This.holding_pop.GetValue] for nomad camps"
 				}
@@ -2384,8 +2379,10 @@ character_event = {
 					}
 					
 					log = "MAINT: arles_base.6 Successfully summed trade modifiers at [This.holding_pop_diff_trade.GetValue]"
+					
 					multiply_variable = { which = holding_pop_diff which = holding_pop_diff_trade }
 					log = "MAINT: arles_base.6 Successfully applied trade modifiers to holding population diff at [This.holding_pop_diff.GetValue]"
+					set_variable = { which = holding_pop_diff_trade value = 1 } #reset for next pulse
 					
 					#BEGIN GOV MODIFIERS
 					if = { 
@@ -2608,7 +2605,7 @@ character_event = {
 				}
 			}
 		}
-		character_event = { id = arles_base.6 days = 365 } #Recurse
+		character_event = { id = arles_base.6 days = 365 } #Loop
 	}
 }
 
@@ -2641,9 +2638,9 @@ character_event = {
 			set_variable = { which = holding_pop value = 0 }
 			set_variable = { which = holding_pop_diff value = 0 }
 			set_variable = { which = holding_pop_diff_terr value = 0 }
-			set_variable = { which = holding_pop_diff_trade value = 0 }
+			set_variable = { which = holding_pop_diff_trade value = 1 }
 			set_variable = { which = holding_pop_dmg value = 0 }
-			set_title_flag = new_holding_has_pop
+			set_title_flag = holding_has_pop
 			log = "MAINT: arles.base.7 Set up holding defines for new settlement at [This.GetName] ([This.GetID])"
 				
 			#BEGIN ADDING PRIMARY POPS
@@ -3751,6 +3748,10 @@ character_event = {
 	picture = GFX_evt_siege
 	is_triggered_only = yes
 	
+	trigger = {
+		FROMFROM = { NOT = { holding_type = nomad } }
+	}
+	
 	option = {
 		trigger = {
 			NOR = {
@@ -4244,7 +4245,7 @@ character_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		event_target:home_holding = {
+		event_target:home_province = {
 			location = {
 				OR = {
 					has_disease = tuberculosis
@@ -4260,7 +4261,7 @@ character_event = {
 	}
 					
 	option = {
-		event_target:home_holding = {
+		event_target:home_province = {
 			location = {
 				any_province_holding = {
 					#BEGIN HOLDING DISEASE MODIFIERS
