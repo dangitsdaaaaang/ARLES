@@ -1,6 +1,7 @@
 on_yearly_pulse = {
 	events = {
 		arles_base.6 #pop growth pulse
+		arles_base.11 #disease dmg pulse
 	}
 }
 

@@ -2603,12 +2603,9 @@ character_event = {
 					set_province_flag = metropolitan
 					log = "MAINT: arles_base.6 Changed province modifier to Level 5 based on holding population of [This.province_pop.GetValue]"
 				}
-				save_event_target_as = province_eval
-				event_target:province_eval = { log = "DEBUG arles_base.6 province_eval set as [This.GetName] ([This.GetID])" }
 			}
 		}
 		set_global_flag = arles_pop_evaluated
-		character_event = { id = arles_base.11 }
 		character_event = { id = arles_base.13 days = 360 }
 	}
 }
@@ -4340,301 +4337,309 @@ character_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		event_target:province_eval = {
-			#OR = {
-				#has_disease = tuberculosis
-				#has_disease = typhoid_fever
-				#has_disease = typhus
-				#has_disease = bubonic_plague
-				#has_disease = measles
-				#has_disease = small_pox
-				#has_disease = syphilis
-			#}
-			has_disease = yes
+		NOT = { has_global_flag = arles_disease_evaluated }
+		any_independent_ruler = {
+			any_realm_province = {
+				#OR = {
+					#has_disease = tuberculosis
+					#has_disease = typhoid_fever
+					#has_disease = typhus
+					#has_disease = bubonic_plague
+					#has_disease = measles
+					#has_disease = small_pox
+					#has_disease = syphilis
+				#}
+				has_disease = yes
+			}
 		}
 	}
 					
 	option = {
-		event_target:province_eval = {
-			any_province_holding = {
-				#BEGIN HOLDING DISEASE MODIFIERS
-				log = "MAINT: arles_base.11 Begin processing of  [This.GetName] ([This.GetID]) with holding population of [This.holding_pop.GetValue]"
-				if = { #Tuberculosis set at 80% annual mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
-					limit = { PREV = { any_province_character = { trait = has_tuberculosis } } }
-					set_variable = { which = holding_pop_diff_disease value = 0.96 }
-					log = "MAINT: arles_base.11 Province is infected with tuberculosis, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
-				}
-				if = { #Typhoid set at 60% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
-					limit = { PREV = { any_province_character = { trait = has_typhoid_fever } } }
-					set_variable = { which = holding_pop_diff_disease value = 0.97 }
-					log = "MAINT: arles_base.11 Province is infected with typhoid fever, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
-				}
-				if = { #Typhus set at 40% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
-					limit = { PREV = { any_province_character = { trait = has_typhus } } }
-					set_variable = { which = holding_pop_diff_disease value = 0.95 }
-					log = "MAINT: arles_base.11 Province is infected with typhus, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
-				}
-				if = { #Pesta negra set at 60% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
-					limit = { PREV = { any_province_character = { trait = has_bubonic_plague } } }
-					set_variable = { which = holding_pop_diff_disease value = 0.75 }
-					log = "MAINT: arles_base.11 Province is infected with the black plague, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
-				}
-				if = { #Measles set at 15% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
-					limit = { PREV = { any_province_character = { trait = has_measles } } }
-					set_variable = { which = holding_pop_diff_disease value = 0.98 }
-					log = "MAINT: arles_base.11 Province is infected with measles, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
-				}
-				if = { #Smallpox set at 60% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
-					limit = { PREV = { any_province_character = { trait = has_small_pox } } }
-					set_variable = { which = holding_pop_diff_disease value = 0.89 }
-					log = "MAINT: arles_base.11 Province is infected with smallpox, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
-				}
-				if = { #Syphilis set at 35% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
-					limit = { PREV = { any_province_character = { trait = has_aztec_disease } } }
-					set_variable = { which = holding_pop_diff_disease value = 0.94 }
-					log = "MAINT: arles_base.11 Province is infected with syphilis, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
-				}
-				if = { #For some reason, no one is infected, which apparently happens a lot
-					limit = {
-						PREV = { 
-							NOT = { 
-								any_province_character = {
-									OR = {
-										trait = has_tuberculosis
-										trait = has_typhoid_fever
-										trait = has_typhus
-										trait = has_bubonic_plague
-										trait = has_measles
-										trait = has_small_pox
-										trait = has_aztec_disease 
-									} 
+		set_global_flag = arles_disease_evaluated
+		any_independent_ruler = {
+			any_realm_province = {
+				limit = { has_disease = yes }
+				any_province_holding = {
+					#BEGIN HOLDING DISEASE MODIFIERS
+					log = "MAINT: arles_base.11 Begin processing of  [This.GetName] ([This.GetID]) with holding population of [This.holding_pop.GetValue]"
+					if = { #Tuberculosis set at 80% annual mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
+						limit = { PREV = { any_province_character = { trait = has_tuberculosis } } }
+						set_variable = { which = holding_pop_diff_disease value = 0.96 }
+						log = "MAINT: arles_base.11 Province is infected with tuberculosis, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
+					}
+					if = { #Typhoid set at 60% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
+						limit = { PREV = { any_province_character = { trait = has_typhoid_fever } } }
+						set_variable = { which = holding_pop_diff_disease value = 0.97 }
+						log = "MAINT: arles_base.11 Province is infected with typhoid fever, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
+					}
+					if = { #Typhus set at 40% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
+						limit = { PREV = { any_province_character = { trait = has_typhus } } }
+						set_variable = { which = holding_pop_diff_disease value = 0.95 }
+						log = "MAINT: arles_base.11 Province is infected with typhus, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
+					}
+					if = { #Pesta negra set at 60% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
+						limit = { PREV = { any_province_character = { trait = has_bubonic_plague } } }
+						set_variable = { which = holding_pop_diff_disease value = 0.75 }
+						log = "MAINT: arles_base.11 Province is infected with the black plague, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
+					}
+					if = { #Measles set at 15% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
+						limit = { PREV = { any_province_character = { trait = has_measles } } }
+						set_variable = { which = holding_pop_diff_disease value = 0.98 }
+						log = "MAINT: arles_base.11 Province is infected with measles, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
+					}
+					if = { #Smallpox set at 60% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
+						limit = { PREV = { any_province_character = { trait = has_small_pox } } }
+						set_variable = { which = holding_pop_diff_disease value = 0.89 }
+						log = "MAINT: arles_base.11 Province is infected with smallpox, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
+					}
+					if = { #Syphilis set at 35% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
+						limit = { PREV = { any_province_character = { trait = has_aztec_disease } } }
+						set_variable = { which = holding_pop_diff_disease value = 0.94 }
+						log = "MAINT: arles_base.11 Province is infected with syphilis, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
+					}
+					if = { #For some reason, no one is infected, which apparently happens a lot
+						limit = {
+							PREV = { 
+								NOT = { 
+									any_province_character = {
+										OR = {
+											trait = has_tuberculosis
+											trait = has_typhoid_fever
+											trait = has_typhus
+											trait = has_bubonic_plague
+											trait = has_measles
+											trait = has_small_pox
+											trait = has_aztec_disease 
+										} 
+									}
 								}
+								has_disease = yes
 							}
 						}
+						set_variable = { which = holding_pop_diff_disease value = 0.95 }
+						log = "MAINT: arles_base.11 Province is infected, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
 					}
-					set_variable = { which = holding_pop_diff_disease value = 0.92 }
-					log = "MAINT: arles_base.11 Province is infected with syphilis, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
-				}
-				
-				#POPULATION-DISEASE MODIFIERS
-				multiply_variable = { which = holding_pop which = holding_pop_diff_disease }
-				set_variable = { which = holding_pop_diff_disease value = 1 } #reset for next pulse
-				log = "MAINT: arles_base.11 Successfully summed holding population to [This.holding_pop.GetValue] after applying disease modifiers"
-				
-				#BEGIN HOLDING LEVEL ASSIGNMENT
-				if = {
-					limit = {
-						NOT = { check_variable = { which = holding_pop value = 74.5 } }
-						has_title_flag = clan_pop
-						holding_type = tribal
-					}
-					remove_building = tb_market_town_2
-					log = "MAINT: arles_base.11 Tribal level 2 housing destroyed in [This.GetName] ([This.GetID])"
-					clr_title_flag = clan_pop
-					location = {
-						set_variable = { which = province_pop_diff value = 0 }
-						subtract_variable = { which = province_pop_diff value = 0.75 }
-						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-						change_variable = { which = province_pop which = province_pop_diff }
-						log = "MAINT: arles_base.11 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-					}
-				}
-				if = { #Devolve to pop level 1
-					limit = { 
-						NOT = { check_variable = { which = holding_pop value = 149.5 } }
-						has_title_flag = minor_pop
-					}
-					remove_holding_modifier = arles_holding_pop2
-					add_holding_modifier = { modifier = arles_holding_pop1 duration = -1 }
+					
+					#POPULATION-DISEASE MODIFIERS
+					multiply_variable = { which = holding_pop which = holding_pop_diff_disease }
+					set_variable = { which = holding_pop_diff_disease value = 1 } #reset for next pulse
+					log = "MAINT: arles_base.11 Successfully summed holding population to [This.holding_pop.GetValue] after applying disease modifiers"
+					
+					#BEGIN HOLDING LEVEL ASSIGNMENT
 					if = {
-						limit = { holding_type = castle }
-						remove_building = ca_town_2
-						log = "MAINT: arles_base.11 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
+						limit = {
+							NOT = { check_variable = { which = holding_pop value = 74.5 } }
+							has_title_flag = clan_pop
+							holding_type = tribal
+						}
+						remove_building = tb_market_town_2
+						log = "MAINT: arles_base.11 Tribal level 2 housing destroyed in [This.GetName] ([This.GetID])"
+						clr_title_flag = clan_pop
+						location = {
+							set_variable = { which = province_pop_diff value = 0 }
+							subtract_variable = { which = province_pop_diff value = 0.75 }
+							multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+							change_variable = { which = province_pop which = province_pop_diff }
+							log = "MAINT: arles_base.11 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+						}
 					}
-					if = {
-						limit = { holding_type = city }
-						remove_building = ct_marketplace_2
-						log = "MAINT: arles_base.11 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
-					}
-					if = {
-						limit = { holding_type = temple }
-						remove_building = tp_town_2
-						log = "MAINT: arles_base.11 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
-					}
-					if = {
-						limit = { holding_type = tribal }
-						remove_building = tb_market_town_3
-						log = "MAINT: arles_base.11 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
-					}
-					clr_title_flag = minor_pop
-					log = "MAINT: arles_base.11 Devolved holding modifier to Level 1 based on holding population of [This.holding_pop.GetValue]"
-					location = {
-						set_variable = { which = province_pop_diff value = 0 }
-						subtract_variable = { which = province_pop_diff value = 1.25 }
-						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-						change_variable = { which = province_pop which = province_pop_diff }
-						log = "MAINT: arles_base.11 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-					}
-				}
-				if = { #Devolve to pop level 2
-					limit = { 
-						check_variable = { which = holding_pop value = 149.5 } 
-						NOT = { check_variable = { which = holding_pop value = 299.5 } }
-						has_title_flag = burg_pop
-					}
-					remove_holding_modifier = arles_holding_pop3
-					add_holding_modifier = { modifier = arles_holding_pop2 duration = -1 }
-					if = {
-						limit = { holding_type = castle }
-						remove_building = ca_town_3
-						log = "MAINT: arles_base.11 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
-					}
-					if = {
-						limit = { holding_type = city }
-						remove_building = ct_marketplace_3
-						log = "MAINT: arles_base.11 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
-					}
-					if = {
-						limit = { holding_type = temple }
-						remove_building = tp_town_3
-						log = "MAINT: arles_base.11 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
-					}
-					if = {
-						limit = { holding_type = tribal }
-						remove_building = tb_market_town_4
-						log = "MAINT: arles_base.11 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
-					}
-					clr_title_flag = burg_pop
-					log = "MAINT: arles_base.11 Devolved holding modifier to Level 2 based on holding population of [This.holding_pop.GetValue]"
-					location = {
-						set_variable = { which = province_pop_diff value = 0 }
-						subtract_variable = { which = province_pop_diff value = 1.75 }
-						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-						change_variable = { which = province_pop which = province_pop_diff }
-						log = "MAINT: arles_base.11 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-					}
-				}
-				if = { #Devolve to pop level 3
-					limit = { 
-						check_variable = { which = holding_pop value = 299.5 } 
-						NOT = { check_variable = { which = holding_pop value = 499.5 } }
-						has_title_flag = major_pop
-					}
-					add_holding_modifier = { modifier = arles_holding_pop3 duration = -1 }
-					if = {
-						limit = { holding_type = castle }
-						remove_building = ca_town_4
-						remove_holding_modifier = arles_holding_pop4
-						log = "MAINT: arles_base.11 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
-					}
-					if = {
-						limit = { holding_type = city }
-						remove_building = ct_marketplace_4
-						remove_holding_modifier = arles_holding_pop4
-						log = "MAINT: arles_base.11 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
-					}
-					if = {
-						limit = { holding_type = temple }
-						remove_building = tp_town_4
-						remove_holding_modifier = arles_holding_pop4
-						log = "MAINT: arles_base.11 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
-					}
-					if = {
-						limit = { holding_type = tribal }
-						remove_building = tb_market_town_4
-						remove_holding_modifier = arles_holding_pop4_tribal
-						log = "MAINT: arles_base.11 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
-					}
-					clr_title_flag = major_pop
-					log = "MAINT: arles_base.11 Changed holding modifier to Level 3 based on holding population of [This.holding_pop.GetValue]"
-					location = {
-						set_variable = { which = province_pop_diff value = 0 }
-						subtract_variable = { which = province_pop_diff value = 2.25 }
-						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-						change_variable = { which = province_pop which = province_pop_diff }
-						log = "MAINT: arles_base.11 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-					}
-				}
-				if = { #Devolve to pop level 4
-					limit = { 
-						check_variable = { which = holding_pop value = 499.5 } 
-						NOT = { check_variable = { which = holding_pop value = 999.5 } }
-						has_title_flag = metropolitan
-					}
-					remove_holding_modifier = arles_holding_pop5
-					add_holding_modifier = { modifier = arles_holding_pop4 duration = -1 }
-					if = {
-						limit = { holding_type = castle }
-						remove_building = ca_town_5
-						log = "MAINT: arles_base.11 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
-					}
-					if = {
-						limit = { holding_type = city }
-						remove_building = ct_marketplace_5
-						log = "MAINT: arles_base.11 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
-					}
-					if = {
-						limit = { holding_type = temple }
-						remove_building = tp_town_5
-						log = "MAINT: arles_base.11 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
-					}
-					clr_title_flag = metropolitan
-					log = "MAINT: arles_base.11 Devolved holding modifier to Level 4 based on holding population of [This.holding_pop.GetValue]"
-					location = {
-						set_variable = { which = province_pop_diff value = 0 }
-						subtract_variable = { which = province_pop_diff value = 2.75 }
-						multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
-						change_variable = { which = province_pop which = province_pop_diff }
-						log = "MAINT: arles_base.11 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-					}
-				}
-				log = "MAINT: arles_base.11 Reached end of holding population calculations"
-				location = {	
-					#BEGIN POPULATION LEVEL ASSIGNMENT
 					if = { #Devolve to pop level 1
 						limit = { 
-							NOT = { check_variable = { which = province_pop value = 4.5 } }
-							has_province_flag = minor_pop
+							NOT = { check_variable = { which = holding_pop value = 149.5 } }
+							has_title_flag = minor_pop
 						}
-						remove_province_modifier = arles_pop2
-						add_province_modifier = { name = arles_pop1 duration = -1 }
-						clr_province_flag = minor_pop
-						log = "MAINT: arles_base.11 Devolved province modifier to Level 1 based on holding population of [This.province_pop.GetValue]"
+						remove_holding_modifier = arles_holding_pop2
+						add_holding_modifier = { modifier = arles_holding_pop1 duration = -1 }
+						if = {
+							limit = { holding_type = castle }
+							remove_building = ca_town_2
+							log = "MAINT: arles_base.11 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						if = {
+							limit = { holding_type = city }
+							remove_building = ct_marketplace_2
+							log = "MAINT: arles_base.11 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						if = {
+							limit = { holding_type = temple }
+							remove_building = tp_town_2
+							log = "MAINT: arles_base.11 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						if = {
+							limit = { holding_type = tribal }
+							remove_building = tb_market_town_3
+							log = "MAINT: arles_base.11 Level 2 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						clr_title_flag = minor_pop
+						log = "MAINT: arles_base.11 Devolved holding modifier to Level 1 based on holding population of [This.holding_pop.GetValue]"
+						location = {
+							set_variable = { which = province_pop_diff value = 0 }
+							subtract_variable = { which = province_pop_diff value = 1.25 }
+							multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+							change_variable = { which = province_pop which = province_pop_diff }
+							log = "MAINT: arles_base.11 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+						}
 					}
 					if = { #Devolve to pop level 2
 						limit = { 
-							check_variable = { which = province_pop value = 4.5 }
-							NOT = { check_variable = { which = province_pop value = 19.5 } }
-							has_province_flag = burg_pop
+							check_variable = { which = holding_pop value = 149.5 } 
+							NOT = { check_variable = { which = holding_pop value = 299.5 } }
+							has_title_flag = burg_pop
 						}
-						remove_province_modifier = arles_pop3
-						add_province_modifier = { name = arles_pop2 duration = -1 }
-						log = "MAINT: arles_base.11 Devolved province modifier to Level 2 based on holding population of [This.province_pop.GetValue]"
+						remove_holding_modifier = arles_holding_pop3
+						add_holding_modifier = { modifier = arles_holding_pop2 duration = -1 }
+						if = {
+							limit = { holding_type = castle }
+							remove_building = ca_town_3
+							log = "MAINT: arles_base.11 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						if = {
+							limit = { holding_type = city }
+							remove_building = ct_marketplace_3
+							log = "MAINT: arles_base.11 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						if = {
+							limit = { holding_type = temple }
+							remove_building = tp_town_3
+							log = "MAINT: arles_base.11 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						if = {
+							limit = { holding_type = tribal }
+							remove_building = tb_market_town_4
+							log = "MAINT: arles_base.11 Level 3 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						clr_title_flag = burg_pop
+						log = "MAINT: arles_base.11 Devolved holding modifier to Level 2 based on holding population of [This.holding_pop.GetValue]"
+						location = {
+							set_variable = { which = province_pop_diff value = 0 }
+							subtract_variable = { which = province_pop_diff value = 1.75 }
+							multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+							change_variable = { which = province_pop which = province_pop_diff }
+							log = "MAINT: arles_base.11 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+						}
 					}
 					if = { #Devolve to pop level 3
 						limit = { 
-							check_variable = { which = province_pop value = 19.5 }
-							NOT = { check_variable = { which = province_pop value = 34.5 } }
-							has_province_flag = major_pop
+							check_variable = { which = holding_pop value = 299.5 } 
+							NOT = { check_variable = { which = holding_pop value = 499.5 } }
+							has_title_flag = major_pop
 						}
-						remove_province_modifier = arles_pop4
-						add_province_modifier = { name = arles_pop3 duration = -1 }
-						log = "MAINT: arles_base.11 Devolved province modifier to Level 3 based on holding population of [This.province_pop.GetValue]"
+						add_holding_modifier = { modifier = arles_holding_pop3 duration = -1 }
+						if = {
+							limit = { holding_type = castle }
+							remove_building = ca_town_4
+							remove_holding_modifier = arles_holding_pop4
+							log = "MAINT: arles_base.11 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						if = {
+							limit = { holding_type = city }
+							remove_building = ct_marketplace_4
+							remove_holding_modifier = arles_holding_pop4
+							log = "MAINT: arles_base.11 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						if = {
+							limit = { holding_type = temple }
+							remove_building = tp_town_4
+							remove_holding_modifier = arles_holding_pop4
+							log = "MAINT: arles_base.11 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						if = {
+							limit = { holding_type = tribal }
+							remove_building = tb_market_town_4
+							remove_holding_modifier = arles_holding_pop4_tribal
+							log = "MAINT: arles_base.11 Level 4 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						clr_title_flag = major_pop
+						log = "MAINT: arles_base.11 Changed holding modifier to Level 3 based on holding population of [This.holding_pop.GetValue]"
+						location = {
+							set_variable = { which = province_pop_diff value = 0 }
+							subtract_variable = { which = province_pop_diff value = 2.25 }
+							multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+							change_variable = { which = province_pop which = province_pop_diff }
+							log = "MAINT: arles_base.11 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+						}
 					}
 					if = { #Devolve to pop level 4
 						limit = { 
-							check_variable = { which = province_pop value = 34.5 }
-							NOT = { check_variable = { which = province_pop value = 49.5 } }
-							has_province_flag = metropolitan
+							check_variable = { which = holding_pop value = 499.5 } 
+							NOT = { check_variable = { which = holding_pop value = 999.5 } }
+							has_title_flag = metropolitan
 						}
-						remove_province_modifier = arles_pop5
-						add_province_modifier = { name = arles_pop4 duration = -1 }
-						log = "MAINT: arles_base.11 Devolved province modifier to Level 4 based on holding population of [This.province_pop.GetValue]"
+						remove_holding_modifier = arles_holding_pop5
+						add_holding_modifier = { modifier = arles_holding_pop4 duration = -1 }
+						if = {
+							limit = { holding_type = castle }
+							remove_building = ca_town_5
+							log = "MAINT: arles_base.11 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						if = {
+							limit = { holding_type = city }
+							remove_building = ct_marketplace_5
+							log = "MAINT: arles_base.11 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						if = {
+							limit = { holding_type = temple }
+							remove_building = tp_town_5
+							log = "MAINT: arles_base.11 Level 5 housing destroyed in [This.GetName] ([This.GetID])"
+						}
+						clr_title_flag = metropolitan
+						log = "MAINT: arles_base.11 Devolved holding modifier to Level 4 based on holding population of [This.holding_pop.GetValue]"
+						location = {
+							set_variable = { which = province_pop_diff value = 0 }
+							subtract_variable = { which = province_pop_diff value = 2.75 }
+							multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
+							change_variable = { which = province_pop which = province_pop_diff }
+							log = "MAINT: arles_base.11 Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
+						}
+					}
+					log = "MAINT: arles_base.11 Reached end of holding population calculations"
+					location = {	
+						#BEGIN POPULATION LEVEL ASSIGNMENT
+						if = { #Devolve to pop level 1
+							limit = { 
+								NOT = { check_variable = { which = province_pop value = 4.5 } }
+								has_province_flag = minor_pop
+							}
+							remove_province_modifier = arles_pop2
+							add_province_modifier = { name = arles_pop1 duration = -1 }
+							clr_province_flag = minor_pop
+							log = "MAINT: arles_base.11 Devolved province modifier to Level 1 based on holding population of [This.province_pop.GetValue]"
+						}
+						if = { #Devolve to pop level 2
+							limit = { 
+								check_variable = { which = province_pop value = 4.5 }
+								NOT = { check_variable = { which = province_pop value = 19.5 } }
+								has_province_flag = burg_pop
+							}
+							remove_province_modifier = arles_pop3
+							add_province_modifier = { name = arles_pop2 duration = -1 }
+							log = "MAINT: arles_base.11 Devolved province modifier to Level 2 based on holding population of [This.province_pop.GetValue]"
+						}
+						if = { #Devolve to pop level 3
+							limit = { 
+								check_variable = { which = province_pop value = 19.5 }
+								NOT = { check_variable = { which = province_pop value = 34.5 } }
+								has_province_flag = major_pop
+							}
+							remove_province_modifier = arles_pop4
+							add_province_modifier = { name = arles_pop3 duration = -1 }
+							log = "MAINT: arles_base.11 Devolved province modifier to Level 3 based on holding population of [This.province_pop.GetValue]"
+						}
+						if = { #Devolve to pop level 4
+							limit = { 
+								check_variable = { which = province_pop value = 34.5 }
+								NOT = { check_variable = { which = province_pop value = 49.5 } }
+								has_province_flag = metropolitan
+							}
+							remove_province_modifier = arles_pop5
+							add_province_modifier = { name = arles_pop4 duration = -1 }
+							log = "MAINT: arles_base.11 Devolved province modifier to Level 4 based on holding population of [This.province_pop.GetValue]"
+						}
 					}
 				}
 			}
 		}
-		character_event = { id = arles_base.11 days = 121 count = 2 }
+		character_event = { id = arles_base.14 days = 120 }
 	}
 }
 
@@ -4772,6 +4777,19 @@ character_event = {
 	}
 }
 
-
-					
-			
+#From arles_base.11 (resetting to allow for disease dmg to proc)
+character_event = {
+	id = arles_base.14
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = { 
+		has_global_flag = arles_disease_evaluated
+	}
+	
+	option = { 
+		name = "OK"
+		clr_global_flag = arles_disease_evaluated
+		log = "DEBUG arles_base.14 Gamestate restored to allow processing of disease"
+	}
+}
