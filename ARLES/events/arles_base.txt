@@ -2232,7 +2232,7 @@ character_event = {
 							log = "MAINT: arles_base.5 Added Silver to province"
 						}
 						random = {
-							chance = 20.5
+							chance = 20
 							add_province_modifier = { name = arles_minerals duration = -1 }
 							log = "MAINT: arles_base.5 Added Minerals to province"
 						}
@@ -2604,11 +2604,12 @@ character_event = {
 					log = "MAINT: arles_base.6 Changed province modifier to Level 5 based on holding population of [This.province_pop.GetValue]"
 				}
 				save_event_target_as = province_eval
+				event_target:province_eval = { log = "DEBUG arles_base.6 province_eval set as [This.GetName] ([This.GetID])" }
 			}
 		}
 		set_global_flag = arles_pop_evaluated
 		character_event = { id = arles_base.11 }
-		character_event = { id = arles_base.13 days = 361 }
+		character_event = { id = arles_base.13 days = 360 }
 	}
 }
 
@@ -4340,15 +4341,16 @@ character_event = {
 	
 	trigger = {
 		event_target:province_eval = {
-			OR = {
-				has_disease = tuberculosis
-				has_disease = typhoid_fever
-				has_disease = typhus
-				has_disease = bubonic_plague
-				has_disease = measles
-				has_disease = small_pox
-				has_disease = syphilis
-			}
+			#OR = {
+				#has_disease = tuberculosis
+				#has_disease = typhoid_fever
+				#has_disease = typhus
+				#has_disease = bubonic_plague
+				#has_disease = measles
+				#has_disease = small_pox
+				#has_disease = syphilis
+			#}
+			has_disease = yes
 		}
 	}
 					
@@ -4358,37 +4360,37 @@ character_event = {
 				#BEGIN HOLDING DISEASE MODIFIERS
 				log = "MAINT: arles_base.11 Begin processing of  [This.GetName] ([This.GetID]) with holding population of [This.holding_pop.GetValue]"
 				if = { #Tuberculosis set at 80% annual mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
-					limit = { PREV = { has_disease = tuberculosis } }
+					limit = { PREV = { any_province_character = { trait = has_tuberculosis } } }
 					set_variable = { which = holding_pop_diff_disease value = 0.96 }
 					log = "MAINT: arles_base.11 Province is infected with tuberculosis, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
 				}
 				if = { #Typhoid set at 60% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
-					limit = { PREV = { has_disease = typhoid_fever } }
+					limit = { PREV = { any_province_character = { trait = has_typhoid_fever } } }
 					set_variable = { which = holding_pop_diff_disease value = 0.97 }
 					log = "MAINT: arles_base.11 Province is infected with typhoid fever, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
 				}
 				if = { #Typhus set at 40% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
-					limit = { PREV = { has_disease = typhus } }
+					limit = { PREV = { any_province_character = { trait = has_typhus } } }
 					set_variable = { which = holding_pop_diff_disease value = 0.95 }
 					log = "MAINT: arles_base.11 Province is infected with typhus, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
 				}
 				if = { #Pesta negra set at 60% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
-					limit = { PREV = { has_disease = bubonic_plague } }
+					limit = { PREV = { any_province_character = { trait = has_bubonic_plague } } }
 					set_variable = { which = holding_pop_diff_disease value = 0.75 }
 					log = "MAINT: arles_base.11 Province is infected with the black plague, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
 				}
 				if = { #Measles set at 15% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
-					limit = { PREV = { has_disease = measles } }
+					limit = { PREV = { any_province_character = { trait = has_measles } } }
 					set_variable = { which = holding_pop_diff_disease value = 0.98 }
 					log = "MAINT: arles_base.11 Province is infected with measles, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
 				}
 				if = { #Smallpox set at 60% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
-					limit = { PREV = { has_disease = small_pox } }
+					limit = { PREV = { any_province_character = { trait = has_small_pox } } }
 					set_variable = { which = holding_pop_diff_disease value = 0.89 }
 					log = "MAINT: arles_base.11 Province is infected with smallpox, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
 				}
 				if = { #Syphilis set at 35% mortality (calculated from contagiousness as number of people likely to be infected and spread out over 4 month pulses)
-					limit = { PREV = { has_disease = syphilis } }
+					limit = { PREV = { any_province_character = { trait = has_aztec_disease } } }
 					set_variable = { which = holding_pop_diff_disease value = 0.94 }
 					log = "MAINT: arles_base.11 Province is infected with syphilis, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
 				}
