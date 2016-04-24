@@ -501,7 +501,7 @@ settlement_decisions = {
 			}
 			
 			#BEGIN ARLES PILLAGE EFFECT
-			log = "DECISION: pillage_settlement Original holding population set at [This.holding_pop.GetValue]"
+			log = "DECISION: pillage_settlement Original holding population in [This.GetName] ([This.GetID]) set at [This.holding_pop.GetValue]"
 			if = {
 				limit = {
 					has_building = tb_market_town_1
@@ -830,7 +830,7 @@ settlement_decisions = {
 						log = "DECISION: pillage_settlement Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
 					}
 				}
-				log = "DECISION: pillage_settlement Reached end of holding population calculations"
+				log = "DECISION: pillage_settlement Reached end of holding population calculations in [This.GetName] ([This.GetID]), with final holding population at [This.holding_pop.GetValue]"
 				location = {	
 					#BEGIN POPULATION LEVEL ASSIGNMENT
 					if = { #Devolve to pop level 1

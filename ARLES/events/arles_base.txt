@@ -4394,6 +4394,27 @@ character_event = {
 					set_variable = { which = holding_pop_diff_disease value = 0.94 }
 					log = "MAINT: arles_base.11 Province is infected with syphilis, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
 				}
+				if = { #For some reason, no one is infected, which apparently happens a lot
+					limit = {
+						PREV = { 
+							NOT = { 
+								any_province_character = {
+									OR = {
+										trait = has_tuberculosis
+										trait = has_typhoid_fever
+										trait = has_typhus
+										trait = has_bubonic_plague
+										trait = has_measles
+										trait = has_small_pox
+										trait = has_aztec_disease 
+									} 
+								}
+							}
+						}
+					}
+					set_variable = { which = holding_pop_diff_disease value = 0.92 }
+					log = "MAINT: arles_base.11 Province is infected with syphilis, with number of survivors at end of pulse at [This.holding_pop_diff_disease.GetValue]/1 population"
+				}
 				
 				#POPULATION-DISEASE MODIFIERS
 				multiply_variable = { which = holding_pop which = holding_pop_diff_disease }
@@ -4613,7 +4634,7 @@ character_event = {
 				}
 			}
 		}
-		character_event = { id = arles_base.11 days = 121 }
+		character_event = { id = arles_base.11 days = 121 count = 2 }
 	}
 }
 
@@ -4714,8 +4735,8 @@ character_event = {
 						PREVPREV = { subtract_variable = { which = trade_node value = 3 } }
 					}
 					if = {
-						limit = { has_province_modifier = silk_road }
-						PREVPREV = { subtract_variable = { which = trade_node value = 2 } }
+						limit = { trade_route = silk_road }
+						PREVPREV = { subtract_variable = { which = trade_node value = 1 } }
 					}
 				}
 			}
