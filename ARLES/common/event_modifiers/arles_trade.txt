@@ -51,6 +51,11 @@ arles_trade_node = {
 	icon = 88
 }
 
+arles_trade_zone = {
+	tax_income = 0.5
+	icon = 4
+}
+
 
 
 

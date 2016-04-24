@@ -2257,9 +2257,12 @@ character_event = {
 				if = {
 					limit = { 
 						event_target:verbum = {
-							NOT = { check_variable = { which = "amber_gaia" value = 1.5 } }
+							NOT = { check_variable = { which = "amber_gaia" value = 4.5 } }
 						}
 						region = custom_eastern_baltic 
+						any_neighbor_province = {
+							NOT = { has_province_modifier = arles_amber }
+						}
 					}
 					event_target:verbum = {
 						change_variable = { which = amber_gaia value = 1 }
@@ -2295,9 +2298,9 @@ character_event = {
 					log = "MAINT: arles_base.5 Added Gold to province"
 				}
 				if = {
-					limit = { #3 random sources of Ivory
+					limit = { #5 random sources of Ivory
 						event_target:verbum = {
-							NOT = { check_variable = { which = "ivory_gaia" value = 2.5 } }
+							NOT = { check_variable = { which = "ivory_gaia" value = 4.5 } }
 						}
 						OR = {
 							region = world_africa_east
@@ -2306,6 +2309,9 @@ character_event = {
 						OR = {
 							terrain = desert 
 							terrain = plains
+						}
+						any_neighbor_province = {
+							NOT = { has_province_modifier = arles_ivory }
 						}
 					}
 					event_target:verbum = {
@@ -4752,11 +4758,13 @@ character_event = {
 						PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
 						NOT = { has_province_modifier = arles_pop1 }
 					}
+					save_event_target_as = trade_node
 					add_province_modifier = { name = arles_trade_node duration = -1 }
 					log = "DEBUG arles_base.12 Trade Region of [This.GetName] ([This.GetID]) was assigned a trade node"  
 				}
 			}
 		}
+		character_event = { id = arles_base.15 }
 	}
 }
 
@@ -4791,5 +4799,69 @@ character_event = {
 		name = "OK"
 		clr_global_flag = arles_disease_evaluated
 		log = "DEBUG arles_base.14 Gamestate restored to allow processing of disease"
+	}
+}
+
+#Trade Zones setup
+character_event = {
+	id = arles_base.15
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		event_target:trade_node = { 
+			has_province_modifier = arles_trade_node 
+		}
+	}
+	
+	option = {
+		name = "OK"
+		event_target:trade_node = {
+			log = "DEBUG arles_base.15 Trade Node of [This.GetName] ([This.GetID]) was selected for trade zone processing" 
+			duchy = {
+				save_event_target_as = trade_node_region
+				log = "DEBUG arles_base.15 Trade Node Region of [This.GetName] ([This.GetID]) was selected for trade zone processing" 
+			}
+			any_neighbor_province = {
+				duchy = {
+					log = "DEBUG arles_base.15 Trade Zone Region of [This.GetName] ([This.GetID]) of [PrevPrev.GetName] ([PrevPrev.GetID]) was selected for trade zone processing" 
+					any_direct_de_jure_vassal_title = {
+						location = {
+							save_event_target_as = trade_zone_province
+							log = "DEBUG arles_base.15 Trade Zone Province of [This.GetName] ([This.GetID]) in Trade Zone Region of [PrevPrev.GetName] ([PrevPrev.GetID]) was selected for trade zone processing" 
+							if = {
+								limit = { NOT = { has_province_modifier = arles_trade_node } }
+								add_province_modifier = { name = arles_trade_zone duration = -1 }
+							}	
+						}
+					}
+				}
+			}				
+		}
+		character_event = { id = arles_base.16 }
+	}
+}
+
+#Assigning trade zone provinces to trade nodes
+character_event = {
+	id = arles_base.16
+	hide_window = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = "OK"
+		event_target:trade_node = {
+			event_target:trade_zone_province = {
+				set_province_flag = arles_trade_zone_province_@PREV
+				log = "DEBUG arles_base.16 Trade Zone Province of [This.GetName] ([This.GetID]) was linked to Trade Node of [Prev.GetName] ([Prev.GetID])" 
+			}
+		}
+		event_target:trade_node_province = {
+			if = {
+				limit = { NOT = { has_province_modifier = arles_trade_node } }
+				add_province_modifier = { name = arles_trade_zone duration = -1 }
+				log = "DEBUG arles_base.16 Trade Zone Province of [This.GetName] ([This.GetID]) was assigned to a trade zone" 
+			}	
+		}
 	}
 }

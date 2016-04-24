@@ -10,3 +10,8 @@ land_clearance_3_tooltip;The province is a §YBurgeoning Population Center§! and 
 land_clearance_4_tooltip;The province is a §YMajor Population Center§! and has §Ysix or fewer§! economic improvements built\n;;;;;;;;;x
 land_clearance_5_tooltip;The province is a §YMetropolitan Center and§! has §Yseven or fewer§! economic improvements built\n;;;;;;;;;x
 
+#TRADE NODES/ROUTES
+arles_trade_node;Regional Trading Center;;;;;;;;;;;;;x
+arles_trade_node_desc;This province's markets have long been a gathering place for merchants far and wide, come to exchange their exotic wares for the many local goods produced in this region.;;;;;;;;;;;;;x
+arles_trade_zone;Regional Trade Zone;;;;;;;;;;;;;x
+arles_trade_zone_desc;This province benefits from merchants passing to and from a nearby regional trading center, and enjoys access to the same §Ytrade goods§! sold there.;;;;;;;;;;;;;x

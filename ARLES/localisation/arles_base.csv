@@ -25,7 +25,3 @@ arles_salt;Salt Deposits;;;;;;;;;;;;;x
 arles_salt_desc;Whether extracted from brine or from flats spanning the desert, these humble §Ysalt§! crystals are worth their weight in gold.;;;;;;;;;;;;;x
 arles_gold;Gold Deposits;;;;;;;;;;;;;x
 arles_gold_desc;Precious §Ygold§! is mined here, bringing unimaginable wealth to the ruler fortunate enough to control it.;;;;;;;;;;;;;x
-
-#TRADE NODES/ROUTES
-arles_trade_node;Regional Trading Center;;;;;;;;;;;;;x
-arles_trade_node_desc;This province's markets have long been a gathering place for merchants far and wide, come to exchange their exotic wares for the many local goods produced in this region.;;;;;;;;;;;;;x
