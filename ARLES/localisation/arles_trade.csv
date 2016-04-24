@@ -3,7 +3,7 @@
 ca_land_clearance;Land Clearance;;;;;;;;;x
 tp_land_clearance;Land Clearance;;;;;;;;;x
 ct_land_clearance;Land Clearance;;;;;;;;;x
-land_clearance_desc;Before any more economic improvements can be built in this province, the land must first be cleared and the appropriate documents drawn up to affirm the local lord's right of ownership of the properties thereupon.\n\nActivating §YLand Clearance§! will activate an event soon after its completion, allowing the ruler to select an appropriate economic focus based on the §YBase Resources§! and current §YTrade Goods§! available. For a list of valid improvements that can be built, right-click on the province's coat of arms (far left in the province view).;;;;;;;;;x
+land_clearance_desc;Before any more economic improvements can be built in this province, the land must first be cleared and the appropriate documents drawn up to affirm the local lord's right of ownership of the properties thereupon.\n\nInitiating §YLand Clearance§! will activate an event soon after its completion, allowing the ruler to select an appropriate economic focus based on the §YBase Resources§! and current §YTrade Goods§! available. For a list of valid improvements that can be built, right-click on the province's coat of arms (far left in the province view).;;;;;;;;;x
 land_clearance_1_tooltip;The province is a §YMinor Province§! and has §Yno§! economic improvements built\n;;;;;;;;;x
 land_clearance_2_tooltip;The province is a §YMinor Population Center§! and has §Yone or fewer§! economic improvement built\n;;;;;;;;;x
 land_clearance_3_tooltip;The province is a §YBurgeoning Population Center§! and has §Yfour or fewer§! economic improvements built\n;;;;;;;;;x
