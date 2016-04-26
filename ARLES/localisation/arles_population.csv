@@ -2,17 +2,17 @@
 
 #BASE PROVINCIAL POP MODIFIERS
 arles_pop1;Minor Province;;;;;;;;;;;;;x
-arles_pop1_desc;This province is home to only a few hundred people who live close to a central settlement which acts as a small hub of commercial activity.\nCurrent Population Level: [province_pop.GetValue]/5 \nMaximum economic improvements: 1;;;;;;;;;;;;;x
+arles_pop1_desc;This province is home to only a few hundred people who live close to a central settlement which acts as a small hub of commercial activity.\nCurrent Population Level: [province_pop.GetValue]/5 \nEconomic improvements: [province_econ_count.GetValue]/[province_econ_count_max.GetValue];;;;;;;;;;;;;x
 arles_pop2;Minor Population Center;;;;;;;;;;;;;x
-arles_pop2_desc;This province is home to thousands of people scattered across numerous villages centered around a small but growing town.\nCurrent Population Level: [province_pop.GetValue]/20 \nMaximum economic improvements: 2;;;;;;;;;;;;;x
+arles_pop2_desc;This province is home to thousands of people scattered across numerous villages centered around a small but growing town.\nCurrent Population Level: [province_pop.GetValue]/20 \nEconomic improvements: [province_econ_count.GetValue]/[province_econ_count_max.GetValue];;;;;;;;;;;;;x
 arles_pop3;Burgeoning Population Center;;;;;;;;;;;;;x
-arles_pop3_desc;This province is home to tens of thousands of people, a large portion of which live in and fuel the development of the numerous towns in this region.\nCurrent Population Level: [province_pop.GetValue]/35 \nMaximum economic improvements: 3;;;;;;;;;;;;;x
+arles_pop3_desc;This province is home to tens of thousands of people, a large portion of which live in and fuel the development of the numerous towns in this region.\nCurrent Population Level: [province_pop.GetValue]/35 \nEconomic improvements: [province_econ_count.GetValue]/[province_econ_count_max.GetValue];;;;;;;;;;;;;x
 arles_pop4;Major Population Center;;;;;;;;;;;;;x
-arles_pop4_desc;This province is home to almost a hundred thousand people and serves well as a regional administrative and commercial center.\nCurrent Population Level: [province_pop.GetValue]/50 \nMaximum economic improvements: 5;;;;;;;;;;;;;x
+arles_pop4_desc;This province is home to almost a hundred thousand people and serves well as a regional administrative and commercial center.\nCurrent Population Level: [province_pop.GetValue]/50 \nEconomic improvements: [province_econ_count.GetValue]/[province_econ_count_max.GetValue];;;;;;;;;;;;;x
 arles_pop5;Metropolitan Center;;;;;;;;;;;;;x
-arles_pop5_desc;A shining city dominates the landscape here and watches like a golden sentinel over many hundreds of thousands of people, rivalling even the glory and stature of ancient Rome. \nMaximum economic improvements: 8;;;;;;;;;;;;;x
-arles_popgrowth;Population Growth;;;;;;;;;;;;;x
-arles_popgrowth_desc;Population has grown in this province.;;;;;;;;;;;;;x
+arles_pop5_desc;A shining city dominates the landscape here and watches like a golden sentinel over many hundreds of thousands of people, rivalling even the glory and stature of ancient Rome. \nEconomic improvements: [province_econ_count.GetValue]/[province_econ_count_max.GetValue];;;;;;;;;;;;;x
+arles_popgrowth;Prosperity Rises!;;;;;;;;;;;;;x
+arles_popgrowth_desc;§YProsperity Level§! has risen in this province.;;;;;;;;;;;;;x
 
 #BASE HOLDING POP MODIFIERS
 arles_holding_pop1;Minor Settlement;;;;;;;;;;;;;x

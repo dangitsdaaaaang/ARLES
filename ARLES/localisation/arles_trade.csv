@@ -3,7 +3,7 @@
 ca_land_clearance;Land Clearance;;;;;;;;;x
 tp_land_clearance;Land Clearance;;;;;;;;;x
 ct_land_clearance;Land Clearance;;;;;;;;;x
-land_clearance_desc;Before any more economic improvements can be built in this province, the land must first be cleared and the appropriate documents drawn up to affirm the local lord's right of ownership of the properties thereupon.\n\nInitiating §YLand Clearance§! will activate an event soon after its completion, allowing the ruler to select an appropriate economic focus based on the §YBase Resources§! and current §YTrade Goods§! available. For a list of valid improvements that can be built, right-click on the province's coat of arms (far left in the province view).;;;;;;;;;x
+land_clearance_desc;Before any more economic improvements can be built in this province, the land must first be cleared and the appropriate documents drawn up to affirm the §Ylocal lord's§! right of ownership of the properties thereupon.\n\nInitiating §GLand Clearance§! will activate an event soon after its completion, allowing the ruler to select an appropriate economic focus based on the §YBase Resources§! and current §YTrade Goods§! available. For a list of valid improvements that can be built, right-click on the province's coat of arms (far left in the province view).;;;;;;;;;x
 land_clearance_1_tooltip;The province is a §YMinor Province§! and has §Yno§! economic improvements built\n;;;;;;;;;x
 land_clearance_2_tooltip;The province is a §YMinor Population Center§! and has §Yone or fewer§! economic improvement built\n;;;;;;;;;x
 land_clearance_3_tooltip;The province is a §YBurgeoning Population Center§! and has §Yfour or fewer§! economic improvements built\n;;;;;;;;;x
@@ -12,6 +12,6 @@ land_clearance_5_tooltip;The province is a §YMetropolitan Center and§! has §Ysev
 
 #TRADE NODES/ROUTES
 arles_trade_node;Regional Trading Center;;;;;;;;;;;;;x
-arles_trade_node_desc;This province's markets have long been a gathering place for merchants far and wide, come to exchange their exotic wares for the many local goods produced in this region.;;;;;;;;;;;;;x
+arles_trade_node_desc;This province's markets have long been a gathering place for merchants far and wide, come to exchange their exotic wares for the many local goods produced in this region.\n\nRegional Trading Centers act as trade nodes, §Yincreasing income as well as the limit of economic improvements that can be built in the province§!. They also allow all provinces within their §Yregional trade zone§! to share goods that they have access to.;;;;;;;;;;;;;x
 arles_trade_zone;Regional Trade Zone;;;;;;;;;;;;;x
-arles_trade_zone_desc;This province benefits from merchants passing to and from a nearby regional trading center, and enjoys access to the same §Ytrade goods§! sold there.;;;;;;;;;;;;;x
+arles_trade_zone_desc;This province benefits from merchants passing to and from a nearby §Yregional trading center§!, and enjoys access to the same §Ytrade goods§! sold there.;;;;;;;;;;;;;x
