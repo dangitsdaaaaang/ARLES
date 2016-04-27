@@ -2039,7 +2039,10 @@ character_event = {
 			}
 		}
 		set_global_flag = arles_pop_evaluated
+		character_event = { id = arles_base.15 } #Set up emerging trade zones
+		character_event = { id = arles_base.16 } #Remove defunct trade zones
 		character_event = { id = arles_base.13 days = 360 }
+		repeat_event = { id = arles_base.6 days = 365 }
 	}
 }
 
@@ -2088,6 +2091,7 @@ character_event = {
 	
 	trigger = {
 		FROM = {
+			NOT = { holding_type = nomad }
 			holder_scope = { war_with = ROOT } #Besieger will not sack unless at war
 			is_occupied = yes #occupied, not looted
 		}
@@ -3214,6 +3218,7 @@ character_event = {
 			capital_scope = {
 				if = {
 					limit = { 
+						NOT = { has_province_modifier = arles_pop1 }
 						PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
 					}
 					add_province_modifier = { name = arles_trade_node duration = -1 }
@@ -3259,5 +3264,108 @@ character_event = {
 		name = "OK"
 		clr_global_flag = arles_disease_evaluated
 		log = "DEBUG arles_base.14 Gamestate restored to allow processing of disease"
+	}
+}
+
+#Set up Trade Zones
+character_event = {
+	id = arles_base.15
+	hide_window = yes
+	is_triggered_only = yes
+	only_independent = yes
+	
+	trigger = {
+		any_independent_ruler = {
+			any_realm_province = { 
+				has_province_modifier = arles_trade_node 
+				NOT = { has_province_flag = arles_trade_zone_evaluated }
+			}
+		}
+	}
+
+	option = {
+		name = "OK"
+		any_independent_ruler = {
+			any_realm_province = {
+				limit = { has_province_modifier = arles_trade_node }
+				log = "DEBUG arles_base.15 Trade Node found at [This.GetName] ([This.GetID])"
+				set_province_flag = arles_trade_zone_evaluated
+				save_event_target_as = trade_node
+				any_neighbor_province = {
+					duchy = {
+						event_target:trade_node = { log = "DEBUG arles_base.15 Trade Region of [Prev.GetName] ([Prev.GetID]) aligned with trade node at [This.GetName] ([This.GetID])" }
+						any_direct_de_jure_vassal_title = {
+							location = {
+								if = {
+									limit = { 
+										NOT = { has_province_modifier = arles_trade_node } 
+										de_jure_liege = event_target:trade_node
+									}
+									add_province_modifier = { name = arles_trade_zone duration = -1 }
+									set_province_flag = arles_trade_zone_province_A_@event_target:trade_node 
+								}
+								if = {
+									limit = { 
+										NOT = { has_province_modifier = arles_trade_node } 
+										NOT = { de_jure_liege = event_target:trade_node }
+									}
+									add_province_modifier = { name = arles_trade_zone duration = -1 }
+									set_province_flag = arles_trade_zone_province_B_@event_target:trade_node 
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#Deconstruct Trade Zones
+character_event = {
+	id = arles_base.16
+	hide_window = yes
+	is_triggered_only = yes
+	only_independent = yes
+	
+	trigger = {
+		any_independent_ruler = {
+			any_realm_province = { 
+				NOT = { has_province_modifier = arles_trade_node }
+				has_province_flag = arles_trade_zone_evaluated
+			}
+		}
+	}
+	
+	option = {
+		name = "OK"
+		any_independent_ruler = {
+			log = "DEBUG arles_base.16 [This.GetName] formerly had control over a trade node"
+			any_realm_province = {
+				limit = { 
+					NOT = { has_province_modifier = arles_trade_node }
+					has_province_flag = arles_trade_zone_evaluated 
+				}
+				log = "DEBUG arles_base.16 Former trade node found at [This.GetName] ([This.GetID])"
+				clr_province_flag = arles_trade_zone_evaluated
+				any_neighbor_province = {
+					duchy = {
+						PREVPREV = { log = "DEBUG arles_base.16 Trade Region of [Prev.GetName] ([Prev.GetID]) de-aligned with trade node at [This.GetName] ([This.GetID])" }
+						any_direct_de_jure_vassal_title = {
+							location = {
+								if = {
+									limit = { 
+										has_province_modifier = arles_trade_zone 
+									}
+									remove_province_modifier = arles_trade_zone
+									clr_province_flag = arles_trade_zone_province_A_@event_target:trade_node
+									clr_province_flag = arles_trade_zone_province_B_@event_target:trade_node
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }

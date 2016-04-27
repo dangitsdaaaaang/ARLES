@@ -620,7 +620,7 @@ arles_holding_pop_level_decline_effect = {
 		log = "MAINT: Devolved holding modifier to Level 1 based on holding population of [This.holding_pop.GetValue]"
 		location = {
 			set_variable = { which = province_pop_diff value = 0 }
-			subtract_variable = { which = province_pop_diff value = 0.75 }
+			subtract_variable = { which = province_pop_diff value = 1.25 }
 			multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
 			change_variable = { which = province_pop which = province_pop_diff }
 			log = "MAINT: Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
@@ -658,7 +658,7 @@ arles_holding_pop_level_decline_effect = {
 		log = "MAINT: Devolved holding modifier to Level 1 based on holding population of [This.holding_pop.GetValue]"
 		location = {
 			set_variable = { which = province_pop_diff value = 0 }
-			subtract_variable = { which = province_pop_diff value = 1.25 }
+			subtract_variable = { which = province_pop_diff value = 1.75 }
 			multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
 			change_variable = { which = province_pop which = province_pop_diff }
 			log = "MAINT:Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
@@ -696,7 +696,7 @@ arles_holding_pop_level_decline_effect = {
 		log = "MAINT: Devolved holding modifier to Level 2 based on holding population of [This.holding_pop.GetValue]"
 		location = {
 			set_variable = { which = province_pop_diff value = 0 }
-			subtract_variable = { which = province_pop_diff value = 1.75 }
+			subtract_variable = { which = province_pop_diff value = 2.25 }
 			multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
 			change_variable = { which = province_pop which = province_pop_diff }
 			log = "MAINT: Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
@@ -717,7 +717,7 @@ arles_holding_pop_level_decline_effect = {
 		log = "MAINT: Changed tribal holding modifier to Level 3 based on holding population of [This.holding_pop.GetValue]"
 		location = {
 			set_variable = { which = province_pop_diff value = 0 }
-			subtract_variable = { which = province_pop_diff value = 1.5 }
+			subtract_variable = { which = province_pop_diff value = 2.0 }
 			multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
 			change_variable = { which = province_pop which = province_pop_diff }
 			log = "Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
@@ -755,7 +755,7 @@ arles_holding_pop_level_decline_effect = {
 		log = "MAINT: Changed holding modifier to Level 3 based on holding population of [This.holding_pop.GetValue]"
 		location = {
 			set_variable = { which = province_pop_diff value = 0 }
-			subtract_variable = { which = province_pop_diff value = 2.25 }
+			subtract_variable = { which = province_pop_diff value = 2.75 }
 			multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
 			change_variable = { which = province_pop which = province_pop_diff }
 			log = "MAINT: Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
@@ -793,7 +793,7 @@ arles_holding_pop_level_decline_effect = {
 		log = "MAINT: Devolved holding modifier to Level 4 based on holding population of [This.holding_pop.GetValue]"
 		location = {
 			set_variable = { which = province_pop_diff value = 0 }
-			subtract_variable = { which = province_pop_diff value = 2.75 }
+			subtract_variable = { which = province_pop_diff value = 3.25 }
 			multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
 			change_variable = { which = province_pop which = province_pop_diff }
 			log = "MAINT: Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"

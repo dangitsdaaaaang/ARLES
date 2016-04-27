@@ -19,6 +19,7 @@ narrative_event = {
 			e_hip = { 
 				holder_scope = {
 					character_event = { id = arles_base.0 days = 1 }
+					character_event = { id = arles_base.6 days = 2 }
 				}
 			}
 		}
