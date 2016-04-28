@@ -191,6 +191,11 @@ character_event = {
 				set_variable = { which = province_econ_count_diff value = 1 } #Diff used for accounting how many remaining slots
 				log = "MAINT: arles_base.3 Successfully set up province defines in [This.GetName] ([This.GetID])"
 				set_province_flag = init_province_pop
+				#Historical Capital
+				if = { 
+					limit = { num_of_settlements = 5 }
+					set_province_flag = historical_capital
+				}
 			}
 		}
 		character_event = { id = arles_base.4 } #Set up holdings
@@ -257,6 +262,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in castle"
 						}
@@ -273,6 +284,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in castle"
 						}
@@ -289,6 +306,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in castle"
 						}
@@ -305,6 +328,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in castle"
 						}
@@ -321,6 +350,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in castle"
 						}
@@ -337,6 +372,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in castle"
 						}
@@ -357,6 +398,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in castle"
 						}
@@ -373,6 +420,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in castle"
 						}
@@ -389,6 +442,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in castle"
 						}
@@ -405,6 +464,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in castle"
 						}
@@ -421,6 +486,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in castle"
 						}
@@ -437,6 +508,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in castle"
 						}
@@ -457,6 +534,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in castle"
 						}
@@ -473,6 +556,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in castle"
 						}
@@ -489,6 +578,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in castle"
 						}
@@ -505,6 +600,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in castle"
 						}
@@ -521,6 +622,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in castle"
 						}
@@ -537,6 +644,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ca_town_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in castle"
 						}
@@ -611,6 +724,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in city"
 						}
@@ -627,6 +746,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in city"
 						}
@@ -643,6 +768,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in city"
 						}
@@ -659,6 +790,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in city"
 						}
@@ -675,6 +812,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in city"
 						}
@@ -691,6 +834,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in city"
 						}
@@ -711,6 +860,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in city"
 						}
@@ -727,6 +882,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in city"
 						}
@@ -743,6 +904,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in city"
 						}
@@ -759,6 +926,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in city"
 						}
@@ -775,6 +948,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in city"
 						}
@@ -791,6 +970,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in city"
 						}
@@ -811,6 +996,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in city"
 						}
@@ -827,6 +1018,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in city"
 						}
@@ -843,6 +1040,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in city"
 						}
@@ -859,6 +1062,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in city"
 						}
@@ -875,6 +1084,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in city"
 						}
@@ -891,6 +1106,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = ct_marketplace_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in city"
 						}
@@ -965,6 +1186,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in temple"
 						}
@@ -981,6 +1208,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in temple"
 						}
@@ -997,6 +1230,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in temple"
 						}
@@ -1013,6 +1252,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in temple"
 						}
@@ -1029,6 +1274,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in temple"
 						}
@@ -1045,6 +1296,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_2
 							log = "DEBUG arles_base.4 Successfully built level 2 housing in temple"
 						}
@@ -1065,6 +1322,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in temple"
 						}
@@ -1081,6 +1344,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in temple"
 						}
@@ -1097,6 +1366,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in temple"
 						}
@@ -1113,6 +1388,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in temple"
 						}
@@ -1129,6 +1410,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in temple"
 						}
@@ -1145,6 +1432,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_3
 							log = "DEBUG arles_base.4 Successfully built level 3 housing in temple"
 						}
@@ -1165,6 +1458,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in temple"
 						}
@@ -1181,6 +1480,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in temple"
 						}
@@ -1197,6 +1502,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in temple"
 						}
@@ -1213,6 +1524,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in temple"
 						}
@@ -1229,6 +1546,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in temple"
 						}
@@ -1245,6 +1568,12 @@ character_event = {
 									}
 								}
 							}
+							modifier = {
+								factor = 3
+								location = {
+									has_province_flag = historical_capital
+								}
+							}	
 							add_building = tp_town_4
 							log = "DEBUG arles_base.4 Successfully built level 4 housing in temple"
 						}
@@ -1998,7 +2327,6 @@ character_event = {
 	option = {
 		any_independent_ruler = {
 			any_realm_province = {
-				log = "DEBUG arles_base.6 Began calculating pop growth in province [This.GetName] ([This.GetID])"
 				any_province_holding = {
 					limit = { has_title_flag = holding_has_pop }
 					log = "DEBUG arles_base.6 Began calculating pop growth in holding [This.GetName] ([This.GetID])"
@@ -3209,9 +3537,17 @@ character_event = {
 						limit = { has_province_modifier = arles_pop5 }
 						PREVPREV = { subtract_variable = { which = trade_node value = 3 } }
 					}
+					#BEGIN TRADE MODIFIERS
 					if = {
 						limit = { trade_route = silk_road }
 						PREVPREV = { subtract_variable = { which = trade_node value = 1 } }
+					}
+					if = {
+						limit = { 
+							realm = { capital_scope = { province = PREVPREV } } 
+							capital_holding = { holding_type = city }
+						}
+						PREVPREV = { subtract_variable = { which = trade_node value = 4 } }
 					}
 				}
 			}
@@ -3221,6 +3557,7 @@ character_event = {
 					limit = { 
 						NOT = { has_province_modifier = arles_pop1 }
 						PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
+						check_variable = { which = province_pop value = 14.5 }
 					}
 					add_province_modifier = { name = arles_trade_node duration = -1 }
 					change_variable = { which = province_econ_count_max value = 1 }
@@ -3295,8 +3632,13 @@ character_event = {
 				duchy = {
 					any_direct_de_jure_vassal_title = {
 						location = {
-							add_province_modifier = { name = arles_trade_zone duration = -1 }
-							set_province_flag = arles_trade_zone_province_A_@event_target:trade_node
+							if = {
+								limit = {
+									NOT = { has_province_modifier = arles_trade_node } 
+								}
+								add_province_modifier = { name = arles_trade_zone duration = -1 }
+								set_province_flag = arles_trade_zone_province_A_@event_target:trade_node
+							}
 						}
 					}
 				}
@@ -3341,7 +3683,6 @@ character_event = {
 	option = {
 		name = "OK"
 		any_independent_ruler = {
-			log = "DEBUG arles_base.16 [This.GetName] formerly had control over a trade node"
 			any_realm_province = {
 				limit = { 
 					NOT = { has_province_modifier = arles_trade_node }

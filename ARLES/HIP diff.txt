@@ -4,10 +4,13 @@ ROOT = {
 			00_buildings.txt
 			00_Castle.txt
 			00_CastleCulture.txt
+			00_nomad.txt
 			00_tradepost.txt
 			00_tribal.txt
 			ct_trade_post
 		}
+		static_modifiers.txt
+		technology.txt
 	}
 	decisions = {
 		settlement_decisions.txt
@@ -24,6 +27,9 @@ ROOT = {
 	}
 	interface = {
 		province.gfx
+	}
+	map = {
+		geographical_regions.txt
 	}
 }
 	

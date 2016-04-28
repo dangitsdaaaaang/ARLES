@@ -667,6 +667,7 @@ city = {
 	
 	ct_university_1 = {
 		desc = ct_university_1_desc
+		potential = { always = no }
 		trigger = { TECH_CITY_CONSTRUCTION = 3 }
 		gold_cost = 600
 		build_time = 1095
