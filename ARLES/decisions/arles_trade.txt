@@ -1,0 +1,85 @@
+# Title decisions are possible vs _all_ titles and are shown in the Title Diplomacy View, not the Intrigue View. The taker is in the FROM scope.
+#
+# filter = [capital/primary_title/owned/vassal_owned/sub_realm_owned/realm_owned/dynasty_owned/all]
+# ai_target_filter = [capital/primary_title/owned/vassal_owned/sub_realm_owned/realm_owned/dynasty_owned/all] (which titles for which the AI evaluates the decision.)
+#	owned: all titles owned by the AI
+#	vassal_owned: all titles owned by direct vassal rulers of the AI's employer
+#	sub_realm_owned: all titles below the AI's employer
+#	realm_owned: all titles in the same top realm as the AI
+#	dynasty_owned: all titles owned by members of the same dynasty
+#	all: all titles (Avoid if possible. VERY CPU-HEAVY!)
+#	
+
+title_decisions = {
+	build_arles_hides = {
+		filter = sub_realm_owned
+		ai_target_filter = sub_realm_owned
+		
+		from_potential = {
+			is_nomadic = no
+			higher_tier_than = BARON
+		}
+			
+		potential = {
+			tier = COUNT
+			location = {
+				OR = {
+					has_province_modifier = arles_game
+					duchy = {
+						any_direct_de_jure_vassal_title = {
+							location = {
+								has_province_modifier = arles_game
+							}
+						}
+					}
+				}
+				owner = {
+					same_realm = FROM
+				}
+			}
+		}
+		
+		allow = {
+			location = {
+				custom_tooltip = {
+					text = arles_trade_land_clearance_tooltip
+					capital_holding = { 
+						OR = {
+							has_building = ca_land_clearance
+							has_building = ct_land_clearance
+							has_building = tp_land_clearance
+						}
+					}
+				}
+				custom_tooltip = {
+					text = arles_trade_econ_count_tooltip
+					check_variable = { which = province_econ_count_diff value = 0 }
+				}
+				NOT = { has_province_modifier = arles_hides }
+			}
+			has_siege = no
+			FROM = { war = no }
+		}
+		
+		effect = {
+			location = { 
+				add_province_modifier = { name = arles_hides duration = -1 } 
+				capital_scope = {
+					remove_building = ca_land_clearance
+					remove_building = ct_land_clearance
+					remove_building = tp_land_clearance
+				}
+				change_variable = { which = province_econ_count value = 1 }
+				subtract_variable = { which = province_econ_count value = 1 }
+			}
+		}
+		
+		revoke_allowed = {
+			always = no
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}			
+}

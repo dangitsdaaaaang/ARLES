@@ -94,7 +94,7 @@ arles_gold = {
 	icon = 93
 }
 
-#Silk Road Goods (able to be used by all in a Kingdom with only one source)
+#Silk Road Goods
 arles_ebony = {
 	icon = 89
 }

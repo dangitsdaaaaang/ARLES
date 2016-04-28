@@ -342,6 +342,7 @@ arles_holding_pop_level_effect = {
 		}
 		add_building = tb_market_town_4
 		log = "MAINT: Successfully built new housing in tribal village"
+		remove_holding_modifier = arles_holding_pop1
 		remove_holding_modifier = arles_holding_pop2
 		add_holding_modifier = { modifier = arles_holding_pop4_tribal duration = -1 }
 		set_title_flag = burg_pop
@@ -816,13 +817,15 @@ arles_province_pop_level_decline_effect = {
 		location = { 
 			duchy = {
 				capital_scope = {
-					if = {
-						limit = { 
-							has_province_modifier = arles_trade_node
+					location = {
+						if = {
+							limit = { 
+								has_province_modifier = arles_trade_node
+							}
+							remove_province_modifier = arles_trade_node
+							subtract_variable = { which = province_econ_count_max value = 1 }
+							log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) lost a trade node"  
 						}
-						remove_province_modifier = arles_trade_node
-						subtract_variable = { which = province_econ_count_max value = 1 }
-						log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) lost a trade node"  
 					}
 				}
 			}
@@ -843,14 +846,16 @@ arles_province_pop_level_decline_effect = {
 			duchy = {
 				change_variable = { which = trade_node value = 1 }
 				capital_scope = {
-					if = {
-						limit = { 
-							has_province_modifier = arles_trade_node
-							PREV = { check_variable = { which = trade_node value = 0.5 } } 
-						}
-						remove_province_modifier = arles_trade_node
-						subtract_variable = { which = province_econ_count_max value = 1 }
-						log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) lost a trade node"  
+					location = {
+						if = {
+							limit = { 
+								has_province_modifier = arles_trade_node
+								PREV = { check_variable = { which = trade_node value = 0.5 } } 
+							}
+							remove_province_modifier = arles_trade_node
+							subtract_variable = { which = province_econ_count_max value = 1 }
+							log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) lost a trade node"
+						}						
 					}
 				}
 			}

@@ -188,6 +188,7 @@ character_event = {
 				set_variable = { which = province_pop_diff_terr value = 0 } #Population level diff (terrain component)
 				set_variable = { which = province_econ_count value = 0 } #Count of economic improvements
 				set_variable = { which = province_econ_count_max value = 1 }  #Count of max possible economic improvements
+				set_variable = { which = province_econ_count_diff value = 1 } #Diff used for accounting how many remaining slots
 				log = "MAINT: arles_base.3 Successfully set up province defines in [This.GetName] ([This.GetID])"
 				set_province_flag = init_province_pop
 			}
@@ -2804,8 +2805,8 @@ character_event = {
 	
 	trigger = {
 		FROM = { 
-			NOT = { holding_type = nomad } 
 			is_occupied = no #looted, not occupied
+			NOT = { holding_type = nomad } 
 			holder_scope = { war_with = ROOT }
 		}
 	}
@@ -3291,19 +3292,19 @@ character_event = {
 				log = "DEBUG arles_base.15 Trade Node found at [This.GetName] ([This.GetID])"
 				set_province_flag = arles_trade_zone_evaluated
 				save_event_target_as = trade_node
+				duchy = {
+					any_direct_de_jure_vassal_title = {
+						location = {
+							add_province_modifier = { name = arles_trade_zone duration = -1 }
+							set_province_flag = arles_trade_zone_province_A_@event_target:trade_node
+						}
+					}
+				}
 				any_neighbor_province = {
 					duchy = {
 						event_target:trade_node = { log = "DEBUG arles_base.15 Trade Region of [Prev.GetName] ([Prev.GetID]) aligned with trade node at [This.GetName] ([This.GetID])" }
 						any_direct_de_jure_vassal_title = {
 							location = {
-								if = {
-									limit = { 
-										NOT = { has_province_modifier = arles_trade_node } 
-										de_jure_liege = event_target:trade_node
-									}
-									add_province_modifier = { name = arles_trade_zone duration = -1 }
-									set_province_flag = arles_trade_zone_province_A_@event_target:trade_node 
-								}
 								if = {
 									limit = { 
 										NOT = { has_province_modifier = arles_trade_node } 
@@ -3348,6 +3349,20 @@ character_event = {
 				}
 				log = "DEBUG arles_base.16 Former trade node found at [This.GetName] ([This.GetID])"
 				clr_province_flag = arles_trade_zone_evaluated
+				duchy = {
+					any_direct_de_jure_vassal_title = {
+						location = {
+							if = {
+								limit = { 
+									has_province_modifier = arles_trade_zone 
+								}
+								remove_province_modifier = arles_trade_zone
+								clr_province_flag = arles_trade_zone_province_A_@event_target:trade_node
+								clr_province_flag = arles_trade_zone_province_B_@event_target:trade_node
+							}
+						}
+					}
+				}
 				any_neighbor_province = {
 					duchy = {
 						PREVPREV = { log = "DEBUG arles_base.16 Trade Region of [Prev.GetName] ([Prev.GetID]) de-aligned with trade node at [This.GetName] ([This.GetID])" }
