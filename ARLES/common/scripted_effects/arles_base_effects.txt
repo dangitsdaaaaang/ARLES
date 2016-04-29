@@ -606,7 +606,7 @@ arles_province_pop_level_effect = {
 						PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
 					}
 					add_province_modifier = { name = arles_trade_node duration = -1 }
-					change_variable = { which = province_econ_count_max value = 1 }
+					change_variable = { which = province_econ_count_max value = 1 }			
 					log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) was assigned a trade node"  
 				}
 			}
@@ -675,8 +675,6 @@ arles_holding_pop_level_decline_effect = {
 		}
 		remove_building = tb_market_town_2
 		log = "MAINT: Tribal level 2 housing destroyed in [This.GetName] ([This.GetID])"
-		remove_holding_modifier = arles_holding_pop2
-		add_holding_modifier = { name = arles_holding_pop1 duration = -1 }
 		clr_title_flag = clan_pop
 		log = "MAINT: Devolved holding modifier to Level 1 based on holding population of [This.holding_pop.GetValue]"
 		location = {
@@ -696,7 +694,7 @@ arles_holding_pop_level_decline_effect = {
 			}
 		}
 	}
-	if = { #Devolve to pop level 1
+	if = { #Devolve to pop level 1/pop level 2 tribal
 		limit = {
 			check_variable = { which = holding_pop value = 74.5 }
 			NOT = { check_variable = { which = holding_pop value = 149.5 } }
@@ -928,17 +926,13 @@ arles_province_pop_level_decline_effect = {
 		clr_province_flag = minor_pop
 		subtract_variable = { which = province_econ_count_max value = 1 }
 		log = "MAINT: Devolved province modifier to Level 1 based on holding population of [This.province_pop.GetValue]"
-		duchy = {
-			capital_scope = {
-				if = {
-					limit = { 
-						has_province_modifier = arles_trade_node
-					}
-					remove_province_modifier = arles_trade_node
-					subtract_variable = { which = province_econ_count_max value = 1 }
-					log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) lost a trade node"  
-				}
+		if = {
+			limit = { 
+				has_province_modifier = arles_trade_node
 			}
+			remove_province_modifier = arles_trade_node
+			subtract_variable = { which = province_econ_count_max value = 1 }
+			log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) lost a trade node"  
 		}
 	}
 	if = { #Devolve to pop level 2
