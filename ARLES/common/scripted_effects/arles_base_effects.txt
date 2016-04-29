@@ -292,9 +292,14 @@ arles_holding_pop_level_effect = {
 			log = "MAINT: Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
 			if = {
 				limit = { 
-					NOT = { has_province_modifier = arles_trade_node }
-					check_variable = { which = province_pop value = 15 }
-					duchy = { NOT = { check_variable = { which = trade_node value = 0 } } } 
+					duchy = {
+						capital_scope = {
+							province = PREVPREV
+							NOT = { has_province_modifier = arles_trade_node }
+							check_variable = { which = province_pop value = 15 }
+							PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
+						}
+					} 
 				}
 				add_province_modifier = { name = arles_trade_node duration = -1 }
 				change_variable = { which = province_econ_count_max value = 1 }
@@ -344,9 +349,14 @@ arles_holding_pop_level_effect = {
 			log = "MAINT: Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
 			if = {
 				limit = { 
-					NOT = { has_province_modifier = arles_trade_node }
-					check_variable = { which = province_pop value = 15 }
-					duchy = { NOT = { check_variable = { which = trade_node value = 0 } } } 
+					duchy = {
+						capital_scope = {
+							province = PREVPREV
+							NOT = { has_province_modifier = arles_trade_node }
+							check_variable = { which = province_pop value = 15 }
+							PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
+						}
+					} 
 				}
 				add_province_modifier = { name = arles_trade_node duration = -1 }
 				change_variable = { which = province_econ_count_max value = 1 }
@@ -375,9 +385,14 @@ arles_holding_pop_level_effect = {
 			log = "MAINT: Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
 			if = {
 				limit = { 
-					NOT = { has_province_modifier = arles_trade_node }
-					check_variable = { which = province_pop value = 15 }
-					duchy = { NOT = { check_variable = { which = trade_node value = 0 } } } 
+					duchy = {
+						capital_scope = {
+							province = PREVPREV
+							NOT = { has_province_modifier = arles_trade_node }
+							check_variable = { which = province_pop value = 15 }
+							PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
+						}
+					} 
 				}
 				add_province_modifier = { name = arles_trade_node duration = -1 }
 				change_variable = { which = province_econ_count_max value = 1 }
@@ -422,9 +437,14 @@ arles_holding_pop_level_effect = {
 			log = "MAINT: Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
 			if = {
 				limit = { 
-					NOT = { has_province_modifier = arles_trade_node }
-					check_variable = { which = province_pop value = 15 }
-					duchy = { NOT = { check_variable = { which = trade_node value = 0 } } } 
+					duchy = {
+						capital_scope = {
+							province = PREVPREV
+							NOT = { has_province_modifier = arles_trade_node }
+							check_variable = { which = province_pop value = 15 }
+							PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
+						}
+					}
 				}
 				add_province_modifier = { name = arles_trade_node duration = -1 }
 				change_variable = { which = province_econ_count_max value = 1 }
@@ -469,9 +489,14 @@ arles_holding_pop_level_effect = {
 			log = "MAINT: Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
 			if = {
 				limit = { 
-					NOT = { has_province_modifier = arles_trade_node }
-					check_variable = { which = province_pop value = 15 }
-					duchy = { NOT = { check_variable = { which = trade_node value = 0 } } } 
+					duchy = {
+						capital_scope = {
+							province = PREVPREV
+							NOT = { has_province_modifier = arles_trade_node }
+							check_variable = { which = province_pop value = 15 }
+							PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
+						}
+					}
 				}
 				add_province_modifier = { name = arles_trade_node duration = -1 }
 				change_variable = { which = province_econ_count_max value = 1 }
@@ -516,9 +541,14 @@ arles_holding_pop_level_effect = {
 			log = "MAINT: Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
 			if = {
 				limit = { 
-					NOT = { has_province_modifier = arles_trade_node }
-					check_variable = { which = province_pop value = 15 }
-					duchy = { NOT = { check_variable = { which = trade_node value = 0 } } } 
+					duchy = {
+						capital_scope = {
+							province = PREVPREV
+							NOT = { has_province_modifier = arles_trade_node }
+							check_variable = { which = province_pop value = 15 }
+							PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
+						}
+					}
 				}
 				add_province_modifier = { name = arles_trade_node duration = -1 }
 				change_variable = { which = province_econ_count_max value = 1 }

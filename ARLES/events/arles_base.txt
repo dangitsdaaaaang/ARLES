@@ -3542,12 +3542,16 @@ character_event = {
 						limit = { trade_route = silk_road }
 						PREVPREV = { subtract_variable = { which = trade_node value = 1 } }
 					}
-					if = {
-						limit = { 
-							realm = { capital_scope = { province = PREVPREV } } 
-							capital_holding = { holding_type = city }
+					duchy = {
+						if = {
+							limit = { 
+								OR = {
+									is_merchant_republic = yes
+									kingdom = { is_merchant_republic = yes }
+								}
+							}
+							subtract_variable = { which = trade_node value = 4 }
 						}
-						PREVPREV = { subtract_variable = { which = trade_node value = 4 } }
 					}
 				}
 			}
@@ -3556,7 +3560,7 @@ character_event = {
 				if = {
 					limit = { 
 						NOT = { has_province_modifier = arles_pop1 }
-						PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
+						duchy = { NOT = { check_variable = { which = trade_node value = 0 } } } 
 						check_variable = { which = province_pop value = 14.5 }
 					}
 					add_province_modifier = { name = arles_trade_node duration = -1 }
