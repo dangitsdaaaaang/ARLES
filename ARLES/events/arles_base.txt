@@ -2338,7 +2338,7 @@ character_event = {
 				capital_scope = {
 					duchy = { subtract_variable = { which = trade_node value = 5 } }
 					add_province_modifier = { name = arles_trade_node duration = -1 }
-					log = "DEBUG Assigned new trade node to fledgling republic at [This.GetName] ([This.GetID])
+					log = "DEBUG Assigned new trade node to fledgling republic at [This.GetName] ([This.GetID])"
 				}
 			}
 			if = { #Check for former merchant republics and remove trade node bonus
