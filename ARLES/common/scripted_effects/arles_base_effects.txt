@@ -278,7 +278,7 @@ arles_holding_pop_level_effect = {
 		limit = {
 			holding_type = tribal
 			NOT = { has_title_flag = clan_pop }
-			check_variable = { which = holding_pop value = 74.5 }						
+			check_variable = { which = holding_pop value = 74.9 }						
 		}
 		add_building = tb_market_town_2
 		log = "MAINT: Successfully built new housing in tribal village"
@@ -315,7 +315,7 @@ arles_holding_pop_level_effect = {
 				holding_type = temple
 			}
 			NOT = { has_title_flag = minor_pop }
-			check_variable = { which = holding_pop value = 149.5 } 
+			check_variable = { which = holding_pop value = 149.9 } 
 		}
 		if = {
 			limit = { holding_type = castle }
@@ -368,7 +368,7 @@ arles_holding_pop_level_effect = {
 		limit = { 
 			holding_type = tribal
 			NOT = { has_title_flag = burg_pop }
-			check_variable = { which = holding_pop value = 224.5 } 
+			check_variable = { which = holding_pop value = 224.9 } 
 		}
 		add_building = tb_market_town_4
 		log = "MAINT: Successfully built new housing in tribal village"
@@ -408,7 +408,7 @@ arles_holding_pop_level_effect = {
 				holding_type = temple
 			}
 			NOT = { has_title_flag = burg_pop }
-			check_variable = { which = holding_pop value = 299.5 } 
+			check_variable = { which = holding_pop value = 299.9 } 
 		}
 		if = {
 			limit = { holding_type = castle }
@@ -460,7 +460,7 @@ arles_holding_pop_level_effect = {
 				holding_type = temple
 			}
 			NOT = { has_title_flag = major_pop }
-			check_variable = { which = holding_pop value = 499.5 } 
+			check_variable = { which = holding_pop value = 499.9 } 
 		}
 		if = {
 			limit = { holding_type = castle }
@@ -511,7 +511,7 @@ arles_holding_pop_level_effect = {
 				holding_type = city
 				holding_type = temple
 			}
-			check_variable = { which = holding_pop value = 999.5 } 
+			check_variable = { which = holding_pop value = 999.9 } 
 			NOT = { has_title_flag = metropolitan }
 		}
 		if = {
@@ -562,7 +562,7 @@ arles_province_initial_pop_level_effect = {
 	if = { #Advance to pop level 2
 		limit = { 
 			NOT = { has_province_flag = minor_pop }
-			check_variable = { which = province_pop value = 4.5 } 
+			check_variable = { which = province_pop value = 4.9 } 
 		}
 		remove_province_modifier = arles_pop1
 		add_province_modifier = { name = arles_pop2 duration = -1 }
@@ -573,7 +573,7 @@ arles_province_initial_pop_level_effect = {
 	if = { #Advance to pop level 3
 		limit = { 
 			NOT = { has_province_flag = burg_pop }
-			check_variable = { which = province_pop value = 19.5 }
+			check_variable = { which = province_pop value = 19.9 }
 		}
 		remove_province_modifier = arles_pop2
 		add_province_modifier = { name = arles_pop3 duration = -1 }
@@ -584,7 +584,7 @@ arles_province_initial_pop_level_effect = {
 	if = { #Advance to pop level 4
 		limit = { 
 			NOT = { has_province_flag = major_pop }
-			check_variable = { which = province_pop value = 34.5 }
+			check_variable = { which = province_pop value = 34.9 }
 		}
 		remove_province_modifier = arles_pop3
 		add_province_modifier = { name = arles_pop4 duration = -1 }
@@ -595,7 +595,7 @@ arles_province_initial_pop_level_effect = {
 	if = { #Advance to pop level 5
 		limit = { 
 			NOT = { has_province_flag = metropolitan }
-			check_variable = { which = province_pop value = 49.5 } 
+			check_variable = { which = province_pop value = 49.9 } 
 		}
 		remove_province_modifier = arles_pop4
 		add_province_modifier = { name = arles_pop5 duration = -1 }
@@ -610,7 +610,7 @@ arles_province_pop_level_effect = {
 	if = { #Advance to pop level 2
 		limit = { 
 			NOT = { has_province_flag = minor_pop }
-			check_variable = { which = province_pop value = 4.5 } 
+			check_variable = { which = province_pop value = 4.9 } 
 		}
 		remove_province_modifier = arles_pop1
 		add_province_modifier = { name = arles_pop2 duration = -1 }
@@ -621,7 +621,7 @@ arles_province_pop_level_effect = {
 	if = { #Advance to pop level 3
 		limit = { 
 			NOT = { has_province_flag = burg_pop }
-			check_variable = { which = province_pop value = 19.5 }
+			check_variable = { which = province_pop value = 19.9 }
 		}
 		remove_province_modifier = arles_pop2
 		add_province_modifier = { name = arles_pop3 duration = -1 }
@@ -632,7 +632,14 @@ arles_province_pop_level_effect = {
 			capital_scope = {
 				if = {
 					limit = { 
-						NOT = { has_province_modifier = arles_trade_node }
+						OR = {
+							NOT = { has_province_modifier = arles_trade_node }
+							PREV = {
+								any_direct_de_jure_vassal_title = {
+									location = { has_province_modifier = arles_trade_node }
+								}
+							}
+						}
 						PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
 					}
 					add_province_modifier = { name = arles_trade_node duration = -1 }
@@ -646,7 +653,7 @@ arles_province_pop_level_effect = {
 	if = { #Advance to pop level 4
 		limit = { 
 			NOT = { has_province_flag = major_pop }
-			check_variable = { which = province_pop value = 34.5 }
+			check_variable = { which = province_pop value = 34.9 }
 		}
 		remove_province_modifier = arles_pop3
 		add_province_modifier = { name = arles_pop4 duration = -1 }
@@ -657,7 +664,14 @@ arles_province_pop_level_effect = {
 			capital_scope = {
 				if = {
 					limit = {
-						NOT = { has_province_modifier = arles_trade_node }
+						OR = {
+							NOT = { has_province_modifier = arles_trade_node }
+							PREV = {
+								any_direct_de_jure_vassal_title = {
+									location = { has_province_modifier = arles_trade_node }
+								}
+							}
+						}
 						PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
 					}
 					add_province_modifier = { name = arles_trade_node duration = -1 }
@@ -671,7 +685,7 @@ arles_province_pop_level_effect = {
 	if = { #Advance to pop level 5
 		limit = { 
 			NOT = { has_province_flag = metropolitan }
-			check_variable = { which = province_pop value = 49.5 } 
+			check_variable = { which = province_pop value = 49.9 } 
 		}
 		remove_province_modifier = arles_pop4
 		add_province_modifier = { name = arles_pop5 duration = -1 }
@@ -682,7 +696,14 @@ arles_province_pop_level_effect = {
 			capital_scope = {
 				if = {
 					limit = { 
-						NOT = { has_province_modifier = arles_trade_node }
+						OR = {
+							NOT = { has_province_modifier = arles_trade_node }
+							PREV = {
+								any_direct_de_jure_vassal_title = {
+									location = { has_province_modifier = arles_trade_node }
+								}
+							}
+						}
 						PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
 					}
 					add_province_modifier = { name = arles_trade_node duration = -1 }
@@ -701,7 +722,7 @@ arles_holding_pop_level_decline_effect = {
 		limit = {
 			holding_type = tribal
 			has_title_flag = clan_pop
-			NOT = { check_variable = { which = holding_pop value = 74.5 } }
+			NOT = { check_variable = { which = holding_pop value = 74.9 } }
 		}
 		remove_building = tb_market_town_2
 		log = "MAINT: Tribal level 2 housing destroyed in [This.GetName] ([This.GetID])"
@@ -726,8 +747,8 @@ arles_holding_pop_level_decline_effect = {
 	}
 	if = { #Devolve to pop level 1/pop level 2 tribal
 		limit = {
-			check_variable = { which = holding_pop value = 74.5 }
-			NOT = { check_variable = { which = holding_pop value = 149.5 } }
+			check_variable = { which = holding_pop value = 74.9 }
+			NOT = { check_variable = { which = holding_pop value = 149.9 } }
 			has_title_flag = minor_pop
 		}
 		if = {
@@ -779,8 +800,8 @@ arles_holding_pop_level_decline_effect = {
 				holding_type = temple
 			}
 			has_title_flag = burg_pop
-			check_variable = { which = holding_pop value = 149.5 } 
-			NOT = { check_variable = { which = holding_pop value = 299.5 } }
+			check_variable = { which = holding_pop value = 149.9 } 
+			NOT = { check_variable = { which = holding_pop value = 299.9 } }
 		}
 		if = {
 			limit = { holding_type = castle }
@@ -822,8 +843,8 @@ arles_holding_pop_level_decline_effect = {
 		limit = { 
 			holding_type = tribal
 			has_title_flag = burg_pop
-			check_variable = { which = holding_pop value = 149.5 } 
-			NOT = { check_variable = { which = holding_pop value = 224.5 } }
+			check_variable = { which = holding_pop value = 149.9 } 
+			NOT = { check_variable = { which = holding_pop value = 224.9 } }
 		}
 		remove_building = tb_market_town_4
 		log = "MAINT: Level 4 housing destroyed in [This.GetName] ([This.GetID])"
@@ -856,8 +877,8 @@ arles_holding_pop_level_decline_effect = {
 				holding_type = temple
 			}
 			has_title_flag = major_pop
-			check_variable = { which = holding_pop value = 299.5 } 
-			NOT = { check_variable = { which = holding_pop value = 499.5 } }
+			check_variable = { which = holding_pop value = 299.9 } 
+			NOT = { check_variable = { which = holding_pop value = 499.9 } }
 		}
 		if = {
 			limit = { holding_type = castle }
@@ -903,8 +924,8 @@ arles_holding_pop_level_decline_effect = {
 				holding_type = temple
 			}
 			has_title_flag = metropolitan
-			check_variable = { which = holding_pop value = 499.5 } 
-			NOT = { check_variable = { which = holding_pop value = 999.5 } }
+			check_variable = { which = holding_pop value = 499.9 } 
+			NOT = { check_variable = { which = holding_pop value = 999.9 } }
 		}
 		if = {
 			limit = { holding_type = castle }
@@ -949,7 +970,7 @@ arles_province_pop_level_decline_effect = {
 	if = { #Devolve to pop level 1
 		limit = { 
 			has_province_flag = minor_pop
-			NOT = { check_variable = { which = province_pop value = 4.5 } }
+			NOT = { check_variable = { which = province_pop value = 4.9 } }
 		}
 		remove_province_modifier = arles_pop2
 		add_province_modifier = { name = arles_pop1 duration = -1 }
@@ -968,8 +989,8 @@ arles_province_pop_level_decline_effect = {
 	if = { #Devolve to pop level 2
 		limit = { 
 			has_province_flag = burg_pop
-			check_variable = { which = province_pop value = 4.5 }
-			NOT = { check_variable = { which = province_pop value = 19.5 } }
+			check_variable = { which = province_pop value = 4.9 }
+			NOT = { check_variable = { which = province_pop value = 19.9 } }
 		}
 		remove_province_modifier = arles_pop3
 		add_province_modifier = { name = arles_pop2 duration = -1 }
@@ -994,8 +1015,8 @@ arles_province_pop_level_decline_effect = {
 	if = { #Devolve to pop level 3
 		limit = { 
 			has_province_flag = major_pop
-			check_variable = { which = province_pop value = 19.5 }
-			NOT = { check_variable = { which = province_pop value = 34.5 } }
+			check_variable = { which = province_pop value = 19.9 }
+			NOT = { check_variable = { which = province_pop value = 34.9 } }
 		}
 		remove_province_modifier = arles_pop4
 		add_province_modifier = { name = arles_pop3 duration = -1 }
@@ -1009,8 +1030,8 @@ arles_province_pop_level_decline_effect = {
 	if = { #Devolve to pop level 4
 		limit = {
 			has_province_flag = metropolitan
-			check_variable = { which = province_pop value = 34.5 }
-			NOT = { check_variable = { which = province_pop value = 49.5 } }
+			check_variable = { which = province_pop value = 34.9 }
+			NOT = { check_variable = { which = province_pop value = 49.9 } }
 		}
 		remove_province_modifier = arles_pop5
 		add_province_modifier = { name = arles_pop4 duration = -1 }

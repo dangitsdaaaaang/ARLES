@@ -15,7 +15,7 @@ arles_trade_econ_count_tooltip;[This.province_econ_count_diff.GetValue] potentia
 
 #TRADE NODES/ROUTES
 arles_trade_node;Regional Trading Center;;;;;;;;;;;;;x
-arles_trade_node_desc;This province's markets have long been a gathering place for merchants far and wide, come to exchange their exotic wares for the many local goods produced in this region.\n\nRegional Trading Centers act as trade nodes, §Yincreasing income§! as well as §Yincreasing potential economic improvements§! that can be built in the province. They also allow all provinces within their §Yregional trade zone§! to share goods that they have access to.;;;;;;;;;;;;;x
+arles_trade_node_desc;This province's markets have long been a gathering place for merchants far and wide, come to exchange their exotic wares for the many local goods produced in this region.\n\nRegional Trading Centers act as trade nodes, §Yincreasing income§! as well as §Yincreasing potential economic improvements§! that can be built in the province. They also allow all provinces within their §Yregional trade zone§! to share goods that they have access to. They require a provincial Prosperity Level of §Y15§! to exist.;;;;;;;;;;;;;x
 arles_trade_zone;Regional Trade Zone;;;;;;;;;;;;;x
 arles_trade_zone_desc;This province benefits from merchants passing to and from a nearby §Yregional trading center§!, and enjoys access to the same §Ytrade goods§! sold there.;;;;;;;;;;;;;x
 
