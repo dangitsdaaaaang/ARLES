@@ -2326,50 +2326,6 @@ character_event = {
 	
 	option = {
 		any_independent_ruler = {
-			if = { #Check for merchant republics
-				limit = { 
-					is_merchant_republic = yes 
-					capital_scope = {
-						duchy = { 
-							NOT = { has_title_flag = arles_merch_rep_trade_node }
-						}
-					}
-				} 
-				capital_scope = {
-					duchy = { subtract_variable = { which = trade_node value = 5 } }
-					add_province_modifier = { name = arles_trade_node duration = -1 }
-					log = "DEBUG Assigned new trade node to fledgling republic at [This.GetName] ([This.GetID])"
-				}
-			}
-			if = { #Check for former merchant republics and remove trade node bonus
-				limit = { 
-					any_realm_title = {
-						has_title_flag = arles_merch_rep_trade_node
-						is_merchant_republic = no
-						tier = DUKE
-					}
-				} 
-				any_realm_title = {
-					limit = { 
-						has_title_flag = arles_merch_rep_trade_node
-						is_merchant_republic = no
-						tier = DUKE
-					}
-					change_variable = { which = trade_node value = 5 } 
-					clr_title_flag - arles_merch_rep_trade_node
-					any_direct_de_jure_vassal_title = {
-						location = {
-							if = {
-								limit = { 
-									has_province_modifier = arles_trade_node
-									NOT = { check_variable = { which = province_pop value = 15 } }
-								}
-								remove_province_modifier = arles_trade_node
-							}
-						}
-					}
-				}
-			}
 			any_realm_province = {
 				any_province_holding = {
 					limit = { has_title_flag = holding_has_pop }
