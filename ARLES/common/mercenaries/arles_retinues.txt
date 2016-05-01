@@ -2,12 +2,12 @@
 # Also remember to tell the landed title to use this mercenary type instead.
 # Several titles can refer to the same type as well now.
 
-roman_retinue_praetorian_composition = {
+heavy_infantry_retinue_composition = {
 	levy_size = 1
 	heavy_infantry = 250
 }
 
-italian_retinue_cavalier_composition = {
+heavy_light_cavalry_retinue_composition = {
 	levy_size = 1
 	knights = 150
 	light_cavalry = 100

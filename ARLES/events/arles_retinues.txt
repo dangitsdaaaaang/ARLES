@@ -223,4 +223,169 @@ character_event = {
 			break = yes
 		}
 	}
+	option = { #West Slavic Cavalry
+		name = {
+			trigger = { 
+				OR = {
+					culture = pommeranian
+					culture = polish
+				}
+				FROM = { 
+					OR = {
+						culture = pommeranian
+						culture = polish
+					} 
+				}
+			}
+			text = arles_retinues.0.opt.westslav.druzyna.cavalier
+		}
+		name = {
+			trigger = { 
+				OR = {
+					culture = bohemian
+					culture = moravian
+				}
+				FROM = { 
+					OR = {
+						culture = bohemian
+						culture = moravian
+					}
+				}
+			}
+			text = arles_retinues.0.opt.westslav.rytir.cavalier
+		}
+		
+		trigger = { 
+			OR = { #ruler wants native retinue
+				culture_group = west_slavic
+				AND = { #ruler wants guard captain to attract men of his own culture
+					FROM = { culture_group = west_slavic }
+					OR = {
+						any_realm_province = { 
+							culture_group = west_slavic 
+						}
+						any_independent_ruler = {
+							is_within_diplo_range = ROOT
+							OR = {
+								culture_group = west_slavic 
+								any_realm_province = { 
+									culture_group = west_slavic  
+								}
+							}
+						}
+					}
+				}
+			}				
+		}
+		
+		if = {
+			limit = { 
+				OR = {
+					culture = pommeranian
+					FROM = { culture = pommeranian }
+				}
+			}
+			arles_retinue_westslav_pommeranian_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created a West Slavic Druzyna cavalry retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = polish
+					FROM = { culture = polish }
+				}
+			}
+			arles_retinue_westslav_polish_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created a West Slavic Druzyna cavalry retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = bohemian
+					FROM = { culture = bohemian }
+				}
+			}
+			arles_retinue_westslav_bohemian_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created a West Slavic Rytir retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = moravian
+					FROM = { culture = moravian }
+				}
+			}
+			arles_retinue_westslav_moravian_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created a West Slavic Rytir retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+	}
+	option = {
+		name = "arles_retinues.0.opt.westslav.druzyna.heavy_infantry"
+
+		trigger = { 
+			OR = { #ruler wants native retinue
+				OR = {
+					culture = pommeranian
+					culture = polish
+				} 
+				AND = { #ruler wants guard captain to attract men of his own culture
+					FROM = { 
+						OR = {
+							culture = pommeranian
+							culture = polish
+						}  
+					}
+					OR = {
+						any_realm_province = { 
+							OR = {
+								culture = pommeranian
+								culture = polish
+							}  
+						}
+						any_independent_ruler = {
+							is_within_diplo_range = ROOT
+							OR = {
+								OR = {
+									culture = pommeranian
+									culture = polish
+								}  
+								any_realm_province = { 
+									OR = {
+										culture = pommeranian
+										culture = polish
+									}   
+								}
+							}
+						}
+					}
+				}
+			}				
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = pommeranian
+					FROM = { culture = pommeranian }
+				}
+			}
+			arles_retinue_westslav_pommeranian_heavy_infantry_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created a West Slavic Druzyna infantry retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = polish
+					FROM = { culture = polish }
+				}
+			}
+			arles_retinue_westslav_polish_heavy_infantry_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created a West Slavic Druzyna infantry retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+	}
 }

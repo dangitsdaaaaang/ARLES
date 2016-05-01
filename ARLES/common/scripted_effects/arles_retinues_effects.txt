@@ -15,13 +15,15 @@ arles_retinue_roman_praetorian_create_effect = {
 			base_title = THIS
 			mercenary = yes
 			replace_captain_on_death = yes
-			army_template = roman_retinue_praetorian_composition
+			army_template = heavy_infantry_retinue_composition
 			ruler = "CAPTAIN_ROMAN_PRAETORIAN"
 			ruler_female = "CAPTAIN_ROMAN_PRAETORIAN_FEMALE"
 			foa = "CAPTAIN_FOA_ROMAN_PRAETORIAN"
 		}
 		new_title = {
-			set_title_flag = arles_dyn_retinue
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
 			set_title_flag = heavy_infantry_retinue
 		}
 		FROM = {
@@ -44,13 +46,15 @@ arles_retinue_italian_sardinian_cavalier_create_effect = {
 			base_title = THIS
 			mercenary = yes
 			replace_captain_on_death = yes
-			army_template = italian_retinue_cavalier_composition
+			army_template = heavy_light_cavalry_retinue_composition
 			ruler = "CAPTAIN_ITALIAN"
 			ruler_female = "CAPTAIN_ITALIAN"
 			foa = "CAPTAIN_FOA_ITALIAN"
 		}
 		new_title = {
-			set_title_flag = arles_dyn_retinue
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
 			set_title_flag = heavy_light_cavalry_retinue
 		}
 		FROM = {
@@ -72,13 +76,15 @@ arles_retinue_italian_sicilian_cavalier_create_effect = {
 			base_title = THIS
 			mercenary = yes
 			replace_captain_on_death = yes
-			army_template = italian_retinue_cavalier_composition
+			army_template = heavy_light_cavalry_retinue_composition
 			ruler = "CAPTAIN_ITALIAN"
 			ruler_female = "CAPTAIN_ITALIAN"
 			foa = "CAPTAIN_FOA_ITALIAN"
 		}
 		new_title = {
-			set_title_flag = arles_dyn_retinue
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
 			set_title_flag = heavy_light_cavalry_retinue
 		}
 		FROM = {
@@ -100,13 +106,15 @@ arles_retinue_italian_corsican_cavalier_create_effect = {
 			base_title = THIS
 			mercenary = yes
 			replace_captain_on_death = yes
-			army_template = italian_retinue_cavalier_composition
+			army_template = heavy_light_cavalry_retinue_composition
 			ruler = "CAPTAIN_ITALIAN"
 			ruler_female = "CAPTAIN_ITALIAN"
 			foa = "CAPTAIN_FOA_ITALIAN"
 		}
 		new_title = {
-			set_title_flag = arles_dyn_retinue
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
 			set_title_flag = heavy_light_cavalry_retinue
 		}
 		FROM = {
@@ -128,13 +136,15 @@ arles_retinue_italian_central_cavalier_create_effect = {
 			base_title = THIS
 			mercenary = yes
 			replace_captain_on_death = yes
-			army_template = italian_retinue_cavalier_composition
+			army_template = heavy_light_cavalry_retinue_composition
 			ruler = "CAPTAIN_ITALIAN"
 			ruler_female = "CAPTAIN_ITALIAN"
 			foa = "CAPTAIN_FOA_ITALIAN"
 		}
 		new_title = {
-			set_title_flag = arles_dyn_retinue
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
 			set_title_flag = heavy_light_cavalry_retinue
 		}
 		FROM = {
@@ -156,13 +166,15 @@ arles_retinue_italian_southern_cavalier_create_effect = {
 			base_title = THIS
 			mercenary = yes
 			replace_captain_on_death = yes
-			army_template = italian_retinue_cavalier_composition
+			army_template = heavy_light_cavalry_retinue_composition
 			ruler = "CAPTAIN_ITALIAN"
 			ruler_female = "CAPTAIN_ITALIAN"
 			foa = "CAPTAIN_FOA_ITALIAN"
 		}
 		new_title = {
-			set_title_flag = arles_dyn_retinue
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
 			set_title_flag = heavy_light_cavalry_retinue
 		}
 		FROM = {
@@ -184,13 +196,15 @@ arles_retinue_italian_neapolitan_cavalier_create_effect = {
 			base_title = THIS
 			mercenary = yes
 			replace_captain_on_death = yes
-			army_template = italian_retinue_cavalier_composition
+			army_template = heavy_light_cavalry_retinue_composition
 			ruler = "CAPTAIN_ITALIAN"
 			ruler_female = "CAPTAIN_ITALIAN"
 			foa = "CAPTAIN_FOA_ITALIAN"
 		}
 		new_title = {
-			set_title_flag = arles_dyn_retinue
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
 			set_title_flag = heavy_light_cavalry_retinue
 		}
 		FROM = {
@@ -212,13 +226,15 @@ arles_retinue_italian_tuscan_cavalier_create_effect = {
 			base_title = THIS
 			mercenary = yes
 			replace_captain_on_death = yes
-			army_template = italian_retinue_cavalier_composition
+			army_template = heavy_light_cavalry_retinue_composition
 			ruler = "CAPTAIN_ITALIAN"
 			ruler_female = "CAPTAIN_ITALIAN"
 			foa = "CAPTAIN_FOA_ITALIAN"
 		}
 		new_title = {
-			set_title_flag = arles_dyn_retinue
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
 			set_title_flag = heavy_light_cavalry_retinue
 		}
 		FROM = {
@@ -240,13 +256,15 @@ arles_retinue_italian_ligurian_cavalier_create_effect = {
 			base_title = THIS
 			mercenary = yes
 			replace_captain_on_death = yes
-			army_template = italian_retinue_cavalier_composition
+			army_template = heavy_light_cavalry_retinue_composition
 			ruler = "CAPTAIN_ITALIAN"
 			ruler_female = "CAPTAIN_ITALIAN"
 			foa = "CAPTAIN_FOA_ITALIAN"
 		}
 		new_title = {
-			set_title_flag = arles_dyn_retinue
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
 			set_title_flag = heavy_light_cavalry_retinue
 		}
 		FROM = {
@@ -268,13 +286,15 @@ arles_retinue_italian_langobardisch_cavalier_create_effect = {
 			base_title = THIS
 			mercenary = yes
 			replace_captain_on_death = yes
-			army_template = italian_retinue_cavalier_composition
+			army_template = heavy_light_cavalry_retinue_composition
 			ruler = "CAPTAIN_ITALIAN"
 			ruler_female = "CAPTAIN_ITALIAN"
 			foa = "CAPTAIN_FOA_ITALIAN"
 		}
 		new_title = {
-			set_title_flag = arles_dyn_retinue
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
 			set_title_flag = heavy_light_cavalry_retinue
 		}
 		FROM = {
@@ -296,13 +316,15 @@ arles_retinue_italian_generic_cavalier_create_effect = {
 			base_title = THIS
 			mercenary = yes
 			replace_captain_on_death = yes
-			army_template = italian_retinue_cavalier_composition
+			army_template = heavy_light_cavalry_retinue_composition
 			ruler = "CAPTAIN_ITALIAN"
 			ruler_female = "CAPTAIN_ITALIAN"
 			foa = "CAPTAIN_FOA_ITALIAN"
 		}
 		new_title = {
-			set_title_flag = arles_dyn_retinue
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
 			set_title_flag = heavy_light_cavalry_retinue
 		}
 		FROM = {
@@ -324,13 +346,15 @@ arles_retinue_italian_venetian_cavalier_create_effect = {
 			base_title = THIS
 			mercenary = yes
 			replace_captain_on_death = yes
-			army_template = italian_retinue_cavalier_composition
+			army_template = heavy_light_cavalry_retinue_composition
 			ruler = "CAPTAIN_ITALIAN"
 			ruler_female = "CAPTAIN_ITALIAN"
 			foa = "CAPTAIN_FOA_ITALIAN"
 		}
 		new_title = {
-			set_title_flag = arles_dyn_retinue
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
 			set_title_flag = heavy_light_cavalry_retinue
 		}
 		FROM = {
@@ -352,13 +376,15 @@ arles_retinue_italian_dalmatian_cavalier_create_effect = {
 			base_title = THIS
 			mercenary = yes
 			replace_captain_on_death = yes
-			army_template = italian_retinue_cavalier_composition
+			army_template = heavy_light_cavalry_retinue_composition
 			ruler = "CAPTAIN_ITALIAN"
 			ruler_female = "CAPTAIN_ITALIAN"
 			foa = "CAPTAIN_FOA_ITALIAN"
 		}
 		new_title = {
-			set_title_flag = arles_dyn_retinue
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
 			set_title_flag = heavy_light_cavalry_retinue
 		}
 		FROM = {
@@ -380,13 +406,197 @@ arles_retinue_italian_roman_cavalier_create_effect = {
 			base_title = THIS
 			mercenary = yes
 			replace_captain_on_death = yes
-			army_template = italian_retinue_cavalier_composition
+			army_template = heavy_light_cavalry_retinue_composition
 			ruler = "CAPTAIN_ITALIAN"
 			ruler_female = "CAPTAIN_ITALIAN"
 			foa = "CAPTAIN_FOA_ITALIAN"
 		}
 		new_title = {
-			set_title_flag = arles_dyn_retinue
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
+			set_title_flag = heavy_light_cavalry_retinue
+		}
+		FROM = {
+			set_defacto_liege = ROOT
+			set_character_flag = is_retinue_commander
+		}
+	}
+}
+
+#West Slavic Cavalry (Druzyna/Rytiri)
+arles_retinue_westslav_pommeranian_cavalier_create_effect = {
+	primary_title = {
+		create_title = {
+			tier = COUNT
+			landless = yes
+			custom_created = yes
+			culture = pommeranian
+			name = RETINUE_WEST_SLAV_DRUZYNA
+			holder = FROM
+			base_title = THIS
+			mercenary = yes
+			replace_captain_on_death = yes
+			army_template = heavy_light_cavalry_retinue_composition
+			ruler = "CAPTAIN_WESTSLAV_DRUZYNA"
+			ruler_female = "CAPTAIN_WESTSLAV_DRUZYNA_FEMALE"
+			foa = "CAPTAIN_FOA_WESTSLAV_DRUZYNA"
+		}
+		new_title = {
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
+			set_title_flag = heavy_light_cavalry_retinue
+		}
+		FROM = {
+			set_defacto_liege = ROOT
+			set_character_flag = is_retinue_commander
+		}
+	}
+}
+
+arles_retinue_westslav_polish_cavalier_create_effect = {
+	primary_title = {
+		create_title = {
+			tier = COUNT
+			landless = yes
+			custom_created = yes
+			culture = polish
+			name = RETINUE_WEST_SLAV_DRUZYNA
+			holder = FROM
+			base_title = THIS
+			mercenary = yes
+			replace_captain_on_death = yes
+			army_template = heavy_light_cavalry_retinue_composition
+			ruler = "CAPTAIN_WESTSLAV_DRUZYNA"
+			ruler_female = "CAPTAIN_WESTSLAV_DRUZYNA_FEMALE"
+			foa = "CAPTAIN_FOA_WESTSLAV_DRUZYNA"
+		}
+		new_title = {
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
+			set_title_flag = heavy_light_cavalry_retinue
+		}
+		FROM = {
+			set_defacto_liege = ROOT
+			set_character_flag = is_retinue_commander
+		}
+	}
+}
+
+arles_retinue_westslav_bohemian_cavalier_create_effect = {
+	primary_title = {
+		create_title = {
+			tier = COUNT
+			landless = yes
+			custom_created = yes
+			culture = bohemian
+			name = DYNAMIC_RETINUE_FEUDAL
+			holder = FROM
+			base_title = THIS
+			mercenary = yes
+			replace_captain_on_death = yes
+			army_template = heavy_light_cavalry_retinue_composition
+			ruler = "CAPTAIN_WESTSLAV_RYTIR"
+			ruler_female = "CAPTAIN_WESTSLAV_RYTIR"
+			foa = "CAPTAIN_FOA_WESTSLAV_RYTIR"
+		}
+		new_title = {
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
+			set_title_flag = heavy_light_cavalry_retinue
+		}
+		FROM = {
+			set_defacto_liege = ROOT
+			set_character_flag = is_retinue_commander
+		}
+	}
+}
+
+arles_retinue_westslav_moravian_cavalier_create_effect = {
+	primary_title = {
+		create_title = {
+			tier = COUNT
+			landless = yes
+			custom_created = yes
+			culture = moravian
+			name = DYNAMIC_RETINUE_FEUDAL
+			holder = FROM
+			base_title = THIS
+			mercenary = yes
+			replace_captain_on_death = yes
+			army_template = heavy_light_cavalry_retinue_composition
+			ruler = "CAPTAIN_WESTSLAV_RYTIR"
+			ruler_female = "CAPTAIN_WESTSLAV_RYTIR"
+			foa = "CAPTAIN_FOA_WESTSLAV_RYTIR"
+		}
+		new_title = {
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
+			set_title_flag = heavy_light_cavalry_retinue
+		}
+		FROM = {
+			set_defacto_liege = ROOT
+			set_character_flag = is_retinue_commander
+		}
+	}
+}
+
+#West Slavic Infantry
+arles_retinue_westslav_pommeranian_heavy_infantry_create_effect = {
+	primary_title = {
+		create_title = {
+			tier = COUNT
+			landless = yes
+			custom_created = yes
+			culture = pommeranian
+			name = RETINUE_WEST_SLAV_DRUZYNA
+			holder = FROM
+			base_title = THIS
+			mercenary = yes
+			replace_captain_on_death = yes
+			army_template = heavy_infantry_retinue_composition
+			ruler = "CAPTAIN_WESTSLAV_DRUZYNA"
+			ruler_female = "CAPTAIN_WESTSLAV_DRUZYNA_FEMALE"
+			foa = "CAPTAIN_FOA_WESTSLAV_DRUZYNA"
+		}
+		new_title = {
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
+			set_title_flag = heavy_light_cavalry_retinue
+		}
+		FROM = {
+			set_defacto_liege = ROOT
+			set_character_flag = is_retinue_commander
+		}
+	}
+}
+
+arles_retinue_westslav_polish_heavy_infantry_create_effect = {
+	primary_title = {
+		create_title = {
+			tier = COUNT
+			landless = yes
+			custom_created = yes
+			culture = polish
+			name = RETINUE_WEST_SLAV_DRUZYNA
+			holder = FROM
+			base_title = THIS
+			mercenary = yes
+			replace_captain_on_death = yes
+			army_template = heavy_infantry_retinue_composition
+			ruler = "CAPTAIN_WESTSLAV_DRUZYNA"
+			ruler_female = "CAPTAIN_WESTSLAV_DRUZYNA_FEMALE"
+			foa = "CAPTAIN_FOA_WESTSLAV_DRUZYNA"
+		}
+		new_title = {
+			set_title_flag = arles_dyn_retinue_@PREV
+			set_title_flag = ze_dyn_merc #turn off HL merc events
+			set_title_flag = not_hired #turn off Zeus extra merc events
 			set_title_flag = heavy_light_cavalry_retinue
 		}
 		FROM = {
