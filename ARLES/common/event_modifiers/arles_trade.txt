@@ -56,10 +56,16 @@ arles_trade_zone = {
 	icon = 4
 }
 
+arles_under_construction = {
+	icon = 12
+}
+
 #Trade Resources
 arles_hides = {
 	icon = 79
 }
+
+
 
 
 

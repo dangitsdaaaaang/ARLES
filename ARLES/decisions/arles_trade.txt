@@ -11,7 +11,7 @@
 #	
 
 title_decisions = {
-	build_arles_hides = {
+	arles_build_hides = {
 		filter = sub_realm_owned
 		ai_target_filter = sub_realm_owned
 		
@@ -19,67 +19,56 @@ title_decisions = {
 			is_nomadic = no
 			higher_tier_than = BARON
 		}
-			
 		potential = {
 			tier = COUNT
-			location = {
-				OR = {
-					has_province_modifier = arles_game
-					duchy = {
-						any_direct_de_jure_vassal_title = {
-							location = {
-								has_province_modifier = arles_game
-							}
-						}
-					}
-				}
-				owner = {
-					same_realm = FROM
-				}
-			}
+			location = { has_province_modifier = arles_game }
 		}
 		
 		allow = {
 			location = {
+				NOT = { has_province_modifier = arles_hides }
+				OR = {
+					FROM = { is_vassal_or_below = ROOT }
+					controlled_by = FROM
+				}
+			}
+			has_siege = no
+			FROM = {
+				war = no
+			}
+			location = {
 				custom_tooltip = {
 					text = arles_trade_land_clearance_tooltip
-					capital_holding = { 
-						OR = {
-							has_building = ca_land_clearance
-							has_building = ct_land_clearance
-							has_building = tp_land_clearance
+					hidden_tooltip = {
+						capital_holding = {
+							OR = {
+								has_building = ca_land_clearance
+								has_building = ct_land_clearance
+								has_building = tp_land_clearance
+							}
 						}
 					}
 				}
 				custom_tooltip = {
 					text = arles_trade_econ_count_tooltip
-					check_variable = { which = province_econ_count_diff value = 0 }
+					hidden_tooltip = {
+						check_variable = { which = province_econ_count_diff value = 0 }
+					}
 				}
-				NOT = { has_province_modifier = arles_hides }
 			}
-			has_siege = no
-			FROM = { war = no }
 		}
-		
 		effect = {
-			location = { 
-				add_province_modifier = { name = arles_hides duration = -1 } 
-				capital_scope = {
-					remove_building = ca_land_clearance
-					remove_building = ct_land_clearance
-					remove_building = tp_land_clearance
-				}
-				change_variable = { which = province_econ_count value = 1 }
-				subtract_variable = { which = province_econ_count value = 1 }
+			location = {
+				set_province_flag = arles_hides
+				save_event_target_as = production_province
 			}
+			FROM = { character_event = { id = arles_trade.0 } }
 		}
-		
 		revoke_allowed = {
 			always = no
 		}
-		
 		ai_will_do = {
 			factor = 0
 		}
-	}			
+	}
 }

@@ -1,0 +1,226 @@
+namespace = arles_retinues
+
+# arles_retinues.0
+# Initial retinue selection
+character_event = {
+	id = arles_retinues.0
+	picture = GFX_evt_throne_room
+	is_triggered_only = yes
+	
+	desc = {
+		trigger = {
+			FROM = { culture = ROOT }
+		}
+		text = arles_retinue.0.desc.same_culture
+	}
+	
+	desc = {
+		trigger = {
+			NOT = { FROM = { culture = ROOT } }
+		}
+		text = arles_retinue.0.desc.diff_culture
+	}
+
+	option = { #Roman Praetorians
+		name = "arles_retinues.0.opt.roman.praetorian"
+		trigger = { 
+			OR = {
+				culture = roman #ruler wants native retinue
+				AND = { #ruler wants guard captain to attract men of his own culture
+					FROM = { culture = roman }
+					OR = {
+						any_realm_province = { culture = roman }
+						any_independent_ruler = {
+							is_within_diplo_range = ROOT
+							OR = {
+								culture = roman
+								any_realm_province = { culture = roman }
+							}
+						}
+					}
+				}
+			}				
+		}
+		arles_retinue_roman_praetorian_create_effect = yes
+		log = "DEBUG [Root.GetTitledName] created a Roman Praetorian retinue, appointing [From.GetTitledName] as commander"
+	}
+	option = { #Italian Cavaliers
+		name = "arles_retinues.0.opt.italian.cavalier"
+		trigger = { 
+			OR = { #ruler wants native retinue
+				culture_group = italian_group
+				AND = { #ruler wants guard captain to attract men of his own culture
+					FROM = { culture_group = italian_group }
+					OR = {
+						any_realm_province = { 
+							culture_group = italian_group 
+						}
+						any_independent_ruler = {
+							is_within_diplo_range = ROOT
+							OR = {
+								culture_group = italian_group 
+								any_realm_province = { 
+									culture_group = italian_group  
+								}
+							}
+						}
+					}
+				}
+			}				
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = sardinian
+					FROM = { culture = sardinian }
+				}
+			}
+			arles_retinue_italian_sardinian_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created an Italian Cavalieri retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = sicilian
+					FROM = { culture = sicilian }
+				}
+			}
+			arles_retinue_italian_sicilian_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created an Italian Cavalieri retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = corsican
+					FROM = { culture = corsican }
+				}
+			}
+			arles_retinue_italian_corsican_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created an Italian Cavalieri retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = central_italian
+					FROM = { culture = central_italian }
+				}
+			}
+			arles_retinue_italian_central_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created an Italian Cavalieri retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = central_italian
+					FROM = { culture = central_italian }
+				}
+			}
+			arles_retinue_italian_central_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created an Italian Cavalieri retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = southern_italian
+					FROM = { culture = southern_italian }
+				}
+			}
+			arles_retinue_italian_southern_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created an Italian Cavalieri retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = neapolitan
+					FROM = { culture = neapolitan }
+				}
+			}
+			arles_retinue_italian_neapolitan_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created an Italian Cavalieri retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = tuscan
+					FROM = { culture = tuscan }
+				}
+			}
+			arles_retinue_italian_central_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created an Italian Cavalieri retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = ligurian
+					FROM = { culture = ligurian }
+				}
+			}
+			arles_retinue_italian_ligurian_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created an Italian Cavalieri retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = langobardisch
+					FROM = { culture = langobardisch }
+				}
+			}
+			arles_retinue_italian_langobardisch_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created an Italian Cavalieri retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = italian
+					FROM = { culture = italian }
+				}
+			}
+			arles_retinue_italian_generic_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created an Italian Cavalieri retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = venetian
+					FROM = { culture = venetian }
+				}
+			}
+			arles_retinue_italian_venetian_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created an Italian Cavalieri retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = dalmatian
+					FROM = { culture = dalmatian }
+				}
+			}
+			arles_retinue_italian_dalmatian_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created an Italian Cavalieri retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+		if = {
+			limit = { 
+				OR = {
+					culture = roman
+					FROM = { culture = roman }
+				}
+			}
+			arles_retinue_italian_roman_cavalier_create_effect = yes
+			log = "DEBUG [Root.GetTitledName] created an Italian Cavalieri retinue, appointing [From.GetTitledName] as commander"
+			break = yes
+		}
+	}
+}

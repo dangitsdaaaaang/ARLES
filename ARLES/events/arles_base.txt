@@ -2325,6 +2325,7 @@ character_event = {
 	}
 	
 	option = {
+		name = "OK"
 		any_independent_ruler = {
 			any_realm_province = {
 				any_province_holding = {
@@ -2442,7 +2443,25 @@ character_event = {
 						multiply_variable = { which = holding_pop which = holding_pop_dmg }
 					}
 				}
-				PREV = { wealth = 2.5 }
+				PREV = { 
+					if = {
+						limit = { 
+							OR = {
+								is_landed = yes
+								independent = yes
+							}
+						}
+						wealth = 2.5
+					}
+					if = { 
+						limit = {
+							is_landed = no 
+							independent = no
+						}
+						wealth = 0.5
+						liege = { wealth = 2 }
+					}
+				}
 			}
 			if = {
 				limit = {
@@ -2472,7 +2491,25 @@ character_event = {
 						multiply_variable = { which = holding_pop which = holding_pop_dmg }
 					}
 				}
-				PREV = { wealth = 5 }
+				PREV = { 
+					if = {
+						limit = { 
+							OR = {
+								is_landed = yes
+								independent = yes
+							}
+						}
+						wealth = 5
+					}
+					if = { 
+						limit = {
+							is_landed = no 
+							independent = no
+						}
+						wealth = 0.5
+						liege = { wealth = 4.5 }
+					}
+				}
 			}
 			if = {
 				limit = {
@@ -2502,7 +2539,25 @@ character_event = {
 						multiply_variable = { which = holding_pop which = holding_pop_dmg }
 					}
 				}
-				PREV = { wealth = 10 }
+				PREV = { 
+					if = {
+						limit = { 
+							OR = {
+								is_landed = yes
+								independent = yes
+							}
+						}
+						wealth = 10
+					}
+					if = { 
+						limit = {
+							is_landed = no 
+							independent = no
+						}
+						wealth = 1
+						liege = { wealth = 9 }
+					}
+				}
 			}
 			if = {
 				limit = {
@@ -2529,7 +2584,25 @@ character_event = {
 						multiply_variable = { which = holding_pop which = holding_pop_dmg }
 					}
 				}
-				PREV = { wealth = 15 }
+				PREV = { 
+					if = {
+						limit = { 
+							OR = {
+								is_landed = yes
+								independent = yes
+							}
+						}
+						wealth = 15
+					}
+					if = { 
+						limit = {
+							is_landed = no 
+							independent = no
+						}
+						wealth = 1.5
+						liege = { wealth = 13.5 }
+					}
+				}
 			}
 			if = {
 				limit = {
@@ -2555,7 +2628,25 @@ character_event = {
 						multiply_variable = { which = holding_pop which = holding_pop_dmg }
 					}
 				}
-				PREV = { wealth = 20 }
+				PREV = { 
+					if = {
+						limit = { 
+							OR = {
+								is_landed = yes
+								independent = yes
+							}
+						}
+						wealth = 20
+					}
+					if = { 
+						limit = {
+							is_landed = no 
+							independent = no
+						}
+						wealth = 2
+						liege = { wealth = 18 }
+					}
+				}
 			}
 			if = {
 				limit = {
@@ -2578,7 +2669,25 @@ character_event = {
 						multiply_variable = { which = holding_pop which = holding_pop_dmg }
 					}
 				}
-				PREV = { wealth = 25 }
+				PREV = { 
+					if = {
+						limit = { 
+							OR = {
+								is_landed = yes
+								independent = yes
+							}
+						}
+						wealth = 25
+					}
+					if = { 
+						limit = {
+							is_landed = no 
+							independent = no
+						}
+						wealth = 2.5
+						liege = { wealth = 22.5 }
+					}
+				}
 			}
 			if = {
 				limit = {
@@ -2594,7 +2703,25 @@ character_event = {
 						multiply_variable = { which = holding_pop which = holding_pop_dmg }
 					}
 				}
-				PREV = { wealth = 30 }
+				PREV = { 
+					if = {
+						limit = { 
+							OR = {
+								is_landed = yes
+								independent = yes
+							}
+						}
+						wealth = 30
+					}
+					if = { 
+						limit = {
+							is_landed = no 
+							independent = no
+						}
+						wealth = 3
+						liege = { wealth = 27 }
+					}
+				}
 			}			
 			hidden_tooltip = { add_holding_modifier = { modifier = arles_victa years = 1 } }
 			
@@ -2705,7 +2832,24 @@ character_event = {
 						multiply_variable = { which = holding_pop which = holding_pop_dmg }
 					}
 				}
-				PREV = { wealth = 5 }
+				PREV = { 
+					if = {
+						limit = { 
+							OR = {
+								is_landed = yes
+								independent = yes
+							}
+						}
+						wealth = 5 
+					}
+					if = { 
+						limit = {
+							is_landed = no 
+							independent = no
+						}
+						liege = { wealth = 5 }
+					}
+				}
 			}
 			if = {
 				limit = {
@@ -2735,7 +2879,25 @@ character_event = {
 						multiply_variable = { which = holding_pop which = holding_pop_dmg }
 					}
 				}
-				PREV = { wealth = 10 }
+				PREV = { 
+					if = {
+						limit = { 
+							OR = {
+								is_landed = yes
+								independent = yes
+							}
+						}
+						wealth = 10
+					}
+					if = { 
+						limit = {
+							is_landed = no 
+							independent = no
+						}
+						wealth = 1
+						liege = { wealth = 9 }
+					}
+				}
 			}
 			if = {
 				limit = {
@@ -2765,7 +2927,25 @@ character_event = {
 						multiply_variable = { which = holding_pop which = holding_pop_dmg }
 					}
 				}
-				PREV = { wealth = 20 }
+				PREV = { 
+					if = {
+						limit = { 
+							OR = {
+								is_landed = yes
+								independent = yes
+							}
+						}
+						wealth = 20 
+					}
+					if = { 
+						limit = {
+							is_landed = no 
+							independent = no
+						}
+						wealth = 2
+						liege = { wealth = 18 }
+					}
+				}
 			}
 			if = {
 				limit = {
@@ -2792,7 +2972,25 @@ character_event = {
 						multiply_variable = { which = holding_pop which = holding_pop_dmg }
 					}
 				}
-				PREV = { wealth = 30 }
+				PREV = { 
+					if = {
+						limit = { 
+							OR = {
+								is_landed = yes
+								independent = yes
+							}
+						}
+						wealth = 30
+					}
+					if = { 
+						limit = {
+							is_landed = no 
+							independent = no
+						}
+						wealth = 3
+						liege = { wealth = 27 }
+					}
+				}
 			}
 			if = {
 				limit = {
@@ -2818,7 +3016,25 @@ character_event = {
 						multiply_variable = { which = holding_pop which = holding_pop_dmg }
 					}
 				}
-				PREV = { wealth = 40 }
+				PREV = { 
+					if = {
+						limit = { 
+							OR = {
+								is_landed = yes
+								independent = yes
+							}
+						}
+						wealth = 40
+					}
+					if = { 
+						limit = {
+							is_landed = no 
+							independent = no
+						}
+						wealth = 4
+						liege = { wealth = 36 }
+					}
+				}
 			}
 			if = {
 				limit = {
@@ -2841,7 +3057,25 @@ character_event = {
 						multiply_variable = { which = holding_pop which = holding_pop_dmg }
 					}
 				}
-				PREV = { wealth = 50 }
+				PREV = { 
+					if = {
+						limit = { 
+							OR = {
+								is_landed = yes
+								independent = yes
+							}
+						}
+						wealth = 50
+					}
+					if = { 
+						limit = {
+							is_landed = no 
+							independent = no
+						}
+						wealth = 5
+						liege = { wealth = 45 }
+					}
+				}
 			}
 			if = {
 				limit = {
@@ -2857,7 +3091,25 @@ character_event = {
 						multiply_variable = { which = holding_pop which = holding_pop_dmg }
 					}
 				}
-				PREV = { wealth = 60 }
+				PREV = { 
+					if = {
+						limit = { 
+							OR = {
+								is_landed = yes
+								independent = yes
+							}
+						}
+						wealth = 60
+					}
+					if = { 
+						limit = {
+							is_landed = no 
+							independent = no
+						}
+						wealth = 6
+						liege = { wealth = 54 }
+					}
+				}
 			}			
 			hidden_tooltip = { #alert owner of action
 				holder_scope = { 
@@ -3072,9 +3324,7 @@ character_event = {
 			modifier = { # More likely if religious enemies
 				factor = 2
 				FROM = {
-					owner = {
-						NOT = { religion_group = ROOT }
-					}
+					NOT = { religion_group = ROOT }
 				}
 				OR = {
 					trait = zealous
@@ -3110,9 +3360,7 @@ character_event = {
 			modifier = { # Less likely if religious enemies
 				factor = 0.5
 				FROM = {
-					owner = {
-						NOT = { religion_group = ROOT }
-					}
+					NOT = { religion_group = ROOT }
 				}
 				OR = {
 					trait = zealous

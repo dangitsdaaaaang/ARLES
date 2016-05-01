@@ -1,0 +1,19 @@
+#CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+
+create_retinue_feudal;Assemble a Retinue;;;;;;;;;;;;;x
+create_retinue_feudal_desc;Appoint this character as the commander of a newly-formed elite guard, loyal only to the [From.GetTitle].;;;;;;;;;;;;;x
+DYNAMIC_RETINUE_FEUDAL; [Root.PrimaryTitle.GetAdjective] Guard;;;;;;;;;;;;;x
+CREATE_DYNAMIC_RETINUE_TOOLTIP;[Root.GetDynName] is appointed commander of a newly-formed elite guard in the service of [From.GetTitledName];;;;;;;;;;;;;x
+
+arles_retinue.0.desc.diff_culture;After appointing a new commander of your own personal elite guard, the task at hand is to select suitable men skilled in the art of war to fill its ranks. While it may be wisest to choose men of [Root.Culture.GetName] heritage, perhaps we could also seek out peerless [From.Culture.GetName] warriors with no dangerous allegiances or affiliations with those in the realm who would seek to undermine your rule.;;;;;;;;;;;;;x
+arles_retinue.0.desc.same_culture;After appointing a new commander of your own personal elite guard, the task at hand is to select suitable men skilled in the art of war to fill its ranks. The wisest choice would be to choose men of [Root.Culture.GetName] heritage to serve as staunch defenders of our ways and traditions.;;;;;;;;;;;;;x
+
+#BEGIN CULTURAL RETINUES
+RETINUE_ROMAN_PRAETORIAN;[From.PrimaryTitle.GetAdjective] Praetorian Guard;;;;;;;;;;;;;x
+CAPTAIN_ROMAN_PRAETORIAN;Praefectus Praetorio;;;;;;;;;;;;;x
+CAPTAIN_ROMAN_PRAETORIAN_FEMALE;Praefecta_Praetorio;;;;;;;;;;;;;x
+CAPTAIN_FOA_ROMAN_PRAETORIAN;Prefect;;;;;;;;;;;;;x
+arles_retinues.0.opt.roman.praetorian;We shall establish a Praetorian Guard, like the Romans of old.;;;;;;;;;;;;;x
+CAPTAIN_ITALIAN;Commendatore;;;;;;;;;;;;;x
+CAPTAIN_FOA_ITALIAN;Commendatore;;;;;;;;;;;;;x
+arles_retinues.0.opt.italian.cavalier;Men from the lower nobility will serve as cavalieri for the [Root.GetTitle].;;;;;;;;;;;;;x

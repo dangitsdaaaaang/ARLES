@@ -22,5 +22,11 @@ arles_trade_zone_desc;This province benefits from merchants passing to and from 
 #TRADE RESOURCES
 arles_hides;Hides;;;;;;;;;;;;;x
 arles_hides_desc;§YHides§! are produced in this province from the pelts of game hunted here, which can be tanned into sturdy §Yleather§!;;;;;;;;;;;;;x
-build_arles_hides;Allow Free Hunting;;;;;;;;;;;;;x
-build_arles_hides_desc;By allowing the people in this province to freely hunt the bountiful wildlife here, enterprising hunters are beginning to produce quality §Yhides§!.\n\n§YHides§! will be produced in this province from the pelts of game hunted here, which can be tanned into sturdy §Yleather§!;;;;;;;;;;;;;x
+arles_build_hides;Allow Hunting;;;;;;;;;;;;;x
+arles_build_hides_desc;By allowing the common people in this province to freely hunt the bountiful wildlife here, enterprising hunters are beginning to produce quality §Yhides§!.\n\n§YHides§! will be produced in this province from the pelts of game hunted here, which can be tanned into sturdy §Yleather§!;;;;;;;;;;;;;x
+arles_trade.0.hides.desc;Although it is frowned upon by the nobility as being in conflict with their ancient rights to the land, the recent proclamation allowing the common people to hunt in the forests of [From.Location.GetName] has been well-received. Hunting lodges now dot the forests as enterprising peasants begin exercising their skills in archery.;;;;;;;;;;;;;x
+arles_trade.0.opt.a;This can only bring benefit to us all.;;;;;;;;;;;;;x
+arles_trade.0.opt.b;What is this madness? Stop them at once!;;;;;;;;;;;;;x
+arles_trade.0.opt.b.tooltip;Your men round up the hunters and confiscate their goods, then sell the land back to local nobles.\n;;;;;;;;;;;;;x
+arles_trade.1.hides.desc;By allowing the common people in this province to freely hunt the bountiful wildlife here in [FromFrom.Location.GetName], skilled hunters are beginning to produce quality hides and meat. Some are even suggesting that these hides could be turned into leather in the cities, and an enterprising ruler would be wise to encourage this.;;;;;;;;;;;;;x
+arles_trade.1.opt.a;We are truly fortunate to have this resource at our disposal.;;;;;;;;;;;;;x

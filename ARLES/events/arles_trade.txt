@@ -1,0 +1,77 @@
+namespace = arles_trade
+
+# arles_trade.0
+# Initial trade event (confirm/deny) investment
+character_event = {
+	id = arles_trade.0
+	is_triggered_only = yes
+	
+	picture = GFX_evt_village_at_night_finno_ugric #find suitable picture
+	border  = GFX_event_normal_frame_economy
+	
+	desc  = {
+		text = arles_trade.0.hides.desc
+		trigger = {
+			event_target:production_county = { has_title_flag = arles_hides }
+		}
+	}
+
+	
+	option = {
+		name = arles_trade.0.opt.a
+		event_target:production_province = {
+			if = { 
+				limit = { has_province_flag = arles_hides }
+				add_province_modifier = { name = arles_under_construction duration = -1 } 
+				set_province_flag = arles_hides_construens
+				#Remember to have siege/looting events remove this modifier
+				ROOT = { scaled_wealth = { value = -0.05 min = -10 } }
+				#negative opinion modifier with nobility for allowing commoners to hunt
+			}
+		}
+		hidden_tooltip = { character_event = { id = arles_trade.1 days = 365 random = 90 } }
+	}
+	option = {
+		name = arles_trade.0.opt.b
+		custom_tooltip = { 
+			text = arles_trade.0.opt.b.tooltip
+			hidden_tooltip = { 
+				event_target:production_province = {
+					if = { 
+						limit = { has_province_flag = arles_hides } 
+						clr_province_flag = arles_hides
+					}
+					#remember to make modifier to mark hunting here as forbidden
+				}
+			}
+		}
+		wealth = 40 
+	}
+}
+
+character_event = {
+	id = arles_trade.1
+	is_triggered_only = yes
+	
+	picture = GFX_evt_village_at_night_finno_ugric #find suitable picture
+	border  = GFX_event_normal_frame_economy
+	
+	desc  = {
+		text = arles_trade.1.hides.desc
+		trigger = {
+			event_target:production_province = { has_province_flag = arles_hides_construens }
+		}
+	}
+
+	option = {
+		name = arles_trade.1.opt.a
+		event_target:production_province = {
+			if = { 
+				limit = { has_province_flag = arles_hides } 
+				remove_province_modifier = arles_under_construction
+				clr_province_flag = arles_hides_construens
+				add_province_modifier = { name = arles_hides duration = -1 }
+			}
+		}
+	}
+}
