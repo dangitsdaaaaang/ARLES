@@ -62,7 +62,7 @@ arles_under_construction = {
 
 #Trade Resources
 arles_hides = {
-	icon = 79
+	icon = 119
 }
 
 

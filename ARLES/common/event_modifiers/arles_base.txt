@@ -46,65 +46,65 @@
 
 #Local Resources (able to be used by all provinces in a duchy, by all in a kingdom if there are 3 or more sources, by all in the realm if there are 5 per 120 holdings)
 arles_game = {
-	icon = 80
+	icon = 106
 }
 
 arles_silver = {
-	icon = 81
+	icon = 107
 }
 
 arles_stone = {
-	icon = 82
+	icon = 108
 }
 
 arles_minerals = {
-	icon = 83
+	icon = 109
 }
 
 arles_fertile = {
-	icon = 84
+	icon = 110
 }
 
 arles_pasture = {
-	icon = 85
+	icon = 111
 }
 
 arles_fishing = {
-	icon = 86
+	icon = 112
 }
 
 #Trade Goods (
 arles_furs = {
-	icon = 79
+	icon = 105
 }
 
 arles_amber = {
-	icon = 87
+	icon = 113
 }
 
 arles_ivory = {
-	icon = 90
+	icon = 116
 }
 
 arles_salt = {
-	icon = 92
+	icon = 118
 }
 
 arles_gold = {
-	icon = 93
+	icon = 119
 }
 
 #Silk Road Goods
 arles_ebony = {
-	icon = 89
+	icon = 116
 }
 
 arles_silks = {
-	icon = 88
+	icon = 114
 }
 
 arles_spices = {
-	icon = 91
+	icon = 117
 }
 
 

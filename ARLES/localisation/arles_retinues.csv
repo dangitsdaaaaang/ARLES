@@ -22,7 +22,9 @@ CAPTAIN_WESTSLAV_DRUZYNA;Szlachcic;;;;;;;;;;;;;x
 CAPTAIN_WESTSLAV_DRUZYNA_FEMALE;Szlachcianka;;;;;;;;;;;;;x
 CAPTAIN_FOA_WESTSLAV_DRUZYNA;[Root.GetLordLady];;;;;;;;;;;;;x
 arles_retinues.0.opt.westslav.druzyna.cavalier;I shall establish a mounted druzyna to fight alongside me.;;;;;;;;;;;;;x
-CAPTAIN_WESTSLAV_RYTIR;Rytir;;;;;;;;;;;;;x
+CAPTAIN_WESTSLAV_RYTIR;Šlechtic;;;;;;;;;;;;;x
 CAPTAIN_FOA_WESTSLAV_RYTIR;[Root.GetLordLady];;;;;;;;;;;;;x
 arles_retinues.0.opt.westslav.rytir.cavalier;Men from the lower nobility will serve as rytiri for the [Root.GetTitle].;;;;;;;;;;;;;x
 arles_retinues.0.opt.westslav.druzyna.heavy_infantry;I shall establish a druzyna to fight beside me on foot.;;;;;;;;;;;;;x
+
+#CAPTAIN_LITHUANIAN;Gerasis Žmogus;;;;;;;;;;;;;x

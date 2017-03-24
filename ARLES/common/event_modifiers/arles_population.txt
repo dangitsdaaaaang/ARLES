@@ -46,37 +46,46 @@
 
 #Province population modifiers
 arles_pop1 = {
-	icon = 98
+	icon = 11
+	major = yes
 }
 arles_pop2 = {
-	icon = 97
+	icon = 10
+	major = yes
 }
 arles_pop3 = {
-	icon = 96
+	icon = 9
+	major = yes
 }
 arles_pop4 = {
-	icon = 95
+	icon = 8
+	major = yes
 }
 arles_pop5 = {
-	icon = 94
+	icon = 7
+	major = yes
+}
+prosperity_modifier_4 = {
+	icon = 11
+	major = yes
 }
 arles_holding_pop1 = {
-	icon = 99
+	icon = 120
 }
 arles_holding_pop2 = {
-	icon = 100
+	icon = 121
 }
 arles_holding_pop3 = {
-	icon = 101
+	icon = 122
 }
 arles_holding_pop4 = {
-	icon = 102
+	icon = 123
 }
 arles_holding_pop4_tribal = {
-	icon = 102
+	icon = 123
 }
 arles_holding_pop5 = {
-	icon = 103
+	icon = 124
 }
 arles_popgrowth = {
 	icon = 6
@@ -113,6 +122,8 @@ arles_misericordia_victis = {
 	land_morale = -0.05
 	icon = 1
 }
+
+
 
 
 

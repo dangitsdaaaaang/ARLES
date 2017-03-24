@@ -1,0 +1,28 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_modifier_icons"
+		texturefile = "gfx\\interface\\modifier_icons.tga"
+		noOfFrames = 124
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_major_modifiers_strip"
+		texturefile = "gfx\\interface\\major_modifiers_strip.dds"
+		noOfFrames = 11
+	}
+	spriteType = {
+		name = "GFX_religion_icon_strip"
+		texturefile = "gfx\\interface\\religion_icon_strip.tga"
+		noOfFrames = 75
+	}
+	spriteType = {
+		name = "GFX_religion_icon_strip_small"
+		texturefile = "gfx\\interface\\religion_icon_strip_small.tga"
+		noOfFrames = 75
+	}
+	spriteType = {
+		name = "GFX_religion_icon_strip_big"
+		texturefile = "gfx\\interface\\religion_icon_strip_big.tga"
+		noOfFrames = 75
+	}
+}
