@@ -28,83 +28,67 @@
 # 37 - Prison 				- 38
 # 39 - Love 				- 40
 
-# 79 - Furs
-# 80 - Game Land
-# 81 - Silver Deposits
-# 82 - Stone Deposits
-# 83 - Mineral Deposits
-# 84 - Fertile Soil
-# 85 - Pastureland
-# 86 - Fishing Grounds
-# 87 - Amber
-# 88 - Ivory
-# 89 - Ebony
-# 90 - Silks
-# 91 - Spices
-# 92 - Salt
-# 93 - Gold
-
 #Local Resources (able to be used by all provinces in a duchy, by all in a kingdom if there are 3 or more sources, by all in the realm if there are 5 per 120 holdings)
 arles_game = {
-	icon = 106
+	icon = 130
 }
 
 arles_silver = {
-	icon = 107
+	icon = 131
 }
 
 arles_stone = {
-	icon = 108
+	icon = 132
 }
 
 arles_minerals = {
-	icon = 109
+	icon = 133
 }
 
 arles_fertile = {
-	icon = 110
+	icon = 134
 }
 
 arles_pasture = {
-	icon = 111
+	icon = 135
 }
 
 arles_fishing = {
-	icon = 112
+	icon = 136
 }
 
 #Trade Goods (
 arles_furs = {
-	icon = 105
+	icon = 129
 }
 
 arles_amber = {
-	icon = 113
+	icon = 137
 }
 
 arles_ivory = {
-	icon = 116
+	icon = 140
 }
 
 arles_salt = {
-	icon = 118
+	icon = 142
 }
 
 arles_gold = {
-	icon = 119
+	icon = 143
 }
 
 #Silk Road Goods
 arles_ebony = {
-	icon = 116
+	icon = 139
 }
 
 arles_silks = {
-	icon = 114
+	icon = 138
 }
 
 arles_spices = {
-	icon = 117
+	icon = 141
 }
 
 

@@ -28,64 +28,43 @@
 # 37 - Prison 				- 38
 # 39 - Love 				- 40
 
-# 79 - Furs
-# 80 - Game Land
-# 81 - Silver Deposits
-# 82 - Stone Deposits
-# 83 - Mineral Deposits
-# 84 - Fertile Soil
-# 85 - Pastureland
-# 86 - Fishing Grounds
-# 87 - Amber
-# 88 - Ivory
-# 89 - Ebony
-# 90 - Silks
-# 91 - Spices
-# 92 - Salt
-# 93 - Gold
-
 #Province population modifiers
 arles_pop1 = {
-	icon = 11
-	major = yes
+	icon = 153
 }
 arles_pop2 = {
-	icon = 10
-	major = yes
+	icon = 152
 }
 arles_pop3 = {
-	icon = 9
-	major = yes
+	icon = 151
 }
 arles_pop4 = {
-	icon = 8
-	major = yes
+	icon = 150
 }
 arles_pop5 = {
-	icon = 7
-	major = yes
+	icon = 149
 }
 prosperity_modifier_4 = {
 	icon = 11
 	major = yes
 }
 arles_holding_pop1 = {
-	icon = 120
+	icon = 144
 }
 arles_holding_pop2 = {
-	icon = 121
+	icon = 145
 }
 arles_holding_pop3 = {
-	icon = 122
+	icon = 146
 }
 arles_holding_pop4 = {
-	icon = 123
+	icon = 147
 }
 arles_holding_pop4_tribal = {
-	icon = 123
+	icon = 147
 }
 arles_holding_pop5 = {
-	icon = 124
+	icon = 148
 }
 arles_popgrowth = {
 	icon = 6
@@ -95,11 +74,11 @@ arles_holdinggrowth = {
 }
 arles_victa = {
 	local_tax_modifier = -0.10
-	icon = 19
+	icon = 24
 }
 arles_rapta = {
 	local_tax_modifier = -0.20
-	icon = 19
+	icon = 36
 }
 arles_victor = {
 	general_opinion = -5
@@ -111,7 +90,7 @@ arles_victor = {
 #}
 arles_raptor = {
 	general_opinion = -15
-	icon = 19
+	icon = 42
 }
 #arles_raptor_pagan = {
 #	infidel_opinion = -15 #paradox fix pls

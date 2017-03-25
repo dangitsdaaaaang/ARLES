@@ -295,13 +295,12 @@ arles_holding_pop_level_effect = {
 					duchy = {
 						capital_scope = {
 							province = PREVPREV
-							NOT = { has_province_modifier = arles_trade_node }
 							check_variable = { which = province_pop value = 15 }
 							PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
 						}
 					} 
 				}
-				add_province_modifier = { name = arles_trade_node duration = -1 }
+				
 				change_variable = { which = province_econ_count_max value = 1 }
 				log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) was assigned a trade node"  
 			}
@@ -352,13 +351,13 @@ arles_holding_pop_level_effect = {
 					duchy = {
 						capital_scope = {
 							province = PREVPREV
-							NOT = { has_province_modifier = arles_trade_node }
+							
 							check_variable = { which = province_pop value = 15 }
 							PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
 						}
 					} 
 				}
-				add_province_modifier = { name = arles_trade_node duration = -1 }
+				
 				change_variable = { which = province_econ_count_max value = 1 }
 				log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) was assigned a trade node"  
 			}
@@ -388,13 +387,13 @@ arles_holding_pop_level_effect = {
 					duchy = {
 						capital_scope = {
 							province = PREVPREV
-							NOT = { has_province_modifier = arles_trade_node }
+							
 							check_variable = { which = province_pop value = 15 }
 							PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
 						}
 					} 
 				}
-				add_province_modifier = { name = arles_trade_node duration = -1 }
+				
 				change_variable = { which = province_econ_count_max value = 1 }
 				log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) was assigned a trade node"  
 			}
@@ -440,13 +439,13 @@ arles_holding_pop_level_effect = {
 					duchy = {
 						capital_scope = {
 							province = PREVPREV
-							NOT = { has_province_modifier = arles_trade_node }
+							
 							check_variable = { which = province_pop value = 15 }
 							PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
 						}
 					}
 				}
-				add_province_modifier = { name = arles_trade_node duration = -1 }
+				
 				change_variable = { which = province_econ_count_max value = 1 }
 				log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) was assigned a trade node"  
 			}
@@ -492,13 +491,13 @@ arles_holding_pop_level_effect = {
 					duchy = {
 						capital_scope = {
 							province = PREVPREV
-							NOT = { has_province_modifier = arles_trade_node }
+							
 							check_variable = { which = province_pop value = 15 }
 							PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
 						}
 					}
 				}
-				add_province_modifier = { name = arles_trade_node duration = -1 }
+				
 				change_variable = { which = province_econ_count_max value = 1 }
 				log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) was assigned a trade node"  
 			}
@@ -544,13 +543,13 @@ arles_holding_pop_level_effect = {
 					duchy = {
 						capital_scope = {
 							province = PREVPREV
-							NOT = { has_province_modifier = arles_trade_node }
+							
 							check_variable = { which = province_pop value = 15 }
 							PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
 						}
 					}
 				}
-				add_province_modifier = { name = arles_trade_node duration = -1 }
+				
 				change_variable = { which = province_econ_count_max value = 1 }
 				log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) was assigned a trade node"  
 			}
@@ -627,27 +626,6 @@ arles_province_pop_level_effect = {
 		add_province_modifier = { name = arles_pop3 duration = -1 }
 		set_province_flag = burg_pop
 		change_variable = { which = province_econ_count_max value = 1 }
-		duchy = {
-			subtract_variable = { which = trade_node value = 1 }
-			capital_scope = {
-				if = {
-					limit = { 
-						OR = {
-							NOT = { has_province_modifier = arles_trade_node }
-							PREV = {
-								any_direct_de_jure_vassal_title = {
-									location = { has_province_modifier = arles_trade_node }
-								}
-							}
-						}
-						PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
-					}
-					add_province_modifier = { name = arles_trade_node duration = -1 }
-					change_variable = { which = province_econ_count_max value = 1 }			
-					log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) was assigned a trade node"  
-				}
-			}
-		}
 		log = "MAINT: Changed province modifier to Level 3 based on holding population of [This.province_pop.GetValue]"
 	}
 	if = { #Advance to pop level 4
@@ -659,27 +637,6 @@ arles_province_pop_level_effect = {
 		add_province_modifier = { name = arles_pop4 duration = -1 }
 		set_province_flag = major_pop
 		change_variable = { which = province_econ_count_max value = 2 }
-		duchy = {
-			subtract_variable = { which = trade_node value = 1 }
-			capital_scope = {
-				if = {
-					limit = {
-						OR = {
-							NOT = { has_province_modifier = arles_trade_node }
-							PREV = {
-								any_direct_de_jure_vassal_title = {
-									location = { has_province_modifier = arles_trade_node }
-								}
-							}
-						}
-						PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
-					}
-					add_province_modifier = { name = arles_trade_node duration = -1 }
-					change_variable = { which = province_econ_count_max value = 1 }
-					log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) was assigned a trade node"  
-				}
-			}
-		}
 		log = "MAINT: Changed province modifier to Level 4 based on holding population of [This.province_pop.GetValue]"
 	}
 	if = { #Advance to pop level 5
@@ -691,27 +648,6 @@ arles_province_pop_level_effect = {
 		add_province_modifier = { name = arles_pop5 duration = -1 }
 		set_province_flag = metropolitan
 		change_variable = { which = province_econ_count_max value = 2 }
-		duchy = {
-			subtract_variable = { which = trade_node value = 1 }
-			capital_scope = {
-				if = {
-					limit = { 
-						OR = {
-							NOT = { has_province_modifier = arles_trade_node }
-							PREV = {
-								any_direct_de_jure_vassal_title = {
-									location = { has_province_modifier = arles_trade_node }
-								}
-							}
-						}
-						PREV = { NOT = { check_variable = { which = trade_node value = 0 } } } 
-					}
-					add_province_modifier = { name = arles_trade_node duration = -1 }
-					change_variable = { which = province_econ_count_max value = 1 }
-					log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) was assigned a trade node"  
-				}
-			}
-		}
 		log = "MAINT: Changed province modifier to Level 5 based on holding population of [This.province_pop.GetValue]"
 	}
 }
@@ -734,15 +670,6 @@ arles_holding_pop_level_decline_effect = {
 			multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
 			change_variable = { which = province_pop which = province_pop_diff }
 			log = "MAINT: Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-			if = {
-				limit = { 
-					NOT = { check_variable = { which = province_pop value = 15 } }
-					has_province_modifier = arles_trade_node
-				}
-				remove_province_modifier = arles_trade_node
-				subtract_variable = { which = province_econ_count_max value = 1 }
-				log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) lost a trade node" 
-			}
 		}
 	}
 	if = { #Devolve to pop level 1/pop level 2 tribal
@@ -781,15 +708,6 @@ arles_holding_pop_level_decline_effect = {
 			multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
 			change_variable = { which = province_pop which = province_pop_diff }
 			log = "MAINT:Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-			if = {
-				limit = { 
-					NOT = { check_variable = { which = province_pop value = 15 } }
-					has_province_modifier = arles_trade_node
-				}
-				remove_province_modifier = arles_trade_node
-				subtract_variable = { which = province_econ_count_max value = 1 }
-				log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) lost a trade node" 
-			}
 		}
 	}
 	if = { #Devolve to pop level 2 civ
@@ -828,15 +746,6 @@ arles_holding_pop_level_decline_effect = {
 			multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
 			change_variable = { which = province_pop which = province_pop_diff }
 			log = "MAINT: Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-			if = {
-				limit = { 
-					NOT = { check_variable = { which = province_pop value = 15 } }
-					has_province_modifier = arles_trade_node
-				}
-				remove_province_modifier = arles_trade_node
-				subtract_variable = { which = province_econ_count_max value = 1 }
-				log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) lost a trade node" 
-			}
 		}
 	}
 	if = { #Devolve to pop level 3 tribal
@@ -858,15 +767,6 @@ arles_holding_pop_level_decline_effect = {
 			multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
 			change_variable = { which = province_pop which = province_pop_diff }
 			log = "Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-			if = {
-				limit = { 
-					NOT = { check_variable = { which = province_pop value = 15 } }
-					has_province_modifier = arles_trade_node
-				}
-				remove_province_modifier = arles_trade_node
-				subtract_variable = { which = province_econ_count_max value = 1 }
-				log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) lost a trade node" 
-			}
 		}
 	}
 	if = { #Devolve to pop level 3
@@ -905,15 +805,6 @@ arles_holding_pop_level_decline_effect = {
 			multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
 			change_variable = { which = province_pop which = province_pop_diff }
 			log = "MAINT: Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-			if = {
-				limit = { 
-					NOT = { check_variable = { which = province_pop value = 15 } }
-					has_province_modifier = arles_trade_node
-				}
-				remove_province_modifier = arles_trade_node
-				subtract_variable = { which = province_econ_count_max value = 1 }
-				log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) lost a trade node" 
-			}
 		}
 	}
 	if = { #Devolve to pop level 4
@@ -952,15 +843,6 @@ arles_holding_pop_level_decline_effect = {
 			multiply_variable = { which = province_pop_diff_terr which = province_pop_diff }
 			change_variable = { which = province_pop which = province_pop_diff }
 			log = "MAINT: Changed province pop in [This.GetName] ([This.GetID]) to [This.province_pop.GetValue] by [This.province_pop_diff.GetValue]"
-			if = {
-				limit = { 
-					NOT = { check_variable = { which = province_pop value = 15 } }
-					has_province_modifier = arles_trade_node
-				}
-				remove_province_modifier = arles_trade_node
-				subtract_variable = { which = province_econ_count_max value = 1 }
-				log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) lost a trade node" 
-			}
 		}
 	}
 }
@@ -977,14 +859,6 @@ arles_province_pop_level_decline_effect = {
 		clr_province_flag = minor_pop
 		subtract_variable = { which = province_econ_count_max value = 1 }
 		log = "MAINT: Devolved province modifier to Level 1 based on holding population of [This.province_pop.GetValue]"
-		if = {
-			limit = { 
-				has_province_modifier = arles_trade_node
-			}
-			remove_province_modifier = arles_trade_node
-			subtract_variable = { which = province_econ_count_max value = 1 }
-			log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) lost a trade node"  
-		}
 	}
 	if = { #Devolve to pop level 2
 		limit = { 
@@ -997,20 +871,6 @@ arles_province_pop_level_decline_effect = {
 		clr_province_flag = burg_pop
 		subtract_variable = { which = province_econ_count_max value = 1 }
 		log = "MAINT: Devolved province modifier to Level 2 based on holding population of [This.province_pop.GetValue]" 
-		duchy = {
-			change_variable = { which = trade_node value = 1 }
-			capital_scope = {
-				if = {
-					limit = { 
-						has_province_modifier = arles_trade_node
-						PREV = { check_variable = { which = trade_node value = 0.5 } } 
-					}
-					remove_province_modifier = arles_trade_node
-					subtract_variable = { which = province_econ_count_max value = 1 }
-					log = "DEBUG Trade Region of [This.GetName] ([This.GetID]) lost a trade node"
-				}						
-			}
-		}
 	}
 	if = { #Devolve to pop level 3
 		limit = { 
@@ -1023,9 +883,6 @@ arles_province_pop_level_decline_effect = {
 		clr_province_flag = major_pop
 		subtract_variable = { which = province_econ_count_max value = 1 }
 		log = "MAINT: Devolved province modifier to Level 3 based on holding population of [This.province_pop.GetValue]"
-		duchy = {
-			change_variable = { which = trade_node value = 1 }
-		}
 	}
 	if = { #Devolve to pop level 4
 		limit = {
@@ -1038,8 +895,5 @@ arles_province_pop_level_decline_effect = {
 		clr_province_flag = metropolitan
 		subtract_variable = { which = province_econ_count_max value = 1 }
 		log = "MAINT: Devolved province modifier to Level 4 based on holding population of [This.province_pop.GetValue]" 
-		duchy = {
-			change_variable = { which = trade_node value = 1 }
-		}
 	}
 }

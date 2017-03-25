@@ -2331,10 +2331,6 @@ character_event = {
 					log = "MAINT: arles_base.6 Successfully applied terrain modifiers to holding population diff at [This.holding_pop_diff.GetValue]"
 					
 					#BEGIN TRADE MODIFIERS
-					if = {
-						limit = { location = { has_province_modifier = arles_trade_node } }
-						change_variable = { which = holding_pop_diff_trade value = 0.05 }
-					}
 					
 					log = "MAINT: arles_base.6 Successfully summed trade modifiers at [This.holding_pop_diff_trade.GetValue]"
 					

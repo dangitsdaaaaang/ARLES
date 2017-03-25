@@ -10,13 +10,13 @@ ROOT = {
 			ct_trade_post
 		}
 		static_modifiers.txt
-		technology.txt
 	}
 	decisions = {
 		settlement_decisions.txt
 	}
 	gfx = {
 		interface = {
+			major_modifiers_strip.dds
 			modifier_icons.dds
 		}
 	}
@@ -26,7 +26,7 @@ ROOT = {
 		}
 	}
 	interface = {
-		province.gfx
+		
 	}
 	map = {
 		geographical_regions.txt
