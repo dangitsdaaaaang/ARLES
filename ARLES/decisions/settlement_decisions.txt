@@ -4,1506 +4,702 @@
 #
 # filter = [capital/owned/vassal_owned/sub_realm_owned/realm_owned/dynasty_owned/all]
 # ai_target_filter = [capital/owned/vassal_owned/sub_realm_owned/realm_owned/dynasty_owned/all] (which settlements for which the AI evaluates the decision.)
-#	owned: all settlements owned by the AI
-#	vassal_owned: all settlements owned by direct vassal rulers of the AI's employer
-#	sub_realm_owned: all settlements below the AI's employer
-#	realm_owned: all settlements in the same top realm as the AI
-#	dynasty_owned: all settlements owned by members of the same dynasty
-#	all: all settlements (Avoid if possible. VERY CPU-HEAVY!)
-#	
-
+#    owned: all settlements owned by the AI
+#    vassal_owned: all settlements owned by direct vassal rulers of the AI's employer
+#    sub_realm_owned: all settlements below the AI's employer
+#    realm_owned: all settlements in the same top realm as the AI
+#    dynasty_owned: all settlements owned by members of the same dynasty
+#    all: all settlements (Avoid if possible. VERY CPU-HEAVY!)
+#
 settlement_decisions = {
 
-	convert_tribal_to_castle = {
-		filter = owned
-		ai_target_filter = owned
-		is_high_prio = yes
-		
-		from_potential = {
-			is_feudal = yes
-			higher_tier_than = BARON
-		}
-		
-		potential = {
-			holding_type = tribal
-			holder_scope = {
-				character = FROM
-			}
-		}
-		allow = {
-			OR = {
-				has_building = tb_hillfort_4
-				FROM = { wealth = 100 }
-			}
-		}
-		effect = {
-			if = {
-				limit = { NOT = { has_building = tb_hillfort_4 } }
-				FROM = { wealth = -100 }
-				hidden_tooltip = {
-					add_building = tb_hillfort_1
-					add_building = tb_hillfort_2
-					add_building = tb_hillfort_3
-					add_building = tb_hillfort_4
-				}
-			}
+    convert_tribal_to_castle = {
+        only_playable = yes
+        filter = owned
+        ai_target_filter = owned
+        is_high_prio = yes
 
-			convert_to = CASTLE
+        from_potential = {
+            is_playable = yes
+            is_feudal = yes
+            higher_tier_than = BARON
+        }
+        
+        potential = {
+            holding_type = tribal
+            holder_scope = {
+                character = FROM
+            }
+        }
+        allow = {
+            OR = {
+                has_building = tb_hillfort_4
+                FROM = { wealth = 100 }
+            }
+        }
+        effect = {
+            if = {
+                limit = { NOT = { has_building = tb_hillfort_4 } }
+                FROM = { wealth = -100 }
+                hidden_tooltip = {
+                    add_building = tb_hillfort_1
+                    add_building = tb_hillfort_2
+                    add_building = tb_hillfort_3
+                    add_building = tb_hillfort_4
+                }
+            }
 
-			hidden_tooltip = {
-				refill_holding_levy = yes
-				save_event_target_as = emf_refill_levy_title
-				e_hip = { owner = { character_event = { id = emf_core.41 days = 3 } } }
-			}
-		}
-		
-		revoke_allowed = {
-			always = no
-		}
-		
-		ai_will_do = {
-			factor = 1
-		}
-	}
+            convert_to = CASTLE
 
-	convert_tribal_to_city = {
-		filter = owned
-		ai_target_filter = owned
-		is_high_prio = yes
-		
-		from_potential = {
-			is_republic = yes
-			higher_tier_than = BARON
-		}
-		
-		potential = {
-			holding_type = tribal
-			holder_scope = {
-				character = FROM
-			}
-		}
-		allow = {
-			OR = {
-				has_building = tb_market_town_4
-				FROM = { wealth = 100 }
-			}
-		}
-		effect = {
-			if = {
-				limit = { NOT = { has_building = tb_market_town_4 } }
-				FROM = { wealth = -100 }
-				hidden_tooltip = {
-					add_building = tb_market_town_1
-					add_building = tb_market_town_2
-					add_building = tb_market_town_3
-					add_building = tb_market_town_4
-				}
-			}
+            hidden_tooltip = {
+                refill_holding_levy = yes
+                save_event_target_as = emf_refill_levy_title
+                e_hip = { owner = { character_event = { id = emf_core.41 days = 3 } } }
+            }
+        }
+        
+        revoke_allowed = {
+            always = no
+        }
+        
+        ai_will_do = {
+            factor = 1
+        }
+    }
 
-			convert_to = CITY
-			
-			hidden_tooltip = {
-				refill_holding_levy = yes
-				save_event_target_as = emf_refill_levy_title
-				e_hip = { owner = { character_event = { id = emf_core.41 days = 3 } } }
-			}
-		}
-		revoke_allowed = {
-			always = no
-		}
-		ai_will_do = {
-			factor = 1 # On average ca 1 year before taken
-		}
-	}
-	
-	make_primary = {
-		filter = owned
-		ai_target_filter = owned
-		
-		potential = {
-			is_capital = no
-			holder_scope = {
-				character = FROM
-			}
-			dejure_liege_title = {
-				holder_scope = {
-					character = FROM
-				}
-			}
-		}
-		allow = {
-			FROM = {
-				OR = {
-					AND = {
-						is_merchant_republic = no
-						is_nomadic = no
-					}
-					capital_scope = {
-						ROOT = {
-							location = {
-								NOT = { province = PREVPREV }
-							}
-						}
-					}
-				}
-			}
-		}
-		effect = {
-			make_capital_holding = yes
-		}
-		revoke_allowed = {
-			always = no
-		}
-		ai_will_do = {
-			factor = 1
-			
-			modifier = { # Not if this settlement is not allowed
-				factor = 0
-				NOT = { is_allowed_holding_type = FROM }
-			}
-			
-			modifier = { # Not if existing capital is preferred
-				factor = 0
-				defacto_liege_title = {
-					is_preferred_holding_type = FROM
-				}
-			}
-			
-			modifier = { # Not if this settlement is not preferred and another settlement is
-				factor = 0
-				NOT = { is_preferred_holding_type = FROM }
-				defacto_liege_title = {
-					any_direct_de_jure_vassal_title = {
-						holder = FROM
-						is_preferred_holding_type = FROM
-					}
-				}
-			}
-		}
-	}
-	
-	revoke_primary = {
-		filter = owned
-		ai_target_filter = owned
-		
-		from_potential = {
-			is_nomadic = yes
-			has_dlc = "Horse Lords"
-		}
-		
-		potential = {
-			is_capital = yes
-			holder_scope = {
-				character = FROM
-				capital_holding = {
-					NOT = {
-						title = PREVPREV
-					}
-				}
-			}
-			capital_scope = {
-				has_empty_holding = yes
-			}
-			NOT = { holding_type = nomad }
-		}
-		effect = {
-			revoke_capital_holding = yes
-		}
-		revoke_allowed = {
-			always = no
-		}
-		ai_will_do = {
-			factor = 1
-		}
-	}
+    convert_tribal_to_city = {
+        only_playable = yes
+        filter = owned
+        ai_target_filter = owned
+        is_high_prio = yes
+        
+        from_potential = {
+            is_playable = yes
+            is_republic = yes
+            higher_tier_than = BARON
+        }
+        
+        potential = {
+            holding_type = tribal
+            holder_scope = {
+                character = FROM
+            }
+        }
+        allow = {
+            OR = {
+                has_building = tb_market_town_4
+                FROM = { wealth = 100 }
+            }
+        }
+        effect = {
+            if = {
+                limit = { NOT = { has_building = tb_market_town_4 } }
+                FROM = { wealth = -100 }
+                hidden_tooltip = {
+                    add_building = tb_market_town_1
+                    add_building = tb_market_town_2
+                    add_building = tb_market_town_3
+                    add_building = tb_market_town_4
+                }
+            }
 
-	pillage_settlement = {
-		filter = owned
-		ai_target_filter = owned
-		is_high_prio = yes
-		
-		from_potential = {
-			is_nomadic = yes
-			has_dlc = "Horse Lords"
-		}
-		
-		potential = {
-			NOT = { holding_type = nomad }
-			has_siege = no
-			controlled_by = FROM
-			OR = {
-				num_of_buildings = 2
-				NOT = { holder_scope = { character = FROM } }
-				FROM = { ai = no }
-				location = {
-					OR = {
-						culture = FROM # Must have same culture, or...
-						any_province_holding = { # Another holding
-							NOR = {
-								title = ROOT
-								holding_type = nomad
-							}
-						}
-					}
-				}
-			}
-		}
-		allow = {
-			location = {
-				NOT = { has_province_modifier = recently_burnt_the_land }
-				OR = {
-					owner = { character = FROM }
-					NOT = { has_province_modifier = recently_burnt_the_land_not_owner }
-				}
-			}
-			OR = {
-				owner = {
-					character = FROM
-				}
-				num_of_buildings = 4
-			}
-			NOT = {
-				OR = {
-					custom_tooltip = {
-						text = arles_pillage_dec_tooltip.1
-						AND = {
-							holding_type = castle
-							has_building = ca_town_1
-							NOT = {
-								has_building = ca_wall_1
-								has_building = ca_keep_1
-								has_building = ca_militia_barracks_1
-								has_building = ca_training_grounds_1
-								has_building = ca_barracks_1
-								has_building = ca_stable_1
-								has_building = ca_shipyard_1
-								has_building = ca_steppe_barracks_1
-								has_building = ca_steppe_stable_1
-								has_building = ca_land_clearance
-							}
-						}
-					}
-					custom_tooltip = {
-						text = arles_pillage_dec_tooltip.2
-						AND = {
-							holding_type = city
-							has_building = ct_marketplace_1
-							NOT = {
-								has_building = ct_wall_1
-								has_building = ct_rep_arsenal_1
-								has_building = ct_training_grounds_1
-								has_building = ca_barracks_1
-								has_building = ct_guard_1
-								has_building = ct_shipyard_1
-								has_building = ct_land_clearance
-							}
-						}
-					}
-					custom_tooltip = {
-						text = arles_pillage_dec_tooltip.3
-						AND = {
-							holding_type = temple
-							has_building = tp_town_1
-							NOT = {
-								has_building = tp_wall_1
-								has_building = tp_barracks_1
-								has_building = tp_elite_barracks_1
-								has_building = tp_shipyard_1
-								has_building = tp_land_clearance
-							}
-						}
-					}
-					custom_tooltip = {
-						text = arles_pillage_dec_tooltip.4
-						AND = {
-							holding_type = tribal
-							has_building = tb_market_town_1
-							NOT = {
-								has_building = tb_hillfort_1
-								has_building = tb_shipyard_1
-								has_building = tb_training_grounds_1
-								has_building = tb_war_camp_1
-								has_building = tb_practice_range_1
-								has_building = tb_steppe_barracks_1
-								has_building = tb_steppe_stable_1
-								has_building = tb_arsenal_1
-							}
-						}
-					}
-				}
-			}
-			OR = {
-				FROM = {
-					independent = yes
-				}
-				custom_tooltip = { 
-					text = TT_NOT_SAME_REALM
-					hidden_tooltip = {
-						FROM = {
-							top_liege = {
-								PREVPREV = {
-									holder_scope = {
-										top_liege = {
-											NOT = { character = PREVPREVPREV }
-										}
-									} 
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		effect = {
-			if = {
-				limit = { NOT = { holding_type = tribal } }
-				if = {
-					limit = {
-						location = { owner = { character = FROM } }
-					}
-					custom_tooltip = {
-						text = emf_nomad_ctt_plunder_from_nontribal
-						hidden_tooltip = { FROM = { wealth = 50 } }
-					}
-				}
-				if = {
-					limit = {
-						location = { owner = { NOT = { character = FROM } } }
-					}
-					custom_tooltip = {
-						text = emf_nomad_ctt_plunder_from_nontribal_not_owner
-						hidden_tooltip = { FROM = { wealth = 10 } }
-					}
-				}
-				hidden_tooltip = {
-					FROM = {
-						random_list = {
-							10 = { military_techpoints = 5 }
-							10 = { economy_techpoints  = 5 }
-							10 = { culture_techpoints  = 5 }
-						}
-					}
-				}
-			}
-			if = {
-				limit = { holding_type = tribal }
-				if = {
-					limit = {
-						location = { owner = { character = FROM } }
-					}
-					custom_tooltip = {
-						text = emf_nomad_ctt_plunder_from_tribal
-						hidden_tooltip = { FROM = { wealth = 25 } }
-					}
-				}
-				if = {
-					limit = {
-						location = { owner = { NOT = { character = FROM } } }
-					}
-					custom_tooltip = {
-						text = emf_nomad_ctt_plunder_from_tribal_not_owner
-						hidden_tooltip = { FROM = { wealth = 5 } }
-					}
-				}
-				hidden_tooltip = {
-					FROM = {
-						random_list = {
-							10 = { military_techpoints = 2 }
-							10 = { economy_techpoints  = 2 }
-							10 = { culture_techpoints  = 2 }
-						}
-					}
-				}
-			}
+            convert_to = CITY
+            
+            hidden_tooltip = {
+                refill_holding_levy = yes
+                save_event_target_as = emf_refill_levy_title
+                e_hip = { owner = { character_event = { id = emf_core.41 days = 3 } } }
+            }
+        }
+        revoke_allowed = {
+            always = no
+        }
+        ai_will_do = {
+            factor = 1 # On average ca 1 year before taken
+        }
+    }
+    
+    make_primary = {
+        only_playable = yes
+        filter = owned
+        ai_target_filter = owned
 
-			if = {
-				limit = { # Destroy the settlement?
-					owner = { character = FROM }
-					NOT = { num_of_buildings = 2 }
-					OR = {
-						FROM = { ai = no } # Player can destroy whatever he owns
-						location = {
-							OR = {
-								culture = FROM # Must have same culture, or...
-								any_province_holding = { # Another holding
-									NOR = {
-										title = ROOT
-										holding_type = nomad
-									}
-								}
-							}
-						}
-					}
-				}
-				custom_tooltip = { text = emf_nomad_ctt_pillage_destroy_settlement }
-				location = {
-					if = {
-						limit = { owner = { character = FROM } }
-						add_province_modifier = {
-							modifier = burnt_the_land
-							years = 8
-							stacking = yes
-						}
-						add_province_modifier = {
-							modifier = recently_burnt_the_land
-							months = 6
-						}
-					}
-					if = {
-						limit = { owner = { NOT = { character = FROM } } }
-						add_province_modifier = {
-							modifier = recently_burnt_the_land_not_owner
-							years = 10
-						}
-					}
-				}
-				hidden_tooltip = { destroy_settlement = THIS }
-				break = yes
-			}
+        from_potential = {
+            is_playable = yes
+        }
+        
+        potential = {
+            is_capital = no
+            holder_scope = {
+                character = FROM
+            }
+            dejure_liege_title = {
+                holder_scope = {
+                    character = FROM
+                }
+            }
+        }
+        allow = {
+            FROM = {
+                OR = {
+                    AND = {
+                        is_merchant_republic = no
+                        is_nomadic = no
+                    }
+#                   capital_scope = {
+#                       ROOT = {
+#                           location = {
+#                               NOT = { province = PREVPREV }
+#                           }
+#                       }
+#                   }
+                }
+            }
+        }
+        effect = {
+            make_capital_holding = yes
+        }
+        revoke_allowed = {
+            always = no
+        }
+        ai_will_do = {
+            factor = 1
+            
+            modifier = { # Not if this settlement is not allowed
+                factor = 0
+                NOT = { is_allowed_holding_type = FROM }
+            }
+            
+            modifier = { # Not if existing capital is preferred
+                factor = 0
+                defacto_liege_title = {
+                    is_preferred_holding_type = FROM
+                }
+            }
+            
+            modifier = { # Not if this settlement is not preferred and another settlement is
+                factor = 0
+                NOT = { is_preferred_holding_type = FROM }
+                defacto_liege_title = {
+                    any_direct_de_jure_vassal_title = {
+                        holder = FROM
+                        is_preferred_holding_type = FROM
+                    }
+                }
+            }
+        }
+    }
+    
+    revoke_primary = {
+        only_playable = yes
+        filter = owned
+        ai_target_filter = owned
+        
+        from_potential = {
+            is_playable = yes
+            is_nomadic = yes
+            has_dlc = "Horse Lords"
+        }
+        
+        potential = {
+            is_capital = yes
+            holder_scope = {
+                character = FROM
+                capital_holding = {
+                    NOT = {
+                        title = PREVPREV
+                    }
+                }
+            }
+            capital_scope = {
+                has_empty_holding = yes
+            }
+            NOT = { holding_type = nomad }
+        }
+        effect = {
+            revoke_capital_holding = yes
+        }
+        revoke_allowed = {
+            always = no
+        }
+        ai_will_do = {
+            factor = 1
+        }
+    }
 
-			# Just destroy buildings...
+    pillage_settlement = {
+        only_independent = yes
+        filter = owned
+        ai_target_filter = owned
+        is_high_prio = yes
+        
+        from_potential = {
+            is_playable = yes
+            is_nomadic = yes
+            has_dlc = "Horse Lords"
+        }
+        
+        potential = {
+            NOT = { holding_type = nomad }
+            owner = { character = FROM }
+            has_siege = no
+            controlled_by = FROM
+            OR = {
+                num_of_buildings = 2
+                NOT = { holder_scope = { character = FROM } }
+                FROM = { ai = no }
+                location = {
+                    OR = {
+                        culture = FROM # Must have same culture, or...
+                        any_province_holding = { # Another holding
+                            NOR = {
+                                title = ROOT
+                                holding_type = nomad
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        allow = {
+            location = {
+                NOT = { has_province_modifier = recently_burnt_the_land }
+                OR = {
+                    owner = { character = FROM }
+                    NOT = { has_province_modifier = recently_burnt_the_land_not_owner }
+                }
+            }
+            OR = {
+                owner = {
+                    character = FROM
+                }
+                num_of_buildings = 4
+            }
+            NOT = {
+                OR = {
+                    custom_tooltip = {
+                        text = arles_pillage_dec_tooltip.1
+                        AND = {
+                            holding_type = castle
+                            has_building = ca_town_1
+                            NOT = {
+                                has_building = ca_wall_1
+                                has_building = ca_keep_1
+                                has_building = ca_militia_barracks_1
+                                has_building = ca_training_grounds_1
+                                has_building = ca_barracks_1
+                                has_building = ca_stable_1
+                                has_building = ca_shipyard_1
+                                has_building = ca_steppe_barracks_1
+                                has_building = ca_steppe_stable_1
+                                has_building = ca_land_clearance
+                            }
+                        }
+                    }
+                    custom_tooltip = {
+                        text = arles_pillage_dec_tooltip.2
+                        AND = {
+                            holding_type = city
+                            has_building = ct_marketplace_1
+                            NOT = {
+                                has_building = ct_wall_1
+                                has_building = ct_rep_arsenal_1
+                                has_building = ct_training_grounds_1
+                                has_building = ca_barracks_1
+                                has_building = ct_guard_1
+                                has_building = ct_shipyard_1
+                                has_building = ct_land_clearance
+                            }
+                        }
+                    }
+                    custom_tooltip = {
+                        text = arles_pillage_dec_tooltip.3
+                        AND = {
+                            holding_type = temple
+                            has_building = tp_town_1
+                            NOT = {
+                                has_building = tp_wall_1
+                                has_building = tp_barracks_1
+                                has_building = tp_elite_barracks_1
+                                has_building = tp_shipyard_1
+                                has_building = tp_land_clearance
+                            }
+                        }
+                    }
+                    custom_tooltip = {
+                        text = arles_pillage_dec_tooltip.4
+                        AND = {
+                            holding_type = tribal
+                            has_building = tb_market_town_1
+                            NOT = {
+                                has_building = tb_hillfort_1
+                                has_building = tb_shipyard_1
+                                has_building = tb_training_grounds_1
+                                has_building = tb_war_camp_1
+                                has_building = tb_practice_range_1
+                                has_building = tb_steppe_barracks_1
+                                has_building = tb_steppe_stable_1
+                                has_building = tb_arsenal_1
+                            }
+                        }
+                    }
+                }
+            }
+            OR = {
+                FROM = {
+                    independent = yes
+                }
+                custom_tooltip = { 
+                    text = TT_NOT_SAME_REALM
+                    hidden_tooltip = {
+                        FROM = {
+                            top_liege = {
+                                PREVPREV = {
+                                    holder_scope = {
+                                        top_liege = {
+                                            NOT = { character = PREVPREVPREV }
+                                        }
+                                    } 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        effect = {
+            if = {
+                limit = { NOT = { holding_type = tribal } }
+                if = {
+                    limit = {
+                        location = { owner = { character = FROM } }
+                    }
+                    custom_tooltip = {
+                        text = emf_nomad_ctt_plunder_from_nontribal
+                        hidden_tooltip = { FROM = { wealth = 50 } }
+                    }
+                }
+                if = {
+                    limit = {
+                        location = { owner = { NOT = { character = FROM } } }
+                    }
+                    custom_tooltip = {
+                        text = emf_nomad_ctt_plunder_from_nontribal_not_owner
+                        hidden_tooltip = { FROM = { wealth = 10 } }
+                    }
+                }
+                hidden_tooltip = {
+                    FROM = {
+                        random_list = {
+                            10 = { military_techpoints = 5 }
+                            10 = { economy_techpoints  = 5 }
+                            10 = { culture_techpoints  = 5 }
+                        }
+                    }
+                }
+            }
+            if = {
+                limit = { holding_type = tribal }
+                if = {
+                    limit = {
+                        location = { owner = { character = FROM } }
+                    }
+                    custom_tooltip = {
+                        text = emf_nomad_ctt_plunder_from_tribal
+                        hidden_tooltip = { FROM = { wealth = 25 } }
+                    }
+                }
+                if = {
+                    limit = {
+                        location = { owner = { NOT = { character = FROM } } }
+                    }
+                    custom_tooltip = {
+                        text = emf_nomad_ctt_plunder_from_tribal_not_owner
+                        hidden_tooltip = { FROM = { wealth = 5 } }
+                    }
+                }
+                hidden_tooltip = {
+                    FROM = {
+                        random_list = {
+                            10 = { military_techpoints = 2 }
+                            10 = { economy_techpoints  = 2 }
+                            10 = { culture_techpoints  = 2 }
+                        }
+                    }
+                }
+            }
 
-			custom_tooltip = {
-				text = emf_nomad_ctt_pillage_destroy_buildings
-				hidden_tooltip = {
-					if = {
-						limit = { owner = { character = FROM } }
-						destroy_random_building = THIS
-						destroy_random_building = THIS
-					}
-					if = {
-						limit = { owner = { NOT = { character = FROM } } }
-						destroy_random_building = THIS
-					}
-				}
-			}
+            if = {
+                limit = { # Destroy the settlement?
+                    owner = { character = FROM }
+                    NOT = { num_of_buildings = 2 }
+                    OR = {
+                        FROM = { ai = no } # Player can destroy whatever he owns
+                        location = {
+                            OR = {
+                                culture = FROM # Must have same culture, or...
+                                any_province_holding = { # Another holding
+                                    NOR = {
+                                        title = ROOT
+                                        holding_type = nomad
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                custom_tooltip = { text = emf_nomad_ctt_pillage_destroy_settlement }
+                location = {
+                    if = {
+                        limit = { owner = { character = FROM } }
+                        add_province_modifier = {
+                            modifier = burnt_the_land
+                            years = 8
+                            stacking = yes
+                        }
+                        add_province_modifier = {
+                            modifier = recently_burnt_the_land
+                            months = 6
+                        }
+                    }
+                    if = {
+                        limit = { owner = { NOT = { character = FROM } } }
+                        add_province_modifier = {
+                            modifier = recently_burnt_the_land_not_owner
+                            years = 10
+                        }
+                    }
+                }
+                hidden_tooltip = { destroy_settlement = THIS }
+                break = yes
+            }
 
-			location = {
-				if = {
-					limit = { owner = { character = FROM } }
-					add_province_modifier = {
-						modifier = burnt_the_land
-						years = 8
-						stacking = yes
-					}
-					add_province_modifier = {
-						modifier = recently_burnt_the_land
-						months = 6
-					}
-				}
-				if = {
-					limit = { owner = { NOT = { character = FROM } } }
-					add_province_modifier = {
-						modifier = recently_burnt_the_land_not_owner
-						years = 10
-					}
-				}
-			}
-			
-			#BEGIN ARLES PILLAGE EFFECT
-			log = "DECISION: pillage_settlement Original holding population in [This.GetName] ([This.GetID]) set at [This.holding_pop.GetValue]"
-			if = {
-				limit = {
-					has_building = tb_market_town_1
-					NOT = { has_building = tb_market_town_2 }
-				}
-				custom_tooltip = {
-					text = arles_base.8.opt.b.tooltip
-					hidden_tooltip = {
-						set_variable = { which = holding_pop_dmg value = 0.67 } #33% population loss
-						multiply_variable = { which = holding_pop which = holding_pop_dmg }
-					}
-				}
-			}
-			if = {
-				limit = {
-					OR = {
-						AND = { 
-							has_building = ca_town_1
-							NOT = { has_building = ca_town_2 }
-						}
-						AND = {
-							has_building = ct_marketplace_1
-							NOT = { has_building = ct_marketplace_2 }
-						}
-						AND = {
-							has_building = tp_town_1
-							NOT = { has_building = tp_town_2 }
-						}
-						AND = {
-							has_building = tb_market_town_2
-							NOT = { has_building = tb_market_town_3 }
-						}
-					}
-				}
-				custom_tooltip = {
-					text = arles_base.8.opt.b.tooltip
-					hidden_tooltip = {
-						set_variable = { which = holding_pop_dmg value = 0.67 } #33% population loss
-						multiply_variable = { which = holding_pop which = holding_pop_dmg }
-					}
-				}
-			}
-			if = {
-				limit = {
-					OR = {
-						AND = {
-							has_building = ca_town_2
-							NOT = { has_building = ca_town_3 }
-						}
-						AND = {
-							has_building = ct_marketplace_2
-							NOT = { has_building = ct_marketplace_3 }
-						}
-						AND = {
-							has_building = tp_town_2
-							NOT = { has_building = tp_town_3 }
-						}
-						AND = {
-							has_building = tb_market_town_3
-							NOT = { has_building = tb_market_town_4 }
-						}
-					}
-				}
-				custom_tooltip = {
-					text = arles_base.8.opt.b.tooltip
-					hidden_tooltip = {
-						set_variable = { which = holding_pop_dmg value = 0.80 } #20% population loss
-						multiply_variable = { which = holding_pop which = holding_pop_dmg }
-					}
-				}
-			}
-			if = {
-				limit = {
-					OR = {
-						AND = {
-							has_building = ca_town_3
-							NOT = { has_building = ca_town_4 }
-						}
-						AND = {
-							has_building = ct_marketplace_3
-							NOT = { has_building = ct_marketplace_4 }
-						}
-						AND = {
-							has_building = tp_town_3
-							NOT = { has_building = tp_town_4 }
-						}
-						has_building = tb_market_town_4
-					}
-				}
-				custom_tooltip = {
-					text = arles_base.8.opt.b.tooltip
-					hidden_tooltip = {
-						set_variable = { which = holding_pop_dmg value = 0.80 } #20% population loss
-						multiply_variable = { which = holding_pop which = holding_pop_dmg }
-					}
-				}
-			}
-			if = {
-				limit = {
-					OR = {
-						AND = {
-							has_building = ca_town_4
-							NOT = { has_building = ca_town_5 }
-						}
-						AND = {
-							has_building = ct_marketplace_4
-							NOT = { has_building = ct_marketplace_5 }
-						}
-						AND = {
-							has_building = tp_town_4
-							NOT = { has_building = tp_town_5 }
-						}
-					}
-				}
-				custom_tooltip = {
-					text = arles_base.8.opt.b.tooltip
-					hidden_tooltip = {
-						set_variable = { which = holding_pop_dmg value = 0.85 } #15% population loss
-						multiply_variable = { which = holding_pop which = holding_pop_dmg }
-					}
-				}
-			}
-			if = {
-				limit = {
-					OR = {
-						has_building = ca_town_5
-						AND = {
-							has_building = ct_marketplace_5
-							NOT = { has_building = ct_marketplace_6 }
-						}
-						AND = {
-							has_building = tp_town_5
-							NOT = { has_building = tp_town_6 }
-						}
-					}
-				}
-				custom_tooltip = {
-					text = arles_base.8.opt.b.tooltip
-					hidden_tooltip = {
-						set_variable = { which = holding_pop_dmg value = 0.85 } #15% population loss
-						multiply_variable = { which = holding_pop which = holding_pop_dmg }
-					}
-				}
-			}
-			if = {
-				limit = {
-					OR = {
-						has_building = ct_marketplace_6
-						has_building = tp_town_6
-					}
-				}
-				custom_tooltip = {
-					text = arles_base.8.opt.b.tooltip
-					hidden_tooltip = {
-						set_variable = { which = holding_pop_dmg value = 0.90 } #10% population loss
-						multiply_variable = { which = holding_pop which = holding_pop_dmg }
-					}
-				}
-			}			
-			
-			#BEGIN HOLDING LEVEL ASSIGNMENT
-			hidden_tooltip = {
-				arles_holding_pop_level_decline_effect = yes
-				log = "DECISION: pillage_settlement Reached end of holding population calculations in [This.GetName] ([This.GetID]), with final holding population at [This.holding_pop.GetValue]"
-				location = {	
-					#BEGIN POPULATION LEVEL ASSIGNMENT
-					arles_province_pop_level_decline_effect = yes
-				}
-			}
-		}
-		revoke_allowed = {
-			always = no
-		}
-		ai_will_do = {
-			factor = 1
-			
-			modifier = { # Only for tribal holdings
-				factor = 0
-				NOT = { holding_type = tribal }
-			}
-			modifier = { # Magyars shouldn't pillage Hungary before they settle there
-				factor = 0
-				de_jure_liege_or_above = k_hungary
-				FROM = { culture = hungarian }
-			}
-		}
-	}
-	
-	adopt_tribalism = {
-		filter = sub_realm_owned
-		ai_target_filter = sub_realm_owned
-		is_high_prio = yes
-		
-		from_potential = {
-			is_nomadic = yes
-			is_landed = yes
-			OR = {
-				ai = yes
-				AND = {
-					OR = {
-						has_dlc = "The Sword of Islam"
-						NOT = { religion_group = muslim }
-					}
-					OR = {
-						has_dlc = "The Old Gods"
-						NOR = {
-							religion_group = pagan_group
-							religion_group = zoroastrian_group
-						}
-					}
-					OR = {
-						has_dlc = "Sons of Abraham"
-						NOT = { religion_group = jewish_group }
-					}
-					OR = {
-						has_dlc = "Rajas of India"
-						NOT = { religion_group = indian_group }
-					}
-				}
-			}
-		}
-		potential = {
-			OR = {
-				holding_type = tribal
-				AND = {
-					holding_type = nomad
-					holder_scope = {
-						character = FROM
-					}
-				}
-			}
-			holder_scope = {
-				OR = {
-					character = FROM
-					AND = {
-						is_liege_or_above = FROM
-						NOR = {
-							is_nomadic = yes
-							any_liege = {
-								NOT = { character = FROM }
-								is_nomadic = yes
-							}
-						}
-					}
-				}
-			}
-		}
-		allow = {
-			OR = {
-				is_capital = yes
-				location = {
-					owner = {
-						character = FROM
-					}
-				}
-			}
-			has_siege = no
-			FROM = {
-				independent = yes
-				war = no
-			}
-			OR = {
-				holding_type = tribal
-				AND = {
-					holding_type = nomad
-					has_building = no_baghatur_council_2
-				}
-			}
-		}
-		effect = {
-			# Change culture and religion of new capital province and possibly more provinces depending on nomad population_and_manpower
-			location = {
-				if = {
-					limit = { NOT = { culture = FROM } }
-					culture = FROM
-				}
-				if = {
-					limit = { NOT = { religion = FROM } }
-					religion = FROM
-				}
-			}
-			# Change name of Avaria to Hungary if relevant.
-			if = {
-				limit = {
-					FROM = { culture = hungarian }
-					location = { kingdom = { title = k_hungary } }
-					k_hungary = { has_holder = no }
-				}
-				set_global_flag = avar_khaganate_renamed
-				if = {
-					limit = { NOT = { is_title_active = THIS } }
-					activate_title = { title = THIS status = yes }
-				}
-				k_hungary = {
-					reset_coa = THIS
-					set_name = ""
-					adjective = ""
-					grant_title = {
-						target = FROM
-						type = created
-					}
-				}
-			}
-			hidden_tooltip = {
-				any_vassal = {
-					limit = { is_nomadic = no }
-					any_demesne_title = {
-						limit = {
-							higher_tier_than = DUKE
-							temporary = no
-						}
-						usurp_title = FROM
-					}
-				}
-				location = {
-					duchy = {
-						if = {
-							limit = {
-								owner = {
-									same_realm = FROM
-									NOT = { character = FROM }
-								}
-							}
-							usurp_title = FROM
-						}
-					}
-				}
-				dejure_liege_title = {
-					if = {
-						limit = { NOT = { holder = FROM } }
-						usurp_title = FROM
-					}
-				}
-				if = {
-					limit = { NOT = { holder = FROM } }
-					usurp_title = FROM
-				}
-				make_capital_holding = yes
-			}
-			FROM = {
-				capital = PREV
-			}
-			custom_tooltip = { 
-				text = TT_BUILD_TRIBAL_HOLDINGS
-			}
-			FROM = {
-				primary_title = {
-					PREV = {
-						custom_tooltip = { 
-							text = TT_KHAN_INDEPENDENCE
-						}
-						most_prestigious_clan_vassal = {
-							custom_tooltip = { 
-								text = TT_NEW_KHAN
-							}
-						}
-					}
-				}
-				if = {
-					limit = {
-						ai = no
-					}
-					chronicle = {
-						entry = CHRONICLE_ADOPTED_TRIBALISM
-						picture = GFX_evt_tribal_lands
-					}
-				}
-				set_government_type = tribal_government
-				if = {
-					limit = {
-						higher_tier_than = COUNT
-					}
-					primary_title = {
-						add_law = tribal_organization_0
-						add_law = centralization_0
-					}
-				}
-				set_character_flag = emf_context_nomadic_to_tribal
-				any_playable_ruler = {
-					limit = {
-						NOT = { character = FROM }
-						ai = no
-					}
-					narrative_event = { id = HL.2 }
-				}
-			}
-		}
-		revoke_allowed = {
-			always = no
-		}
-		ai_will_do = {
-			factor = 0
-		}
-	}
-	
-	nomad_adopt_feudalism = {
-		filter = sub_realm_owned
-		ai_target_filter = sub_realm_owned
-		is_high_prio = yes
-		
-		from_potential = {
-			is_nomadic = yes
-			is_landed = yes
-			OR = {
-				ai = yes
-				AND = {
-					OR = {
-						has_dlc = "The Sword of Islam"
-						NOT = { religion_group = muslim }
-					}
-					OR = {
-						has_dlc = "The Old Gods"
-						NOR = {
-							religion_group = pagan_group
-							religion_group = zoroastrian_group
-						}
-					}
-					OR = {
-						has_dlc = "Sons of Abraham"
-						NOT = { religion_group = jewish_group }
-					}
-					OR = {
-						has_dlc = "Rajas of India"
-						NOT = { religion_group = indian_group }
-					}
-				}
-			}
-		}
-		potential = {
-			OR = {
-				holding_type = castle
-				AND = {
-					holding_type = temple
-					holder_scope = {
-						religion_group = muslim
-					}
-				}
-			}
-			holder_scope = {
-				OR = {
-					character = FROM
-					AND = {
-						is_liege_or_above = FROM
-						NOR = {
-							is_nomadic = yes
-							any_liege = {
-								NOT = { character = FROM }
-								is_nomadic = yes
-							}
-						}
-					}
-				}
-			}
-		}
-		allow = {
-			OR = {
-				is_capital = yes
-				location = {
-					owner = {
-						character = FROM
-					}
-				}
-			}
-			has_siege = no
-			FROM = {
-				independent = yes
-				war = no
-			}
-		}
-		effect = {
-			# Change culture and religion of new capital province and possibly more provinces depending on nomad population_and_manpower
-			location = {
-				if = {
-					limit = { NOT = { culture = FROM } }
-					culture = FROM
-				}
-				if = {
-					limit = { NOT = { religion = FROM } }
-					religion = FROM
-				}
-			}
-			if = {
-				limit = { FROM = { population_and_manpower = 5000 } }
-				custom_tooltip = { text = nomad_settle_conversion_tooltip }
-			}
-			hidden_tooltip = { # Pre-settlement accounting
-				FROM = { character_event = { id = emf_nomad.0 } }
-			}
-			# Change name of Avaria to Hungary if relevant.
-			if = {
-				limit = {
-					FROM = { culture = hungarian }
-					location = { kingdom = { title = k_hungary } }
-					k_hungary = { has_holder = no }
-				}
-				set_global_flag = avar_khaganate_renamed
-				if = {
-					limit = { NOT = { is_title_active = THIS } }
-					activate_title = { title = THIS status = yes }
-				}
-				k_hungary = {
-					reset_coa = THIS
-					set_name = ""
-					adjective = ""
-					grant_title = {
-						target = FROM
-						type = created
-					}
-				}
-			}
-			# Spawn event troops based on amount of empty holdings abandoned.
-			custom_tooltip = {
-				text = NOMAD_CONVERSION_TROOP_SPAWN
-				hidden_tooltip = {
-					location = {
-						save_event_target_as = emf_new_capital
-						FROM = { character_event = { id = emf_nomad.5 } }
-						clear_event_target = emf_new_capital
-					}
-				}
-			}
-			hidden_tooltip = {
-				any_vassal = {
-					limit = { is_nomadic = no }
-					any_demesne_title = {
-						limit = { higher_tier_than = DUKE }
-						usurp_title = FROM
-					}
-				}
-				location = {
-					duchy = {
-						if = {
-							limit = {
-								owner = {
-									same_realm = FROM
-									NOT = { character = FROM }
-								}
-							}
-							usurp_title = FROM
-						}
-					}
-				}
-				dejure_liege_title = {
-					if = {
-						limit = { NOT = { holder = FROM } }
-						usurp_title = FROM
-					}
-				}
-				if = {
-					limit = { NOT = { holder = FROM } }
-					usurp_title = FROM
-				}
-				make_capital_holding = yes
-			}
-			FROM = {
-				capital = PREV
-				primary_title = {
-					PREV = { 
-						custom_tooltip = { 
-							text = TT_KHAN_INDEPENDENCE
-						}
-						most_prestigious_clan_vassal = {
-							custom_tooltip = { 
-								text = TT_NEW_KHAN
-							}
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { religion_group = muslim } }
-					if = {
-						limit = { ai = no }
-						chronicle = {
-							entry = CHRONICLE_NOMAD_ADOPTED_FEUDALISM
-							picture = GFX_evt_castle_construction
-						}
-					}
-					set_government_type = feudal_government
-				}
-				if = {
-					limit = { religion_group = muslim }
-					if = {
-						limit = { ai = no }
-						chronicle = {
-							entry = CHRONICLE_NOMAD_ADOPTED_IQTA
-							picture = GFX_evt_castle_construction
-						}
-					}
-					set_government_type = muslim_government
-				}
-				set_character_flag = emf_context_nomadic_to_feudal
-				hidden_tooltip = {
-					primary_title = {
-						if = {
-							limit = { is_law_potential = administration_0 }
-							add_law = administration_0
-						}
-						if = {
-							limit = { is_law_potential = centralization_0 }
-							add_law = centralization_0
-						}
-					}
+            # Just destroy buildings...
 
-					# Post-settlement effects / adjustments (incl. culture
-					# settlement and anti-border-gore measures) ...
-					character_event = { id = emf_nomad.1 }
-				}
-				any_playable_ruler = {
-					limit = {
-						NOT = { character = FROM }
-						ai = no
-					}
-					narrative_event = { id = HL.1 }
-				}
-			}
-		}
-		revoke_allowed = {
-			always = no
-		}
-		ai_will_do = {
-			factor = 1 # On average ca 1 year before taken
-			
-			modifier = {
-				factor = 0
-				FROM = {
-					trait = content
-					NOT = { num_of_subrealm_castles = 10 }
-				}
-			}
-			modifier = {
-				factor = 0
-				FROM = {
-					trait = ambitious
-					NOT = { num_of_subrealm_castles = 35 }
-				}
-			}
-			modifier = {
-				factor = 0
-				FROM = {
-					NOR = {
-						trait = content
-						trait = ambitious
-					}
-					NOT = { num_of_subrealm_castles = 15 }
-				}
-			}
-			modifier = {
-				factor = 0
-				NOT = {
-					FROM = {
-						holding_diff = {
-							first_type = castle
-							first_count_vassals = yes
-							second_type = none
-							value = 1.5
-						}
-					}
-				}
-			}
-			modifier = {
-				factor = 0
-				FROM = {
-					OR = {
-						has_landed_title = e_mongol_empire
-						has_landed_title = e_golden_horde
-						has_landed_title = e_chagatai
-					}
-				}
-			}
-		}
-	}
-	
-	nomad_adopt_republicanism = {
-		filter = sub_realm_owned
-		ai_target_filter = sub_realm_owned
-		is_high_prio = yes
-		
-		from_potential = {
-			independent = yes
-			is_nomadic = yes
-			OR = {
-				ai = yes
-				AND = {
-					has_dlc = "The Republic"
-					OR = {
-						has_dlc = "The Sword of Islam"
-						NOT = { religion_group = muslim }
-					}
-					OR = {
-						has_dlc = "The Old Gods"
-						NOR = {
-							religion_group = pagan_group
-							religion_group = zoroastrian_group
-						}
-					}
-					OR = {
-						has_dlc = "Sons of Abraham"
-						NOT = { religion_group = jewish_group }
-					}
-					OR = {
-						has_dlc = "Rajas of India"
-						NOT = { religion_group = indian_group }
-					}
-				}
-			}
-		}
-		potential = {
-			holding_type = city
-			OR = {
-				FROM = { ai = yes }
-				location = { port = yes }
-			}
-			holder_scope = {
-				OR = {
-					character = FROM
-					AND = {
-						is_liege_or_above = FROM
-						NOR = {
-							is_nomadic = yes
-							any_liege = {
-								NOT = { character = FROM }
-								is_nomadic = yes
-							}
-						}
-					}
-				}
-			}
-		}
-		allow = {
-			OR = {
-				is_capital = yes
-				location = {
-					owner = {
-						character = FROM
-					}
-				}
-			}
-			has_siege = no
-			FROM = {
-				independent = yes
-				is_female = no
-				war = no
-			}
-		}
-		effect = {
-			# Change culture and religion of new capital province and possibly more provinces depending on nomad population_and_manpower
-			location = {
-				if = {
-					limit = { NOT = { culture = FROM } }
-					culture = FROM
-				}
-				if = {
-					limit = { NOT = { religion = FROM } }
-					religion = FROM
-				}
-			}
-			if = {
-				limit = { FROM = { population_and_manpower = 5000 } }
-				custom_tooltip = { text = nomad_settle_conversion_tooltip }
-			}
-			hidden_tooltip = { # Pre-settlement accounting
-				FROM = { character_event = { id = emf_nomad.0 } }
-			}
-			# Change name of Avaria to Hungary if relevant.
-			if = {
-				limit = {
-					FROM = { culture = hungarian }
-					location = { kingdom = { title = k_hungary } }
-					k_hungary = { has_holder = no }
-				}
-				set_global_flag = avar_khaganate_renamed
-				if = {
-					limit = { NOT = { is_title_active = THIS } }
-					activate_title = { title = THIS status = yes }
-				}
-				k_hungary = {
-					reset_coa = THIS
-					set_name = ""
-					adjective = ""
-					grant_title = {
-						target = FROM
-						type = created
-					}
-				}
-			}
-			# Spawn event troops based on amount of empty holdings abandoned.
-			custom_tooltip = {
-				text = NOMAD_CONVERSION_TROOP_SPAWN
-				hidden_tooltip = {
-					location = {
-						save_event_target_as = emf_new_capital
-						FROM = { character_event = { id = emf_nomad.5 } }
-						clear_event_target = emf_new_capital
-					}
-				}
-			}
-			hidden_tooltip = {
-				any_vassal = {
-					limit = { is_nomadic = no }
-					any_demesne_title = {
-						limit = { higher_tier_than = DUKE }
-						usurp_title = FROM
-					}
-				}
-				location = {
-					duchy = {
-						if = {
-							limit = {
-								owner = {
-									same_realm = FROM
-									NOT = { character = FROM }
-								}
-							}
-							usurp_title = FROM
-						}
-					}
-				}
-				dejure_liege_title = {
-					if = {
-						limit = { NOT = { holder = FROM } }
-						usurp_title = FROM
-					}
-				}
-				if = {
-					limit = { NOT = { holder = FROM } }
-					usurp_title = FROM
-				}
-				make_capital_holding = yes
-			}
-			FROM = {
-				capital = PREV
-				primary_title = {
-					FROM = {
-						custom_tooltip = { 
-							text = TT_KHAN_INDEPENDENCE
-						}
-						most_prestigious_clan_vassal = {
-							custom_tooltip = { 
-								text = TT_NEW_KHAN
-							}
-						}
-					}
-				}
-			}
-			hidden_tooltip = {
-				if = {
-					limit = { location = { port = yes } }
-					FROM = {
-						primary_title = {
-							create_title = {
-								tier = DUKE
-								landless = no
-								temporary = no
-								custom_created = yes
-								culture = PREV
-								holder = PREV
-								base_title = THIS
-							}
-						}
-						create_family_palace = yes
-						if = {
-							limit = {
-								NOT = {
-									num_of_government_vassals = {
-										government = merchant_republic_government
-										value = 1
-									}
-								}
-							}
-							any_unique_dynasty_vassal = { # gives random vassals a family palace
-								count = 4
-								limit = {
-									is_female = no
-									OR = {
-										is_republic = yes
-										is_tribal = yes
-									}
-									is_patrician = no
-									prisoner = no
-									NOT = { trait = incapable }
-									is_adult = yes
-									NOT = { 
-										dynasty = none 
-									}
-								}
-								if = {
-									limit = { is_tribal = yes }
-									any_demesne_title = {
-										limit = {
-											tier = BARON
-											holding_type = tribal
-										}
-										add_building = tb_market_town_1
-										add_building = tb_market_town_2
-										add_building = tb_market_town_3
-										add_building = tb_market_town_4
-										convert_to = CITY
-										refill_holding_levy = yes
-										set_title_flag = emf_refill_levy
-									}
-									character_event = { id = emf_core.40 days = 3 } # Refill levies
-								}
-								create_family_palace = yes
-							}
-						}
-						set_government_type = merchant_republic_government
-					}
-				}
-			}
-			
-			if = {
-				limit = { location = { port = yes } }
-				FROM = {
-					set_government_type = merchant_republic_government
-					set_character_flag = emf_context_nomadic_to_merchant_republic
-				}
-			}
-			if = {
-				limit = { location = { port = no } }
-				FROM = { set_government_type = republic_government }
-			}
-			hidden_tooltip = {
-				FROM = {
-					# Post-settlement effects / adjustments (incl. culture
-					# settlement and anti-border-gore measures)
+            custom_tooltip = {
+                text = emf_nomad_ctt_pillage_destroy_buildings
+                hidden_tooltip = {
+                    if = {
+                        limit = { owner = { character = FROM } }
+                        destroy_random_building = THIS
+                        destroy_random_building = THIS
+                    }
+                    if = {
+                        limit = { owner = { NOT = { character = FROM } } }
+                        destroy_random_building = THIS
+                    }
+                }
+            }
 
-					character_event = { id = emf_nomad.1 }
-				}
-			}
-			FROM = {
-				set_character_flag = emf_context_nomadic_to_republic
-				chronicle = {
-					entry = CHRONICLE_NOMAD_FOUNDED_MERCHANT_REPUBLIC
-					picture = GFX_evt_busy_trading_dock_republic
-				}
-				any_playable_ruler = {
-					limit = {
-						NOT = { character = FROM }
-						ai = no
-					}
-					narrative_event = { id = HL.1 }
-				}
-			}
-		}
-		revoke_allowed = {
-			always = no
-		}
-		ai_will_do = {
-			factor = 0.5
-			
-			modifier = {
-				factor = 0
-				FROM = {
-					trait = content
-					NOT = { num_of_subrealm_cities = 10 }
-				}
-			}
-			modifier = {
-				factor = 0
-				FROM = {
-					trait = ambitious
-					NOT = { num_of_subrealm_cities = 20 }
-				}
-			}
-			modifier = {
-				factor = 0
-				FROM = {
-					NOR = {
-						trait = content
-						trait = ambitious
-					}
-					NOT = { num_of_subrealm_cities = 15 }
-				}
-			}
-			modifier = {
-				factor = 0
-				FROM = {
-					holding_diff = {
-						first_type = city
-						first_count_vassals = yes
-						second_type = none
-						value = 1.5
-					}
-				}
-			}
-			modifier = {
-				factor = 2.0
-				FROM = {
-					stewardship = 10
-				}
-			}
-			modifier = {
-				factor = 0
-				FROM = {
-					OR = {
-						has_landed_title = e_mongol_empire
-						has_landed_title = e_golden_horde
-						has_landed_title = e_chagatai
-					}
-				}
-			}
-		}
-	}
-	
+            location = {
+                if = {
+                    limit = { owner = { character = FROM } }
+                    add_province_modifier = {
+                        modifier = burnt_the_land
+                        years = 8
+                        stacking = yes
+                    }
+                    add_province_modifier = {
+                        modifier = recently_burnt_the_land
+                        months = 6
+                    }
+                }
+                if = {
+                    limit = { owner = { NOT = { character = FROM } } }
+                    add_province_modifier = {
+                        modifier = recently_burnt_the_land_not_owner
+                        years = 10
+                    }
+                }
+            }
+            
+            #BEGIN ARLES PILLAGE EFFECT
+            log = "DECISION: pillage_settlement Original holding population in [This.GetName] ([This.GetID]) set at [This.holding_pop.GetValue]"
+            if = {
+                limit = {
+                    has_building = tb_market_town_1
+                    NOT = { has_building = tb_market_town_2 }
+                }
+                custom_tooltip = {
+                    text = arles_base.8.opt.b.tooltip
+                    hidden_tooltip = {
+                        set_variable = { which = holding_pop_dmg value = 0.67 } #33% population loss
+                        multiply_variable = { which = holding_pop which = holding_pop_dmg }
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    OR = {
+                        AND = { 
+                            has_building = ca_town_1
+                            NOT = { has_building = ca_town_2 }
+                        }
+                        AND = {
+                            has_building = ct_marketplace_1
+                            NOT = { has_building = ct_marketplace_2 }
+                        }
+                        AND = {
+                            has_building = tp_town_1
+                            NOT = { has_building = tp_town_2 }
+                        }
+                        AND = {
+                            has_building = tb_market_town_2
+                            NOT = { has_building = tb_market_town_3 }
+                        }
+                    }
+                }
+                custom_tooltip = {
+                    text = arles_base.8.opt.b.tooltip
+                    hidden_tooltip = {
+                        set_variable = { which = holding_pop_dmg value = 0.67 } #33% population loss
+                        multiply_variable = { which = holding_pop which = holding_pop_dmg }
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    OR = {
+                        AND = {
+                            has_building = ca_town_2
+                            NOT = { has_building = ca_town_3 }
+                        }
+                        AND = {
+                            has_building = ct_marketplace_2
+                            NOT = { has_building = ct_marketplace_3 }
+                        }
+                        AND = {
+                            has_building = tp_town_2
+                            NOT = { has_building = tp_town_3 }
+                        }
+                        AND = {
+                            has_building = tb_market_town_3
+                            NOT = { has_building = tb_market_town_4 }
+                        }
+                    }
+                }
+                custom_tooltip = {
+                    text = arles_base.8.opt.b.tooltip
+                    hidden_tooltip = {
+                        set_variable = { which = holding_pop_dmg value = 0.80 } #20% population loss
+                        multiply_variable = { which = holding_pop which = holding_pop_dmg }
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    OR = {
+                        AND = {
+                            has_building = ca_town_3
+                            NOT = { has_building = ca_town_4 }
+                        }
+                        AND = {
+                            has_building = ct_marketplace_3
+                            NOT = { has_building = ct_marketplace_4 }
+                        }
+                        AND = {
+                            has_building = tp_town_3
+                            NOT = { has_building = tp_town_4 }
+                        }
+                        has_building = tb_market_town_4
+                    }
+                }
+                custom_tooltip = {
+                    text = arles_base.8.opt.b.tooltip
+                    hidden_tooltip = {
+                        set_variable = { which = holding_pop_dmg value = 0.80 } #20% population loss
+                        multiply_variable = { which = holding_pop which = holding_pop_dmg }
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    OR = {
+                        AND = {
+                            has_building = ca_town_4
+                            NOT = { has_building = ca_town_5 }
+                        }
+                        AND = {
+                            has_building = ct_marketplace_4
+                            NOT = { has_building = ct_marketplace_5 }
+                        }
+                        AND = {
+                            has_building = tp_town_4
+                            NOT = { has_building = tp_town_5 }
+                        }
+                    }
+                }
+                custom_tooltip = {
+                    text = arles_base.8.opt.b.tooltip
+                    hidden_tooltip = {
+                        set_variable = { which = holding_pop_dmg value = 0.85 } #15% population loss
+                        multiply_variable = { which = holding_pop which = holding_pop_dmg }
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    OR = {
+                        has_building = ca_town_5
+                        AND = {
+                            has_building = ct_marketplace_5
+                            NOT = { has_building = ct_marketplace_6 }
+                        }
+                        AND = {
+                            has_building = tp_town_5
+                            NOT = { has_building = tp_town_6 }
+                        }
+                    }
+                }
+                custom_tooltip = {
+                    text = arles_base.8.opt.b.tooltip
+                    hidden_tooltip = {
+                        set_variable = { which = holding_pop_dmg value = 0.85 } #15% population loss
+                        multiply_variable = { which = holding_pop which = holding_pop_dmg }
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    OR = {
+                        has_building = ct_marketplace_6
+                        has_building = tp_town_6
+                    }
+                }
+                custom_tooltip = {
+                    text = arles_base.8.opt.b.tooltip
+                    hidden_tooltip = {
+                        set_variable = { which = holding_pop_dmg value = 0.90 } #10% population loss
+                        multiply_variable = { which = holding_pop which = holding_pop_dmg }
+                    }
+                }
+            }           
+            
+            #BEGIN HOLDING LEVEL ASSIGNMENT
+            hidden_tooltip = {
+                arles_holding_pop_level_decline_effect = yes
+                log = "DECISION: pillage_settlement Reached end of holding population calculations in [This.GetName] ([This.GetID]), with final holding population at [This.holding_pop.GetValue]"
+                location = {    
+                    #BEGIN POPULATION LEVEL ASSIGNMENT
+                    arles_province_pop_level_decline_effect = yes
+                }
+            }
+        }
+        revoke_allowed = {
+            always = no
+        }
+        ai_will_do = {
+            factor = 1
+            
+            modifier = { # Only for tribal holdings
+                factor = 0
+                NOT = { holding_type = tribal }
+            }
+            modifier = { # Magyars shouldn't pillage Hungary before they settle there
+                factor = 0
+                de_jure_liege_or_above = k_hungary
+                FROM = { culture = hungarian }
+            }
+        }
+    }    
 }

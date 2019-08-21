@@ -1,236 +1,236 @@
 city = {
-	ct_guild_militia_xbow_1 = {
-		desc = ct_guild_militia_xbow_desc
-		potential = {
-			OR = {
-				culture = ligurian
-				has_province_flag = ct_xbow_tradition
-			}
-		}
-		trigger = { TECH_CITY_CONSTRUCTION = 1 }
-		gold_cost = 200
-		build_time = 730
-		archers = 60
-		pikemen = 15
-		light_infantry = -40
-		archers_offensive = 0.1
-		pikemen_defensive = 0.1
-		retinuesize = 20
-		tax_income = -0.1
-		ai_creation_factor = 101
-		
-		extra_tech_building_start = 1.0
-	}
-	ct_guild_militia_xbow_2 = {
-		desc = ct_guild_militia_xbow_desc
-		potential = {
-			OR = {
-				culture = ligurian
-				has_province_flag = ct_xbow_tradition
-			}
-		}
-		trigger = { TECH_CITY_CONSTRUCTION = 2 }
-		upgrades_from = ct_guild_militia_xbow_1
-		gold_cost = 300
-		build_time = 1095
-		archers = 80
-		pikemen = 20
-		light_infantry = -40
-		archers_offensive = 0.1
-		pikemen_defensive = 0.1
-		retinuesize = 20
-		tax_income = -0.1
-		ai_creation_factor = 100
-		
-		extra_tech_building_start = 1.0
-	}
-	ct_guild_militia_xbow_3 = {
-		desc = ct_guild_militia_xbow_desc
-		potential = {
-			OR = {
-				culture = ligurian
-				has_province_flag = ct_xbow_tradition
-			}
-		}
-		trigger = { TECH_CITY_CONSTRUCTION = 3 }
-		upgrades_from = ct_guild_militia_xbow_2
-		gold_cost = 400
-		build_time = 1460
-		archers = 100
-		pikemen = 25
-		light_infantry = -40
-		archers_offensive = 0.1
-		pikemen_defensive = 0.1
-		retinuesize = 20
-		tax_income = -0.1
-		ai_creation_factor = 99
-		
-		extra_tech_building_start = 1.0
-	}
-	ct_guild_militia_xbow_4 = {
-		desc = ct_guild_militia_xbow_desc
-		potential = {
-			OR = {
-				culture = ligurian
-				has_province_flag = ct_xbow_tradition
-			}
-		}
-		trigger = { TECH_CITY_CONSTRUCTION = 4 }
-		upgrades_from = ct_guild_militia_xbow_3
-		gold_cost = 500
-		build_time = 1825
-		archers = 120
-		pikemen = 30
-		light_infantry = -40
-		archers_offensive = 0.1
-		pikemen_defensive = 0.1
-		retinuesize = 20
-		tax_income = -0.1
-		ai_creation_factor = 99
-		
-		extra_tech_building_start = 1.0
-	}
-	ct_guild_militia_xbow_5 = {
-		desc = ct_guild_militia_xbow_desc
-		potential = {
-			OR = {
-				culture = ligurian
-				has_province_flag = ct_xbow_tradition
-			}
-		}
-		trigger = { TECH_CITY_CONSTRUCTION = 6 }
-		upgrades_from = ct_guild_militia_xbow_4
-		gold_cost = 600
-		build_time = 2190
-		archers = 140
-		pikemen = 35
-		light_infantry = -40
-		archers_offensive = 0.1
-		pikemen_defensive = 0.1
-		retinuesize = 20
-		tax_income = -0.1
-		ai_creation_factor = 97
-		
-		extra_tech_building_start = 1.0
-	}
-	
-	ct_guild_militia_pike_1 = {
-		desc = ct_guild_militia_pike_desc
-		potential = {
-			OR = {
-				culture = dutch
-				has_province_flag = ct_pike_tradition
-			}
-		}
-		trigger = { TECH_CITY_CONSTRUCTION = 1 }
-		gold_cost = 200
-		build_time = 730
-		heavy_infantry = 20
-		pikemen = 50
-		light_infantry = -25
-		archers = -15
-		heavy_infantry_offensive = 0.05
-		pikemen_defensive = 0.15
-		retinuesize = 20
-		tax_income = -0.1
-		ai_creation_factor = 101
-		
-		extra_tech_building_start = 1.0
-	}
-	ct_guild_militia_pike_2 = {
-		desc = ct_guild_militia_pike_desc
-		potential = {
-			OR = {
-				culture = dutch
-				has_province_flag = ct_pike_tradition
-			}
-		}
-		trigger = { TECH_CITY_CONSTRUCTION = 2 }
-		upgrades_from = ct_guild_militia_pike_1
-		gold_cost = 300
-		build_time = 1095
-		heavy_infantry = 20
-		pikemen = 65
-		light_infantry = -25
-		archers = -15
-		heavy_infantry_offensive = 0.05
-		pikemen_defensive = 0.15
-		retinuesize = 20
-		tax_income = -0.1
-		ai_creation_factor = 100
-		
-		extra_tech_building_start = 1.0
-	}
-	ct_guild_militia_pike_3 = {
-		desc = ct_guild_militia_pike_desc
-		potential = {
-			OR = {
-				culture = dutch
-				has_province_flag = ct_pike_tradition
-			}
-		}
-		trigger = { TECH_CITY_CONSTRUCTION = 3 }
-		upgrades_from = ct_guild_militia_pike_2
-		gold_cost = 400
-		build_time = 1460
-		heavy_infantry = 20
-		pikemen = 80
-		light_infantry = -25
-		archers = -15
-		heavy_infantry_offensive = 0.05
-		pikemen_defensive = 0.15
-		retinuesize = 20
-		tax_income = -0.1
-		ai_creation_factor = 99
-		
-		extra_tech_building_start = 1.0
-	}
-	ct_guild_militia_pike_4 = {
-		desc = ct_guild_militia_pike_desc
-		potential = {
-			OR = {
-				culture = dutch
-				has_province_flag = ct_pike_tradition
-			}
-		}
-		trigger = { TECH_CITY_CONSTRUCTION = 4 }
-		upgrades_from = ct_guild_militia_pike_3
-		gold_cost = 500
-		build_time = 1825
-		heavy_infantry = 30
-		pikemen = 95
-		light_infantry = -25
-		archers = -15
-		heavy_infantry_offensive = 0.05
-		pikemen_defensive = 0.15
-		retinuesize = 20
-		tax_income = -0.1
-		ai_creation_factor = 99
-		
-		extra_tech_building_start = 1.0
-	}
-	ct_guild_militia_pike_5 = {
-		desc = ct_guild_militia_pike_desc
-		potential = {
-			OR = {
-				culture = dutch
-				has_province_flag = ct_pike_tradition
-			}
-		}
-		trigger = { TECH_CITY_CONSTRUCTION = 6 }
-		upgrades_from = ct_guild_militia_pike_4
-		gold_cost = 600
-		build_time = 2190
-		heavy_infantry = 35
-		pikemen = 110
-		light_infantry = -25
-		archers = -15
-		heavy_infantry_offensive = 0.05
-		pikemen_defensive = 0.15
-		retinuesize = 20
-		tax_income = -0.1
-		ai_creation_factor = 97
-		
-		extra_tech_building_start = 1.0
-	}
+    ct_guild_militia_xbow_1 = {
+        desc = ct_guild_militia_xbow_desc
+        potential = {
+            OR = {
+                culture = ligurian
+                has_province_flag = ct_xbow_tradition
+            }
+        }
+        trigger = { TECH_CITY_CONSTRUCTION = 1 }
+        gold_cost = 200
+        build_time = 730
+        archers = 60
+        pikemen = 15
+        light_infantry = -40
+        archers_offensive = 0.1
+        pikemen_defensive = 0.1
+        retinuesize = 20
+        tax_income = -0.1
+        ai_creation_factor = 101
+        
+        extra_tech_building_start = 1.0
+    }
+    ct_guild_militia_xbow_2 = {
+        desc = ct_guild_militia_xbow_desc
+        potential = {
+            OR = {
+                culture = ligurian
+                has_province_flag = ct_xbow_tradition
+            }
+        }
+        trigger = { TECH_CITY_CONSTRUCTION = 2 }
+        upgrades_from = ct_guild_militia_xbow_1
+        gold_cost = 300
+        build_time = 1095
+        archers = 80
+        pikemen = 20
+        light_infantry = -40
+        archers_offensive = 0.1
+        pikemen_defensive = 0.1
+        retinuesize = 20
+        tax_income = -0.1
+        ai_creation_factor = 100
+        
+        extra_tech_building_start = 1.0
+    }
+    ct_guild_militia_xbow_3 = {
+        desc = ct_guild_militia_xbow_desc
+        potential = {
+            OR = {
+                culture = ligurian
+                has_province_flag = ct_xbow_tradition
+            }
+        }
+        trigger = { TECH_CITY_CONSTRUCTION = 3 }
+        upgrades_from = ct_guild_militia_xbow_2
+        gold_cost = 400
+        build_time = 1460
+        archers = 100
+        pikemen = 25
+        light_infantry = -40
+        archers_offensive = 0.1
+        pikemen_defensive = 0.1
+        retinuesize = 20
+        tax_income = -0.1
+        ai_creation_factor = 99
+        
+        extra_tech_building_start = 1.0
+    }
+    ct_guild_militia_xbow_4 = {
+        desc = ct_guild_militia_xbow_desc
+        potential = {
+            OR = {
+                culture = ligurian
+                has_province_flag = ct_xbow_tradition
+            }
+        }
+        trigger = { TECH_CITY_CONSTRUCTION = 4 }
+        upgrades_from = ct_guild_militia_xbow_3
+        gold_cost = 500
+        build_time = 1825
+        archers = 120
+        pikemen = 30
+        light_infantry = -40
+        archers_offensive = 0.1
+        pikemen_defensive = 0.1
+        retinuesize = 20
+        tax_income = -0.1
+        ai_creation_factor = 99
+        
+        extra_tech_building_start = 1.0
+    }
+    ct_guild_militia_xbow_5 = {
+        desc = ct_guild_militia_xbow_desc
+        potential = {
+            OR = {
+                culture = ligurian
+                has_province_flag = ct_xbow_tradition
+            }
+        }
+        trigger = { TECH_CITY_CONSTRUCTION = 6 }
+        upgrades_from = ct_guild_militia_xbow_4
+        gold_cost = 600
+        build_time = 2190
+        archers = 140
+        pikemen = 35
+        light_infantry = -40
+        archers_offensive = 0.1
+        pikemen_defensive = 0.1
+        retinuesize = 20
+        tax_income = -0.1
+        ai_creation_factor = 97
+        
+        extra_tech_building_start = 1.0
+    }
+    
+    ct_guild_militia_pike_1 = {
+        desc = ct_guild_militia_pike_desc
+        potential = {
+            OR = {
+                culture = dutch
+                has_province_flag = ct_pike_tradition
+            }
+        }
+        trigger = { TECH_CITY_CONSTRUCTION = 1 }
+        gold_cost = 200
+        build_time = 730
+        heavy_infantry = 20
+        pikemen = 50
+        light_infantry = -25
+        archers = -15
+        heavy_infantry_offensive = 0.05
+        pikemen_defensive = 0.15
+        retinuesize = 20
+        tax_income = -0.1
+        ai_creation_factor = 101
+        
+        extra_tech_building_start = 1.0
+    }
+    ct_guild_militia_pike_2 = {
+        desc = ct_guild_militia_pike_desc
+        potential = {
+            OR = {
+                culture = dutch
+                has_province_flag = ct_pike_tradition
+            }
+        }
+        trigger = { TECH_CITY_CONSTRUCTION = 2 }
+        upgrades_from = ct_guild_militia_pike_1
+        gold_cost = 300
+        build_time = 1095
+        heavy_infantry = 20
+        pikemen = 65
+        light_infantry = -25
+        archers = -15
+        heavy_infantry_offensive = 0.05
+        pikemen_defensive = 0.15
+        retinuesize = 20
+        tax_income = -0.1
+        ai_creation_factor = 100
+        
+        extra_tech_building_start = 1.0
+    }
+    ct_guild_militia_pike_3 = {
+        desc = ct_guild_militia_pike_desc
+        potential = {
+            OR = {
+                culture = dutch
+                has_province_flag = ct_pike_tradition
+            }
+        }
+        trigger = { TECH_CITY_CONSTRUCTION = 3 }
+        upgrades_from = ct_guild_militia_pike_2
+        gold_cost = 400
+        build_time = 1460
+        heavy_infantry = 20
+        pikemen = 80
+        light_infantry = -25
+        archers = -15
+        heavy_infantry_offensive = 0.05
+        pikemen_defensive = 0.15
+        retinuesize = 20
+        tax_income = -0.1
+        ai_creation_factor = 99
+        
+        extra_tech_building_start = 1.0
+    }
+    ct_guild_militia_pike_4 = {
+        desc = ct_guild_militia_pike_desc
+        potential = {
+            OR = {
+                culture = dutch
+                has_province_flag = ct_pike_tradition
+            }
+        }
+        trigger = { TECH_CITY_CONSTRUCTION = 4 }
+        upgrades_from = ct_guild_militia_pike_3
+        gold_cost = 500
+        build_time = 1825
+        heavy_infantry = 30
+        pikemen = 95
+        light_infantry = -25
+        archers = -15
+        heavy_infantry_offensive = 0.05
+        pikemen_defensive = 0.15
+        retinuesize = 20
+        tax_income = -0.1
+        ai_creation_factor = 99
+        
+        extra_tech_building_start = 1.0
+    }
+    ct_guild_militia_pike_5 = {
+        desc = ct_guild_militia_pike_desc
+        potential = {
+            OR = {
+                culture = dutch
+                has_province_flag = ct_pike_tradition
+            }
+        }
+        trigger = { TECH_CITY_CONSTRUCTION = 6 }
+        upgrades_from = ct_guild_militia_pike_4
+        gold_cost = 600
+        build_time = 2190
+        heavy_infantry = 35
+        pikemen = 110
+        light_infantry = -25
+        archers = -15
+        heavy_infantry_offensive = 0.05
+        pikemen_defensive = 0.15
+        retinuesize = 20
+        tax_income = -0.1
+        ai_creation_factor = 97
+        
+        extra_tech_building_start = 1.0
+    }
 }
